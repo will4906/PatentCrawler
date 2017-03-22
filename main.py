@@ -8,6 +8,18 @@ from urllib.request import urlopen
 from bs4 import BeautifulSoup
 from selenium import webdriver
 import time
+import xlwt
+import xlrd
+
+
+def init_excel_config(date):
+    title_list = ["专利类型", "专利名称", "法律状态", "申请公布日/授权公告日", "申请号", "申请日", "申请人/专利权人", "发明人"]
+    work_book = xlwt.Workbook()
+    work_sheet = work_book.add_sheet("Sheet1")
+    for index, each in enumerate(title_list):
+        work_sheet.write(0, index, each)
+    work_book.save("专利({0}).xls".format(date))
+    return work_book, work_sheet
 
 
 def connect_url(driver, url):
@@ -22,6 +34,8 @@ def input_parameter(driver, inventor_text, proposer_text, time_text):
     proposer_input_id = "tableSearchItemIdIVDB020"
     time_select_id = "IVDB007select"
     time_input_id = "tableSearchItemIdIVDB007"
+
+    check_for_loading()
 
     load_index_ok = False
     while load_index_ok is False:
@@ -78,59 +92,108 @@ def check_for_loading():
 
     return bs_object
 
-if __name__ == '__main__':
 
+def wait_for_lawstate(driver):
+    fail_str = "数据正在加载中"
+    close_btn_string = "取消"
+
+    while BeautifulSoup(driver.page_source, "html.parser").prettify().find(fail_str) is not -1:
+        # print("点击法律信息，等待数据加载")
+        pass
+    while BeautifulSoup(driver.page_source, "html.parser").prettify().find(close_btn_string) is -1:
+        # print("点击法律信息，等待取消按钮")
+        pass
+
+
+def collecting_data(driver):
+    itemLength = driver.execute_script("return document.getElementsByClassName(\"item\").length;")
+
+    for i in range(itemLength):
+        is_normal_data = False
+
+        try:
+            # 专利名称
+            name = driver.execute_script(
+                "return document.getElementsByName(\"titleHidden\").item(" + str(
+                    i) + ").attributes.getNamedItem(\"value\").textContent;")
+            if name != "":
+                is_normal_data = True
+            # 专利类型
+            type = driver.execute_script(
+                "return document.getElementsByClassName(\"item-header\").item(" + str(
+                    i) + ").childNodes.item(3).childNodes.item(3).textContent;")
+        except:
+            is_normal_data = False
+
+        if is_normal_data is True:
+            # 申请号
+            driver.execute_script(
+                "document.getElementsByClassName(\"item-content-body\").item(" + str(
+                    i) + ").childNodes.item(1).removeChild(document.getElementsByClassName(\"item-content-body\").item(" + str(
+                    i) + ").childNodes.item(1).childNodes.item(0));"
+            )
+            requestNumber = driver.execute_script(
+                "return document.getElementsByClassName(\"item-content-body\").item(" + str(
+                    i) + ").childNodes.item(1).childNodes.item(0).textContent;"
+            )
+            # 申请日
+            driver.execute_script(
+                "document.getElementsByClassName(\"item-content-body\").item(" + str(
+                    i) + ").childNodes.item(3).removeChild(document.getElementsByClassName(\"item-content-body\").item(" + str(
+                    i) + ").childNodes.item(3).childNodes.item(0));"
+            )
+            requestDate = driver.execute_script(
+                "return document.getElementsByClassName(\"item-content-body\").item(" + str(
+                    i) + ").childNodes.item(3).childNodes.item(1).textContent;"
+            )
+            # 公布日
+            driver.execute_script(
+                "document.getElementsByClassName(\"item-content-body\").item(" + str(
+                    i) + ").childNodes.item(7).removeChild(document.getElementsByClassName(\"item-content-body\").item(" + str(
+                    i) + ").childNodes.item(7).childNodes.item(0));"
+            )
+            announcement_date = driver.execute_script(
+                "return document.getElementsByClassName(\"item-content-body\").item(" + str(
+                    i) + ").childNodes.item(7).childNodes.item(1).textContent;"
+            )
+            # 申请人
+            propsorName = driver.execute_script(
+                "return document.getElementsByClassName(\"item-content-body\").item(" + str(
+                    i) + ").childNodes.item(11).innerText;"
+            )
+            inventorName = driver.execute_script(
+                "return document.getElementsByClassName(\"item-content-body\").item(" + str(
+                    i) + ").childNodes.item(13).innerText;"
+            )
+            # 法律信息
+            driver.execute_script(
+                "document.getElementsByClassName(\"item-footer\").item(" + str(
+                    i) + ").childNodes.item(1).childNodes.item(3).click();"
+            )
+            wait_for_lawstate(driver)
+            law_state = driver.execute_script(
+                "return document.getElementById(\"lawResult\").getElementsByTagName(\"td\").item(document.getElementById(\"lawResult\").getElementsByTagName(\"td\").length - 1).innerText;"
+            )
+            driver.execute_script(
+                "document.getElementsByClassName(\"ui-dialog-close\").item(0).click();"
+            )
+            print(name + "\t" + type[1:-1] + "\t" + requestNumber + "\t" + requestDate + "\t" + announcement_date + "\t" + propsorName[10:] + "\t" + inventorName + "\t" + law_state)
+
+    return
+
+if __name__ == '__main__':
+    date = time.strftime("%Y%m%d", time.localtime(time.time()))
+    init_excel_config(date)
+
+    url = "http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/tableSearch-showTableSearchIndex.shtml"
     driver = webdriver.PhantomJS(executable_path='.\phantomjs.exe')
-    connect_url(driver, "http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/tableSearch-showTableSearchIndex.shtml")
+
+    connect_url(driver, url)
     input_parameter(driver, "陈思平", "深圳大学", "2001-01-01")
 
-    strLeft = "/div[4]/div[1]/ul/li["
-    strRight = "]/div/div[1]/h1/div[2]/a/b"
-
     bsObject = check_for_loading()
+    # TODO: 有可能出现“检索失败”的情况，要进行处理
 
-    name = driver.execute_script(
-        "return document.getElementsByName(\"titleHidden\").item(0).attributes.getNamedItem(\"value\").textContent;")
-    print(name)
-    # searchResult = bsObject.find(class_ = "list-container")
-    # print(searchResult)
-    #
-    # searchResultBs = BeautifulSoup(str(searchResult), "html.parser")
-    # print(searchResultBs)
+    collecting_data(driver)
 
     driver.close()
-    # contentList = bsObject.find_all(class_ = "item")
-    # print(bsObject.prettify())
-    # for index in range(0, len(contentList)):
-    #     print(contentList[index].find('b').get_text())
-        # title = searchResult.find_element_by_xpath(strLeft + str(index) + strRight)
-        # driver.implicitly_wait(20)
-        # print(title.getText())
-
-    # print(driver.page_source)
-    # bsObject = BeautifulSoup(driver.page_source,"html.parser")
-    # # contentList = bsObject.find_all(class_ = "item-content-body")
-    # # print(len(contentList))
-    # # for i in range(len(contentList)):
-    # #     print(contentList[i].get_text())
-    # searchResultDiv = bsObject.find(id="search-result")
-    # driver.implicitly_wait(20)
-    # if searchResultDiv is not None:
-    #     print(searchResultDiv.get_text())
-
-
-#     //*[@id="search_result"]/div[4]/div[1]/ul/li[1]/div
-#     //*[@id="search_result"]/div[4]/div[1]/ul/li[1]/div/div[1]
-#     //*[@id="search_result"]/div[4]/div[1]/ul/li[1]/div/div[1]/h1
-#     //*[@id="search_result"]/div[4]/div[1]/ul/li[1]/div/div[1]/h1/div[2]
-#     //*[@id="search_result"]/div[4]/div[1]/ul/li[1]/div/div[1]/h1/div[2]/a
-#     //*[@id="search_result"]/div[4]/div[1]/ul/li[1]/div/div[1]/h1/div[2]/a/b
-
-
-#     //*[@id="search_result"]/div[4]/div[1]/ul/li[3]/div/div[1]/h1/div[2]/a/b
-#     数据正在加载中
-#     //*[@id="search_result"]/div[4]/div[1]/ul/li[4]/div/div[1]/h1/div[2]/a/b
-
-# #search_result > div.re-content.search-mode-content > div.list-container > ul > li:nth-child(1) > div > div.item-header.clear > h1 > div:nth-child(2) > a > b
-# <b style="color: #4B4B4B">一种超声探头以及超声成像辅助诊断系统</b>
-# //*[@id="search_result"]/div[4]/div[1]
