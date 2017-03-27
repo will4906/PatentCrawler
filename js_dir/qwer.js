@@ -8,3 +8,5 @@ document.getElementsByClassName("item-content-body left")[1].children[0].innerTe
 document.getElementsByClassName("item-content-body left")[1].children[1].innerText.substring(6);
 
 document.getElementsByClassName("item-content-body")[1].children[1].innerText;
+
+document.getElementById("lawResult").children[1].children[document.getElementById("lawResult").children[1].children.length-1].children[1].innerText;

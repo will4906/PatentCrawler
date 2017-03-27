@@ -19,6 +19,7 @@ class ItemData:
         self.__proposer_name = ""  # 申请人
         self.__inventor_name = ""  # 发明人
         self.__law_state = ""  # 法律状态
+        self.__law_state_date = ""  # 法律状态日期
         return
 
     def set_name(self, name):
@@ -48,6 +49,9 @@ class ItemData:
     def set_law_state(self, law_state):
         self.__law_state = law_state
 
+    def set_law_state_date(self, law_state_date):
+        self.__law_state_date = law_state_date
+
     def get_name(self):
         return self.__name
 
@@ -74,3 +78,6 @@ class ItemData:
 
     def get_law_state(self):
         return self.__law_state
+
+    def get_law_state_date(self):
+        return self.__law_state_date

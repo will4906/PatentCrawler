@@ -21,7 +21,9 @@ class ItemCollection:
     def collectingData(self):
         try:
             name = self.collecting_name()
+            self.__item_data.set_name(name)
             type = self.collecting_type()
+            self.__item_data.set_type(type)
             if name != "" and type != "":
                 pLen = self.__driver.execute_script("return document.getElementsByClassName(\"item-content-body\")[" + str(self.__whichItem) + "].children.length;")
                 for i in range(pLen):
@@ -29,21 +31,36 @@ class ItemCollection:
                     strTemp = str(strData)
                     if strTemp.find("申请号") != -1:
                         requestNumber = strTemp[7:]
+                        self.__item_data.set_request_number(requestNumber)
                     elif strTemp.find("申请日") != -1:
                         requestDate = strTemp[6:]
+                        self.__item_data.set_request_date(requestDate)
                     elif strTemp.find("公告") != -1 and strTemp.find("日") != -1:
                         announcement_date = strTemp[10:]
+                        self.__item_data.set_announcement_date(announcement_date)
                     elif strTemp.find("申请") != -1 and strTemp.find("人") != -1:
                         proposer_name = strTemp[11:-2]
+                        self.__item_data.set_proposer_name(proposer_name)
                     elif strTemp.find("发明人") != -1:
-                        inventor_name = strTemp[6:-2]
-                law_state = self.collecting_law_state()
-                print(self.__item_data.get_patent_type() + "\t" + name + "\t" + type[
-                                                         1:-1] + "\t" + requestNumber + "\t" + requestDate + "\t" + announcement_date + "\t" + proposer_name + "\t" + inventor_name + "\t" + law_state)
-            self.__pageCollection.collectingItemSuccessfully(self.__item_data)
+                        inventor_name = strTemp[6:-2].replace('\n', '')
+                        self.__item_data.set_inventor_name(inventor_name)
+                print("准备收集法律信息")
+                LawState(self.__driver, self).collecting_law_state(self.__whichItem)
+            else:
+                self.__pageCollection.collectingItemSuccessfullyWithOutData()
         except:
             self.__pageCollection.collectingItemUnsuccessfully()
             return False
+
+    def collectingLawDataSuccessfully(self, lawUpdate, lawState):
+        print("采集法律信息成功")
+        self.__item_data.set_law_state(lawState)
+        self.__item_data.set_law_state_date(lawUpdate)
+        self.__pageCollection.collectingItemSuccessfully(self.__item_data)
+
+    def collectingLawDataUnsuccessfully(self):
+        print("收集法律信息失败")
+        self.__pageCollection.collectingItemUnsuccessfully()
 
     def get_item_data(self):
         return self.__item_data
@@ -79,10 +96,3 @@ class ItemCollection:
         if type is not None:
             self.__item_data.set_type(type)
         return self.__item_data.get_type()
-
-    # 法律信息
-    def collecting_law_state(self):
-        law_state = LawState(self.__driver).collecting_law_state(self.__whichItem)
-        if law_state is not None:
-            self.__item_data.set_law_state(law_state)
-        return self.__item_data.get_law_state()

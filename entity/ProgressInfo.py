@@ -11,12 +11,12 @@ from entity.QueryInfo import QueryInfo
 class ProgressInfo:
     def __init__(self):
         self.__queryInfo = QueryInfo()
-        self.__collectionResult = CollectionResult()
         self.__inventorIndex = 0
         self.__patentTypeIndex = 0
         self.__pageSum = 0
         self.__pageIndex = 1
         self.__itemIndex = 0
+        self.__collectionResult = CollectionResult(self)
 
     def getQueryInfo(self):
         return self.__queryInfo

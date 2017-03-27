@@ -47,7 +47,7 @@ class WaitEngine:
                 return False
         return True
 
-    # 是否加载失败
+    # 查询状态结果，True则查询有结果，False则查询失败
     def query_result_state(self):
         if self.driver.page_source.find(self.fail_string) == -1:
             if self.driver.page_source.find(self.query_lost) == -1:

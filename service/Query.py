@@ -11,8 +11,8 @@ class Query:
     search_button_xpath = "/html/body/div[3]/div[3]/div/div[2]/div[3]/a[3]"
     inventor_input_id = "tableSearchItemIdIVDB021"
     proposer_input_id = "tableSearchItemIdIVDB020"
-    time_select_id = "IVDB007select"
-    time_input_id = "tableSearchItemIdIVDB007"
+    time_select_id = "IVDB012select"
+    time_input_id = "tableSearchItemIdIVDB012"
 
     def __init__(self, progressController):
         self.__progressController = progressController
