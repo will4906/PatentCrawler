@@ -6,7 +6,6 @@ Created on 2017/3/24
 """
 from entity.CollectionResult import CollectionResult
 from service.ItemCollection import ItemCollection
-from util.CheckItem import CheckItem
 
 
 class PageCollection:
@@ -17,7 +16,6 @@ class PageCollection:
         self.__itemLength = 0
         self.__itemIndex = 0
         self.__patentTypeIndex = 0
-        self.__CheckItem = CheckItem(collectionResult)
 
     def startCollecting(self, patentTypeIndex, startItemIndex=0):
         self.__itemLength = 0
