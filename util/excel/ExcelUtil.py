@@ -9,6 +9,7 @@ import xlwt
 import xlrd
 from xlutils.copy import copy
 
+from enums.Config import Config
 from util.excel.ExcelEditor import ExcelEditor
 
 
@@ -56,7 +57,7 @@ class ExcelUtil:
             else:
                 return None
         except Exception as e:
-            print(e)
+            Config.writeException(e)
             return
 
     # 调用这个方法生成editor,主要模仿安卓的SharedPreferences

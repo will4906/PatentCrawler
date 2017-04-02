@@ -56,5 +56,20 @@ document.getElementsByName("inventiontype").length;
 document.getElementsByName("inventiontype").item(0).classList.remove("active");
 document.getElementsByName("inventiontype").item(2).classList.add("active");
 document.getElementsByClassName("box-content-bottom").item(0).childNodes.item(5).click();
-
+document.getElementById("lawResult").getElementsByTagName("td").length;
 document.getElementsByClassName("page_top").item(0).childNodes.item(document.getElementsByClassName("page_top").item(0).childNodes.length - 1).textContent;
+
+document.getElementsByClassName("ui-dialog").length;
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -5,6 +5,7 @@ Created on 2017/3/24
 @author: will4906
 """
 from entity.ItemData import ItemData
+from enums.Config import Config
 from util.LawState import LawState
 from util.WaitEngine import WaitEngine
 
@@ -44,22 +45,24 @@ class ItemCollection:
                     elif strTemp.find("发明人") != -1:
                         inventor_name = strTemp[6:-2].replace('\n', '')
                         self.__item_data.set_inventor_name(inventor_name)
-                print("准备收集法律信息")
-                LawState(self.__driver, self).collecting_law_state(self.__whichItem)
+                Config.writeLog("准备收集法律信息")
+                LawState(self.__driver, self).collectingLawState(self.__whichItem)
             else:
                 self.__pageCollection.collectingItemSuccessfullyWithOutData()
-        except:
+        except Exception as e:
+            # print(e)
+            Config.writeException(e)
             self.__pageCollection.collectingItemUnsuccessfully()
             return False
 
     def collectingLawDataSuccessfully(self, lawUpdate, lawState):
-        print("采集法律信息成功")
+        Config.writeLog("采集法律信息成功")
         self.__item_data.set_law_state(lawState)
         self.__item_data.set_law_state_date(lawUpdate)
         self.__pageCollection.collectingItemSuccessfully(self.__item_data)
 
     def collectingLawDataUnsuccessfully(self):
-        print("收集法律信息失败")
+        Config.writeLog("收集法律信息失败")
         self.__pageCollection.collectingItemUnsuccessfully()
 
     def get_item_data(self):
@@ -78,7 +81,9 @@ class ItemCollection:
         try:
             self.__driver.execute_script(str_script)
             return True
-        except:
+        except Exception as e:
+            Config.writeException(e)
+            print(e)
             return False
 
     # 专利名称

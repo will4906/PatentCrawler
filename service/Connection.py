@@ -4,6 +4,7 @@ Created on 2017/3/24
 
 @author: will4906
 """
+from enums.Config import Config
 
 
 class Connection:
@@ -19,7 +20,7 @@ class Connection:
             self.__progressController.loadUrlSuccessfully()
             return True
         except Exception as e:
-            print(e)
+            Config.writeException(e)
             self.__progressController.loadUrlUnsuccessfully()
             return False
 
@@ -28,6 +29,7 @@ class Connection:
             self.__driver.refresh()
             self.__progressController.loadUrlSuccessfully()
             return True
-        except:
+        except Exception as e:
+            Config.writeException(e)
             self.__progressController.loadUrlUnsuccessfully()
             return False

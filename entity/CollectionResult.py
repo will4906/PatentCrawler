@@ -62,6 +62,8 @@ class CollectionResult:
                                                 itemData.get_announcement_date(),
                                                 itemData.get_request_number(), itemData.get_request_date(),
                                                 itemData.get_proposer_name(), itemData.get_inventor_name())
+                            print(
+                                itemData.get_patent_type() + "\t" + itemData.get_name() + "\t" + itemData.get_type() + "\t" + itemData.get_request_number() + "\t" + itemData.get_request_date() + "\t" + itemData.get_announcement_date() + "\t" + itemData.get_proposer_name() + "\t" + itemData.get_inventor_name() + "\t" + itemData.get_law_state() + "\t" + itemData.get_law_state_date() + "\t" + "更新")
                             break
                     elif int(itemData.get_law_state_date()) > int(self.__itemDataList[i].get_law_state_date()):
                         self.__itemDataList[i] = itemData
@@ -70,7 +72,10 @@ class CollectionResult:
                                             itemData.get_announcement_date(),
                                             itemData.get_request_number(), itemData.get_request_date(),
                                             itemData.get_proposer_name(), itemData.get_inventor_name())
+                        print(
+                            itemData.get_patent_type() + "\t" + itemData.get_name() + "\t" + itemData.get_type() + "\t" + itemData.get_request_number() + "\t" + itemData.get_request_date() + "\t" + itemData.get_announcement_date() + "\t" + itemData.get_proposer_name() + "\t" + itemData.get_inventor_name() + "\t" + itemData.get_law_state() + "\t" + itemData.get_law_state_date() + "\t" + "更新")
                         break
+
             if not hasSameRequestNumber:
                 self.__itemDataList.append(itemData)
                 print(
@@ -98,4 +103,5 @@ class CollectionResult:
             editor.commit()
         except Exception as e:
             print("写excel报错")
-            print(e)
+            Config.writeLog("写excel报错")
+            Config.writeException(e)

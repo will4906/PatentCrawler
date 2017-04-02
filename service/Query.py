@@ -4,6 +4,7 @@ Created on 2017/3/24
 
 @author: will4906
 """
+from enums.Config import Config
 from util.WaitEngine import WaitEngine
 
 
@@ -30,22 +31,27 @@ class Query:
                             return True
                         else:
                             print("页码为零")
+                            Config.writeLog("页码为零")
                             self.__progressController.queryTargetUnsuccessfully()
                             return False
                     else:
                         print("查询等待超时")
+                        Config.writeLog("查询等待超时")
                         self.__progressController.queryTargetUnsuccessfully()
                         return False
                 else:
                     print("查询失败")
+                    Config.writeLog("查询失败")
                     self.__progressController.queryTargetUnsuccessfully()
                     return False
             else:
                 print("元素未加载")
+                Config.writeLog("元素未加载")
                 self.__progressController.queryTargetUnsuccessfully()
                 return False
         else:
             print("url加载超时")
+            Config.writeLog("url加载超时")
             self.__progressController.queryTargetUnsuccessfully()
             return False
 
@@ -62,10 +68,12 @@ class Query:
                 return True
             else:
                 print("元素没显示")
+                Config.writeLog("元素没显示")
                 return False
         except Exception as e:
             print("元素抛异常")
-            print(e)
+            Config.writeLog("元素抛异常")
+            Config.writeException(e)
             return False
 
     def __inputQueryTargetData(self, inventor, proposer, startDate, patentTypeIndex):
@@ -73,33 +81,34 @@ class Query:
             # 填写发明人
             self.__driver.execute_script(
                 "document.getElementById(\"" + Query.inventor_input_id + "\").setAttribute(\"value\",\"" + inventor + "\")")
-            print("发明人")
+            Config.writeLog("发明人")
             # 填写申请人
             self.__driver.execute_script(
                 "document.getElementById(\"" + Query.proposer_input_id + "\").setAttribute(\"value\",\"" + proposer + "\")")
-            print("申请人")
+            Config.writeLog("申请人")
             # 点击时间的check_list
             self.__driver.execute_script(
                 "document.getElementById(\"" + Query.time_select_id + "\").firstElementChild.firstElementChild.click();")
             WaitEngine.waitForSeconds(2)        # 等待两秒
             self.__driver.execute_script(
                 "document.getElementById(\"" + Query.time_select_id + "\").firstElementChild.childNodes[2].childNodes[2].firstElementChild.click();")
-            print("点击时间")
+            Config.writeLog("点击时间")
             # 填写时间
             self.__driver.execute_script(
                 "document.getElementById(\"" + Query.time_input_id + "\").setAttribute(\"value\",\"" + startDate + "\")")
-            print("填写时间")
+            Config.writeLog("填写时间")
             # 选择专利类型
             self.__choosePatentType(patentTypeIndex)
-            print("专利类型")
+            Config.writeLog("专利类型")
             WaitEngine.waitForSeconds(3)        # 等待三秒
             # 点击检索按钮
             self.__driver.execute_script(
                 "document.getElementsByClassName(\"box-content-bottom\").item(0).childNodes.item(5).click();"
             )
-            print("点击按钮")
+            Config.writeLog("点击按钮")
             return True
         except Exception as e:
+            Config.writeException(e)
             print(e)
             return False
 
@@ -125,7 +134,9 @@ class Query:
                 strTemp = page_sum_str[page_sum_str.find("共") + 1:-1]
                 page_sum = int(strTemp[:strTemp.find("页")])
                 return page_sum
-            except:
+            except Exception as e:
+                Config.writeException(e)
+                print(e)
                 return None
 
 
@@ -139,6 +150,8 @@ class Query:
             )
             self.__progressController.changePageSuccessfully()
             return True
-        except:
+        except Exception as e:
+            Config.writeException(e)
+            print(e)
             self.__progressController.changePageUnsuccessfully()
             return False
