@@ -175,11 +175,6 @@ class ProgressController:
                     startDate = queryInfo.getStartDate()
                     patentTypeIndex = self.__progressInfo.getPatentTypeIndex()
                     print(inventor)
-                    # self.__driver.close()
-                    # self.__driver.
-                    # self.__driver = self.__generateWebDriver(Config.BROSWER_NAME)
-                    # time.sleep(10)
-                    # self.startProgress()
                     self.__query.queryTarget(inventor, proposer, startDate, patentTypeIndex)
                 else:
                     Config.writeLog("InventorIndex = {0}".format(ii))

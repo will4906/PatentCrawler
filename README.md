@@ -1,6 +1,11 @@
 # PatentCrawler
 
 专利爬虫
+### 特别注意
+工程使用了PhantomJs浏览器，用户需自行下载并放到res目录下
+### 简单介绍
+
+csdn博客：[http://blog.csdn.net/will4906/article/details/68955619](http://blog.csdn.net/will4906/article/details/68955619)
 
 ### 设计
 
