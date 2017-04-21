@@ -25,6 +25,7 @@ class Query:
             if self.__isElementLoadingSuccess():
                 if self.__inputQueryTargetData(inventor, proposer, startDate, patentTypeIndex):
                     if self.__waitEngine.wait_for_loading():
+                        self.__waitEngine.waitForSeconds(1)
                         pageSum = self.__getPageSum()
                         if pageSum is not None:
                             self.__progressController.queryTargetSuccessfully(pageSum)
@@ -125,6 +126,7 @@ class Query:
     # 获取页码总数
     def __getPageSum(self):
         if self.__driver.page_source.find("没有检索到") != -1:
+            print("没有检索到")
             return 0
         else:
             try:
