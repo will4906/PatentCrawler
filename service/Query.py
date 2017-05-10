@@ -122,6 +122,12 @@ class Query:
         self.__driver.execute_script(
             "document.getElementsByName(\"inventiontype\").item(" + str(patentTypeIndex) + ").classList.add(\"active\");"
         )
+        self.__driver.execute_script(
+            "document.getElementsByName(\"countrytypevalue\").item(0).classList.remove(\"active\");"
+        )
+        self.__driver.execute_script(
+            "document.getElementsByName(\"countrytypevalue\").item(0).classList.add(\"active\");"
+        )
 
     # 获取页码总数
     def __getPageSum(self):
