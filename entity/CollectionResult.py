@@ -40,7 +40,9 @@ class CollectionResult:
     def addItem(self, itemData):
         queryInfo = self.__progressInfo.getQueryInfo()
         inventorList = itemData.get_inventor_name().split(";")
-        hasInventor = False
+        # hasInventor = False
+        # 临时变更
+        hasInventor = True
         for inventor in inventorList:
             if queryInfo.getInventorList()[self.__progressInfo.getInventorIndex()] == inventor.strip():
                 hasInventor = True
