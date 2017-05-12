@@ -8,9 +8,6 @@
 
 class PatentcrawlerPipeline(object):
 
-    def __init__(self):
-        self.__set = set()
-
     def process_item(self, item, spider):
-        print("进来了")
+        print(item.items())
         return item

@@ -18,6 +18,8 @@ class PatentcrawlerItem(scrapy.Item):
     patentType = scrapy.Field()
     # 申请号
     requestNumber = scrapy.Field()
+    # 申请日
+    requestDate = scrapy.Field()
     # 公布日
     publishDate = scrapy.Field()
     # 公布号

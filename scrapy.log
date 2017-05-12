@@ -1,112 +1,10 @@
-2017-05-11 22:11:49 [scrapy.utils.log] INFO: Scrapy 1.3.3 started (bot: PatentCrawler)
-2017-05-11 22:11:49 [scrapy.utils.log] INFO: Overridden settings: {'ROBOTSTXT_OBEY': True, 'NEWSPIDER_MODULE': 'PatentCrawler.spiders', 'LOG_FILE': 'scrapy.log', 'BOT_NAME': 'PatentCrawler', 'SPIDER_MODULES': ['PatentCrawler.spiders']}
-2017-05-11 22:11:49 [scrapy.middleware] INFO: Enabled extensions:
-['scrapy.extensions.corestats.CoreStats',
- 'scrapy.extensions.logstats.LogStats',
- 'scrapy.extensions.telnet.TelnetConsole']
-2017-05-11 22:11:49 [scrapy.middleware] INFO: Enabled downloader middlewares:
-['scrapy.downloadermiddlewares.robotstxt.RobotsTxtMiddleware',
- 'scrapy.downloadermiddlewares.httpauth.HttpAuthMiddleware',
- 'scrapy.downloadermiddlewares.downloadtimeout.DownloadTimeoutMiddleware',
- 'scrapy.downloadermiddlewares.defaultheaders.DefaultHeadersMiddleware',
- 'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware',
- 'scrapy.downloadermiddlewares.retry.RetryMiddleware',
- 'scrapy.downloadermiddlewares.redirect.MetaRefreshMiddleware',
- 'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware',
- 'scrapy.downloadermiddlewares.redirect.RedirectMiddleware',
- 'scrapy.downloadermiddlewares.cookies.CookiesMiddleware',
- 'scrapy.downloadermiddlewares.stats.DownloaderStats']
-2017-05-11 22:11:49 [scrapy.middleware] INFO: Enabled spider middlewares:
-['scrapy.spidermiddlewares.httperror.HttpErrorMiddleware',
- 'scrapy.spidermiddlewares.offsite.OffsiteMiddleware',
- 'scrapy.spidermiddlewares.referer.RefererMiddleware',
- 'scrapy.spidermiddlewares.urllength.UrlLengthMiddleware',
- 'scrapy.spidermiddlewares.depth.DepthMiddleware']
-2017-05-11 22:11:49 [scrapy.middleware] INFO: Enabled item pipelines:
-['PatentCrawler.pipelines.PatentcrawlerPipeline']
-2017-05-11 22:11:49 [scrapy.core.engine] INFO: Spider opened
-2017-05-11 22:11:49 [scrapy.extensions.logstats] INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
-2017-05-11 22:11:49 [scrapy.extensions.telnet] DEBUG: Telnet console listening on 127.0.0.1:6023
-2017-05-11 22:11:53 [scrapy.core.engine] DEBUG: Crawled (404) <GET http://www.pss-system.gov.cn/robots.txt> (referer: None)
-2017-05-11 22:11:53 [scrapy.core.engine] DEBUG: Crawled (200) <GET http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/tableSearch-showTableSearchIndex.shtml> (referer: None)
-2017-05-11 22:11:53 [scrapy.core.engine] INFO: Closing spider (finished)
-2017-05-11 22:11:53 [scrapy.statscollectors] INFO: Dumping Scrapy stats:
-{'downloader/request_bytes': 516,
- 'downloader/request_count': 2,
- 'downloader/request_method_count/GET': 2,
- 'downloader/response_bytes': 7134,
- 'downloader/response_count': 2,
- 'downloader/response_status_count/200': 1,
- 'downloader/response_status_count/404': 1,
- 'finish_reason': 'finished',
- 'finish_time': datetime.datetime(2017, 5, 11, 14, 11, 53, 764361),
- 'log_count/DEBUG': 3,
- 'log_count/INFO': 7,
- 'response_received_count': 2,
- 'scheduler/dequeued': 1,
- 'scheduler/dequeued/memory': 1,
- 'scheduler/enqueued': 1,
- 'scheduler/enqueued/memory': 1,
- 'start_time': datetime.datetime(2017, 5, 11, 14, 11, 49, 792503)}
-2017-05-11 22:11:53 [scrapy.core.engine] INFO: Spider closed (finished)
-2017-05-11 22:12:45 [scrapy.utils.log] INFO: Scrapy 1.3.3 started (bot: PatentCrawler)
-2017-05-11 22:12:45 [scrapy.utils.log] INFO: Overridden settings: {'SPIDER_MODULES': ['PatentCrawler.spiders'], 'ROBOTSTXT_OBEY': True, 'BOT_NAME': 'PatentCrawler', 'LOG_FILE': 'scrapy.log', 'NEWSPIDER_MODULE': 'PatentCrawler.spiders'}
-2017-05-11 22:12:45 [scrapy.middleware] INFO: Enabled extensions:
-['scrapy.extensions.logstats.LogStats',
- 'scrapy.extensions.telnet.TelnetConsole',
- 'scrapy.extensions.corestats.CoreStats']
-2017-05-11 22:12:46 [scrapy.middleware] INFO: Enabled downloader middlewares:
-['scrapy.downloadermiddlewares.robotstxt.RobotsTxtMiddleware',
- 'scrapy.downloadermiddlewares.httpauth.HttpAuthMiddleware',
- 'scrapy.downloadermiddlewares.downloadtimeout.DownloadTimeoutMiddleware',
- 'scrapy.downloadermiddlewares.defaultheaders.DefaultHeadersMiddleware',
- 'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware',
- 'scrapy.downloadermiddlewares.retry.RetryMiddleware',
- 'scrapy.downloadermiddlewares.redirect.MetaRefreshMiddleware',
- 'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware',
- 'scrapy.downloadermiddlewares.redirect.RedirectMiddleware',
- 'scrapy.downloadermiddlewares.cookies.CookiesMiddleware',
- 'scrapy.downloadermiddlewares.stats.DownloaderStats']
-2017-05-11 22:12:46 [scrapy.middleware] INFO: Enabled spider middlewares:
-['scrapy.spidermiddlewares.httperror.HttpErrorMiddleware',
- 'scrapy.spidermiddlewares.offsite.OffsiteMiddleware',
- 'scrapy.spidermiddlewares.referer.RefererMiddleware',
- 'scrapy.spidermiddlewares.urllength.UrlLengthMiddleware',
- 'scrapy.spidermiddlewares.depth.DepthMiddleware']
-2017-05-11 22:12:46 [scrapy.middleware] INFO: Enabled item pipelines:
-['PatentCrawler.pipelines.PatentcrawlerPipeline']
-2017-05-11 22:12:46 [scrapy.core.engine] INFO: Spider opened
-2017-05-11 22:12:46 [scrapy.extensions.logstats] INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
-2017-05-11 22:12:46 [scrapy.extensions.telnet] DEBUG: Telnet console listening on 127.0.0.1:6023
-2017-05-11 22:12:46 [scrapy.core.engine] DEBUG: Crawled (404) <GET http://www.pss-system.gov.cn/robots.txt> (referer: None)
-2017-05-11 22:12:47 [scrapy.core.engine] DEBUG: Crawled (200) <GET http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/tableSearch-showTableSearchIndex.shtml> (referer: None)
-2017-05-11 22:12:48 [scrapy.core.engine] INFO: Closing spider (finished)
-2017-05-11 22:12:48 [scrapy.statscollectors] INFO: Dumping Scrapy stats:
-{'downloader/request_bytes': 516,
- 'downloader/request_count': 2,
- 'downloader/request_method_count/GET': 2,
- 'downloader/response_bytes': 7157,
- 'downloader/response_count': 2,
- 'downloader/response_status_count/200': 1,
- 'downloader/response_status_count/404': 1,
- 'finish_reason': 'finished',
- 'finish_time': datetime.datetime(2017, 5, 11, 14, 12, 48, 70523),
- 'log_count/DEBUG': 3,
- 'log_count/INFO': 7,
- 'response_received_count': 2,
- 'scheduler/dequeued': 1,
- 'scheduler/dequeued/memory': 1,
- 'scheduler/enqueued': 1,
- 'scheduler/enqueued/memory': 1,
- 'start_time': datetime.datetime(2017, 5, 11, 14, 12, 46, 248244)}
-2017-05-11 22:12:48 [scrapy.core.engine] INFO: Spider closed (finished)
-2017-05-11 22:13:11 [scrapy.utils.log] INFO: Scrapy 1.3.3 started (bot: PatentCrawler)
-2017-05-11 22:13:11 [scrapy.utils.log] INFO: Overridden settings: {'NEWSPIDER_MODULE': 'PatentCrawler.spiders', 'SPIDER_MODULES': ['PatentCrawler.spiders'], 'ROBOTSTXT_OBEY': True, 'LOG_FILE': 'scrapy.log', 'BOT_NAME': 'PatentCrawler'}
-2017-05-11 22:13:11 [scrapy.middleware] INFO: Enabled extensions:
+2017-05-12 16:59:32 [scrapy.utils.log] INFO: Scrapy 1.3.3 started (bot: PatentCrawler)
+2017-05-12 16:59:32 [scrapy.utils.log] INFO: Overridden settings: {'NEWSPIDER_MODULE': 'PatentCrawler.spiders', 'LOG_FILE': 'scrapy.log', 'BOT_NAME': 'PatentCrawler', 'DOWNLOAD_DELAY': 0.5, 'SPIDER_MODULES': ['PatentCrawler.spiders'], 'ROBOTSTXT_OBEY': True}
+2017-05-12 16:59:32 [scrapy.middleware] INFO: Enabled extensions:
 ['scrapy.extensions.telnet.TelnetConsole',
  'scrapy.extensions.corestats.CoreStats',
  'scrapy.extensions.logstats.LogStats']
-2017-05-11 22:13:12 [scrapy.middleware] INFO: Enabled downloader middlewares:
+2017-05-12 16:59:33 [scrapy.middleware] INFO: Enabled downloader middlewares:
 ['scrapy.downloadermiddlewares.robotstxt.RobotsTxtMiddleware',
  'scrapy.downloadermiddlewares.httpauth.HttpAuthMiddleware',
  'scrapy.downloadermiddlewares.downloadtimeout.DownloadTimeoutMiddleware',
@@ -118,103 +16,1342 @@
  'scrapy.downloadermiddlewares.redirect.RedirectMiddleware',
  'scrapy.downloadermiddlewares.cookies.CookiesMiddleware',
  'scrapy.downloadermiddlewares.stats.DownloaderStats']
-2017-05-11 22:13:12 [scrapy.middleware] INFO: Enabled spider middlewares:
+2017-05-12 16:59:33 [scrapy.middleware] INFO: Enabled spider middlewares:
 ['scrapy.spidermiddlewares.httperror.HttpErrorMiddleware',
  'scrapy.spidermiddlewares.offsite.OffsiteMiddleware',
  'scrapy.spidermiddlewares.referer.RefererMiddleware',
  'scrapy.spidermiddlewares.urllength.UrlLengthMiddleware',
  'scrapy.spidermiddlewares.depth.DepthMiddleware']
-2017-05-11 22:13:12 [scrapy.middleware] INFO: Enabled item pipelines:
+2017-05-12 16:59:33 [scrapy.middleware] INFO: Enabled item pipelines:
 ['PatentCrawler.pipelines.PatentcrawlerPipeline']
-2017-05-11 22:13:12 [scrapy.core.engine] INFO: Spider opened
-2017-05-11 22:13:12 [scrapy.extensions.logstats] INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
-2017-05-11 22:13:12 [scrapy.extensions.telnet] DEBUG: Telnet console listening on 127.0.0.1:6023
-2017-05-11 22:13:12 [scrapy.core.engine] DEBUG: Crawled (404) <GET http://www.pss-system.gov.cn/robots.txt> (referer: None)
-2017-05-11 22:13:13 [scrapy.core.engine] DEBUG: Crawled (200) <GET http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/tableSearch-showTableSearchIndex.shtml> (referer: None)
-2017-05-11 22:13:15 [scrapy.core.engine] DEBUG: Crawled (200) <POST http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/biaogejsAC!executeCommandSearchUnLogin.do> (referer: http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/tableSearch-showTableSearchIndex.shtml)
-2017-05-11 22:13:16 [scrapy.core.engine] INFO: Closing spider (finished)
-2017-05-11 22:13:16 [scrapy.statscollectors] INFO: Dumping Scrapy stats:
-{'downloader/request_bytes': 1755,
- 'downloader/request_count': 3,
+2017-05-12 16:59:33 [scrapy.core.engine] INFO: Spider opened
+2017-05-12 16:59:33 [scrapy.extensions.logstats] INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+2017-05-12 16:59:33 [scrapy.extensions.telnet] DEBUG: Telnet console listening on 127.0.0.1:6023
+2017-05-12 16:59:34 [scrapy.core.engine] DEBUG: Crawled (404) <GET http://www.pss-system.gov.cn/robots.txt> (referer: None)
+2017-05-12 16:59:34 [scrapy.core.engine] DEBUG: Crawled (200) <GET http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/tableSearch-showTableSearchIndex.shtml> (referer: None)
+2017-05-12 16:59:35 [scrapy.core.engine] DEBUG: Crawled (200) <POST http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/biaogejsAC!executeCommandSearchUnLogin.do> (referer: http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/tableSearch-showTableSearchIndex.shtml)
+2017-05-12 16:59:36 [scrapy.core.engine] DEBUG: Crawled (200) <POST http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/biaogejsAC!executeCommandSearchUnLogin.do> (referer: http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/tableSearch-showTableSearchIndex.shtml)
+2017-05-12 16:59:37 [scrapy.core.engine] DEBUG: Crawled (200) <POST http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml> (referer: http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/biaogejsAC!executeCommandSearchUnLogin.do)
+2017-05-12 16:59:37 [scrapy.core.scraper] DEBUG: Scraped from <200 http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml>
+{'inventorName': '但果;陈子豪;易羽;陈思平',
+ 'lawState': '授权',
+ 'lawStateDate': '20161123',
+ 'locarnoNumber': '24-01(10)',
+ 'name': '皮下静脉显影仪',
+ 'patentType': '外观设计',
+ 'proposerName': '深圳大学',
+ 'publishDate': '2016.11.23',
+ 'publishNumber': 'CN303936808S',
+ 'requestDate': '2016.03.23',
+ 'requestNumber': 'CN201630086600.4',
+ 'type': '【授权公告】'}
+2017-05-12 16:59:37 [scrapy.core.engine] DEBUG: Crawled (200) <POST http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml> (referer: http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/biaogejsAC!executeCommandSearchUnLogin.do)
+2017-05-12 16:59:37 [scrapy.core.scraper] DEBUG: Scraped from <200 http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml>
+{'inventorName': '董磊;但果;汪天富;陈思平',
+ 'lawState': '授权',
+ 'lawStateDate': '20160608',
+ 'locarnoNumber': '19-07(10)',
+ 'name': '医疗电子自动化实验箱',
+ 'patentType': '外观设计',
+ 'proposerName': '深圳大学',
+ 'publishDate': '2016.06.08',
+ 'publishNumber': 'CN303702651S',
+ 'requestDate': '2015.11.18',
+ 'requestNumber': 'CN201530462470.5',
+ 'type': '【授权公告】'}
+2017-05-12 16:59:37 [scrapy.core.engine] DEBUG: Crawled (200) <POST http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/biaogejsAC!executeCommandSearchUnLogin.do> (referer: http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/tableSearch-showTableSearchIndex.shtml)
+2017-05-12 16:59:38 [scrapy.core.engine] DEBUG: Crawled (200) <POST http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml> (referer: http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/biaogejsAC!executeCommandSearchUnLogin.do)
+2017-05-12 16:59:38 [scrapy.dupefilters] DEBUG: Filtered duplicate request: <POST http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml> - no more duplicates will be shown (see DUPEFILTER_DEBUG to show all duplicates)
+2017-05-12 16:59:38 [scrapy.core.scraper] DEBUG: Scraped from <200 http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml>
+{'inventorName': '董磊;但果;汪天富;陈思平',
+ 'lawState': '授权',
+ 'lawStateDate': '20160511',
+ 'locarnoNumber': '14-02(10)',
+ 'name': '触摸显示屏',
+ 'patentType': '外观设计',
+ 'proposerName': '深圳大学',
+ 'publishDate': '2016.05.11',
+ 'publishNumber': 'CN303670133S',
+ 'requestDate': '2015.11.18',
+ 'requestNumber': 'CN201530463234.5',
+ 'type': '【授权公告】'}
+2017-05-12 16:59:38 [scrapy.core.engine] DEBUG: Crawled (200) <POST http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml> (referer: http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/biaogejsAC!executeCommandSearchUnLogin.do)
+2017-05-12 16:59:38 [scrapy.core.scraper] DEBUG: Scraped from <200 http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml>
+{'inventorName': '董磊;但果;汪天富;陈思平',
+ 'lawState': '授权',
+ 'lawStateDate': '20160608',
+ 'locarnoNumber': '19-07(10)',
+ 'name': '医疗电子工程实验箱',
+ 'patentType': '外观设计',
+ 'proposerName': '深圳大学',
+ 'publishDate': '2016.06.08',
+ 'publishNumber': 'CN303702652S',
+ 'requestDate': '2015.11.18',
+ 'requestNumber': 'CN201530462473.9',
+ 'type': '【授权公告】'}
+2017-05-12 16:59:39 [scrapy.core.engine] DEBUG: Crawled (200) <POST http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml> (referer: http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/biaogejsAC!executeCommandSearchUnLogin.do)
+2017-05-12 16:59:39 [scrapy.core.scraper] DEBUG: Scraped from <200 http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml>
+{'agency': '广东深宏盾律师事务所 44364',
+ 'agent': '赵琼花',
+ 'inventorName': '但果;陈子豪;易羽;陈思平',
+ 'ipcNumber': 'G06T1/00;A61B5/00',
+ 'lawState': '实用新型专利权授予',
+ 'lawStateDate': '20170208',
+ 'name': '一种用于皮下静脉显影仪的控制处理系统',
+ 'patentType': '实用新型',
+ 'proposerName': '深圳大学',
+ 'publishDate': '2017.02.08',
+ 'publishNumber': 'CN205942800U',
+ 'requestDate': '2016.05.26',
+ 'requestNumber': 'CN201620490797.2',
+ 'type': '【授权公告】'}
+2017-05-12 16:59:39 [scrapy.core.engine] DEBUG: Crawled (200) <POST http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml> (referer: http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/biaogejsAC!executeCommandSearchUnLogin.do)
+2017-05-12 16:59:39 [scrapy.core.scraper] DEBUG: Scraped from <200 http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml>
+{'agency': '深圳市顺天达专利商标代理有限公司 44217',
+ 'agent': '郭伟刚',
+ 'inventorName': '戴明;陈思平;陈昕;吴万庆;郭燕荣;林浩铭',
+ 'ipcNumber': 'B60C23/04;B60C23/20;B60R11/02;G02B27/01',
+ 'lawState': '授权',
+ 'lawStateDate': '20160629',
+ 'name': '一种基于OBD、TPMS、以及HUD的车载设备',
+ 'patentType': '实用新型',
+ 'proposerName': '深圳大学',
+ 'publishDate': '2016.06.29',
+ 'publishNumber': 'CN205344402U',
+ 'requestDate': '2015.12.08',
+ 'requestNumber': 'CN201521009561.4',
+ 'type': '【授权公告】'}
+2017-05-12 16:59:40 [scrapy.core.engine] DEBUG: Crawled (200) <POST http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml> (referer: http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/biaogejsAC!executeCommandSearchUnLogin.do)
+2017-05-12 16:59:40 [scrapy.core.scraper] DEBUG: Scraped from <200 http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml>
+{'agency': '深圳市君胜知识产权代理事务所(普通合伙) 44268;深圳市君胜知识产权代理事务所(普通合伙) 44268',
+ 'agent': '王永文;刘文求',
+ 'inventorName': '但果;陈子豪;易羽;陈思平',
+ 'ipcNumber': 'A61B5/00',
+ 'lawState': '授权',
+ 'lawStateDate': '20161123',
+ 'name': '皮下静脉显影仪',
+ 'patentType': '实用新型',
+ 'proposerName': '深圳大学',
+ 'publishDate': '2016.11.23',
+ 'publishNumber': 'CN205697705U',
+ 'requestDate': '2016.03.24',
+ 'requestNumber': 'CN201620230252.8',
+ 'type': '【授权公告】'}
+2017-05-12 16:59:40 [scrapy.core.engine] DEBUG: Crawled (200) <POST http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml> (referer: http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/biaogejsAC!executeCommandSearchUnLogin.do)
+2017-05-12 16:59:41 [scrapy.core.scraper] DEBUG: Scraped from <200 http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml>
+{'agency': '深圳市顺天达专利商标代理有限公司 44217',
+ 'agent': '郭伟刚',
+ 'inventorName': '戴明;陈思平;陈昕;吴万庆;郭燕荣;林浩铭',
+ 'ipcNumber': 'B60C23/20;B60C23/04',
+ 'lawState': '授权',
+ 'lawStateDate': '20160803',
+ 'name': '一种TPMS装置',
+ 'patentType': '实用新型',
+ 'proposerName': '深圳大学',
+ 'publishDate': '2016.08.03',
+ 'publishNumber': 'CN205417049U',
+ 'requestDate': '2015.12.08',
+ 'requestNumber': 'CN201521011257.3',
+ 'type': '【授权公告】'}
+2017-05-12 16:59:41 [scrapy.core.engine] DEBUG: Crawled (200) <POST http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml> (referer: http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/biaogejsAC!executeCommandSearchUnLogin.do)
+2017-05-12 16:59:41 [scrapy.core.scraper] DEBUG: Scraped from <200 http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml>
+{'agency': '深圳市顺天达专利商标代理有限公司 44217',
+ 'agent': '郭伟刚',
+ 'inventorName': '戴明;陈思平;陈昕;吴万庆;郭燕荣;林浩铭',
+ 'ipcNumber': 'B60R25/00;B60R25/24',
+ 'lawState': '授权',
+ 'lawStateDate': '20160629',
+ 'name': '一种汽车无钥匙进入、启动系统',
+ 'patentType': '实用新型',
+ 'proposerName': '深圳大学',
+ 'publishDate': '2016.06.29',
+ 'publishNumber': 'CN205344821U',
+ 'requestDate': '2015.12.08',
+ 'requestNumber': 'CN201521009524.3',
+ 'type': '【授权公告】'}
+2017-05-12 16:59:41 [scrapy.core.engine] DEBUG: Crawled (200) <POST http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml> (referer: http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/biaogejsAC!executeCommandSearchUnLogin.do)
+2017-05-12 16:59:42 [scrapy.core.scraper] DEBUG: Scraped from <200 http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml>
+{'agency': '深圳市顺天达专利商标代理有限公司 44217',
+ 'agent': '郭伟刚',
+ 'inventorName': '戴明;陈思平;陈昕;吴万庆;郭燕荣;林浩铭',
+ 'ipcNumber': 'B60C23/04;B60C23/20;B60R16/023',
+ 'lawState': '授权',
+ 'lawStateDate': '20160803',
+ 'name': '一种基于OBD、GPS以及TPMS的车载设备',
+ 'patentType': '实用新型',
+ 'proposerName': '深圳大学',
+ 'publishDate': '2016.08.03',
+ 'publishNumber': 'CN205417045U',
+ 'requestDate': '2015.12.08',
+ 'requestNumber': 'CN201521010249.7',
+ 'type': '【授权公告】'}
+2017-05-12 16:59:42 [scrapy.core.engine] DEBUG: Crawled (200) <POST http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml> (referer: http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/biaogejsAC!executeCommandSearchUnLogin.do)
+2017-05-12 16:59:42 [scrapy.core.scraper] DEBUG: Scraped from <200 http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml>
+{'agency': '深圳市千纳专利代理有限公司 44218',
+ 'agent': '黄良宝',
+ 'inventorName': '彭珏;陈思平;秦志飞;彭小健;唐浒',
+ 'ipcNumber': 'A61B5/00',
+ 'lawState': '授权',
+ 'lawStateDate': '20160615',
+ 'name': '一种机械旋转式血管内OCT成像探头',
+ 'patentType': '实用新型',
+ 'proposerName': '深圳大学',
+ 'publishDate': '2016.06.15',
+ 'publishNumber': 'CN205306957U',
+ 'requestDate': '2015.11.25',
+ 'requestNumber': 'CN201520951774.2',
+ 'type': '【授权公告】'}
+2017-05-12 16:59:43 [scrapy.core.engine] DEBUG: Crawled (200) <POST http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml> (referer: http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/biaogejsAC!executeCommandSearchUnLogin.do)
+2017-05-12 16:59:43 [scrapy.core.scraper] DEBUG: Scraped from <200 http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml>
+{'agency': '深圳新创友知识产权代理有限公司 44223',
+ 'agent': '余敏',
+ 'inventorName': '董磊;但果;汪天富;陈思平',
+ 'ipcNumber': 'G09B19/00',
+ 'lawState': '授权',
+ 'lawStateDate': '20160511',
+ 'name': '一种医疗电子工程实验箱',
+ 'patentType': '实用新型',
+ 'proposerName': '深圳大学',
+ 'publishDate': '2016.05.11',
+ 'publishNumber': 'CN205230432U',
+ 'requestDate': '2015.11.16',
+ 'requestNumber': 'CN201520910221.2',
+ 'type': '【授权公告】'}
+2017-05-12 16:59:43 [scrapy.core.engine] DEBUG: Crawled (200) <POST http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml> (referer: http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/biaogejsAC!executeCommandSearchUnLogin.do)
+2017-05-12 16:59:44 [scrapy.core.scraper] DEBUG: Scraped from <200 http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml>
+{'agency': '深圳新创友知识产权代理有限公司 44223',
+ 'agent': '余敏',
+ 'inventorName': '董磊;但果;汪天富;陈思平',
+ 'ipcNumber': 'G09B5/02',
+ 'lawState': '授权',
+ 'lawStateDate': '20160608',
+ 'name': '一种医疗电子实验平台',
+ 'patentType': '实用新型',
+ 'proposerName': '深圳大学',
+ 'publishDate': '2016.06.08',
+ 'publishNumber': 'CN205302678U',
+ 'requestDate': '2015.11.19',
+ 'requestNumber': 'CN201520930504.3',
+ 'type': '【授权公告】'}
+2017-05-12 16:59:44 [scrapy.core.engine] DEBUG: Crawled (200) <POST http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml> (referer: http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/biaogejsAC!executeCommandSearchUnLogin.do)
+2017-05-12 16:59:44 [scrapy.core.scraper] DEBUG: Scraped from <200 http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml>
+{'agency': '深圳市君胜知识产权代理事务所 44268;深圳市君胜知识产权代理事务所 44268',
+ 'agent': '王永文;刘文求',
+ 'inventorName': '但果;陈思平;董磊',
+ 'ipcNumber': 'A61N1/36',
+ 'lawState': '授权',
+ 'lawStateDate': '20150826',
+ 'name': '一种治疗波形产生装置及中频电刺激治疗仪',
+ 'patentType': '实用新型',
+ 'proposerName': '深圳大学',
+ 'publishDate': '2015.08.26',
+ 'publishNumber': 'CN204582296U',
+ 'requestDate': '2015.02.02',
+ 'requestNumber': 'CN201520071619.1',
+ 'type': '【授权公告】'}
+2017-05-12 16:59:45 [scrapy.core.engine] DEBUG: Crawled (200) <POST http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml> (referer: http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/biaogejsAC!executeCommandSearchUnLogin.do)
+2017-05-12 16:59:45 [scrapy.core.scraper] DEBUG: Scraped from <200 http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml>
+{'agency': '深圳市科进知识产权代理事务所(普通合伙) 44316;深圳市科进知识产权代理事务所(普通合伙) 44316',
+ 'agent': '宋鹰武;沈祖锋',
+ 'inventorName': '覃正笛;李杰;张天炯;陈思平',
+ 'ipcNumber': 'A61B8/06',
+ 'lawState': '授权',
+ 'lawStateDate': '20150729',
+ 'name': '经颅多普勒血流检测系统',
+ 'patentType': '实用新型',
+ 'proposerName': '深圳大学',
+ 'publishDate': '2015.07.29',
+ 'publishNumber': 'CN204500775U',
+ 'requestDate': '2015.02.10',
+ 'requestNumber': 'CN201520095477.2',
+ 'type': '【授权公告】'}
+2017-05-12 16:59:45 [scrapy.core.engine] DEBUG: Crawled (200) <POST http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml> (referer: http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/biaogejsAC!executeCommandSearchUnLogin.do)
+2017-05-12 16:59:45 [scrapy.core.scraper] DEBUG: Scraped from <200 http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml>
+{'agency': '深圳鼎合诚知识产权代理有限公司 44281',
+ 'agent': '任葵',
+ 'inventorName': '叶继伦;刘春生;朱彩兵;陈思平;汪天富',
+ 'ipcNumber': 'G01N21/01;G01N21/3518',
+ 'lawState': '授权',
+ 'lawStateDate': '20150527',
+ 'name': '一种测量呼吸末二氧化碳的装置',
+ 'patentType': '实用新型',
+ 'proposerName': '深圳大学',
+ 'publishDate': '2015.05.27',
+ 'publishNumber': 'CN204359681U',
+ 'requestDate': '2014.12.03',
+ 'requestNumber': 'CN201420752681.2',
+ 'type': '【授权公告】'}
+2017-05-12 16:59:46 [scrapy.core.engine] DEBUG: Crawled (200) <POST http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml> (referer: http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/biaogejsAC!executeCommandSearchUnLogin.do)
+2017-05-12 16:59:46 [scrapy.core.scraper] DEBUG: Scraped from <200 http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml>
+{'agency': '深圳市顺天达专利商标代理有限公司 44217',
+ 'agent': '郭伟刚',
+ 'inventorName': '戴明;陈思平;陈昕;林浩铭',
+ 'ipcNumber': 'A61B8/00',
+ 'lawState': '实质审查的生效',
+ 'lawStateDate': '20170301',
+ 'name': '一种超声探头以及超声成像辅助诊断系统',
+ 'patentType': '发明申请',
+ 'proposerName': '深圳大学',
+ 'publishDate': '2017.01.25',
+ 'publishNumber': 'CN106344069A',
+ 'requestDate': '2016.10.13',
+ 'requestNumber': 'CN201610895413.X',
+ 'type': '【公开】'}
+2017-05-12 16:59:47 [scrapy.core.engine] DEBUG: Crawled (200) <POST http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml> (referer: http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/biaogejsAC!executeCommandSearchUnLogin.do)
+2017-05-12 16:59:47 [scrapy.core.scraper] DEBUG: Scraped from <200 http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml>
+{'agency': '深圳市顺天达专利商标代理有限公司 44217',
+ 'agent': '郭伟刚',
+ 'inventorName': '戴明;陈思平;陈昕;林浩铭',
+ 'ipcNumber': 'G06Q50/30;G07B11/00;G06Q20/14;G06Q20/16;G06Q20/32',
+ 'lawState': '发明专利申请公布',
+ 'lawStateDate': '20170315',
+ 'name': '一种公共交通检票方法以及系统',
+ 'patentType': '发明申请',
+ 'proposerName': '深圳大学',
+ 'publishDate': '2017.03.15',
+ 'publishNumber': 'CN106504171A',
+ 'requestDate': '2016.09.28',
+ 'requestNumber': 'CN201610859128.2',
+ 'type': '【公开】'}
+2017-05-12 16:59:47 [scrapy.core.engine] DEBUG: Crawled (200) <POST http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml> (referer: http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/biaogejsAC!executeCommandSearchUnLogin.do)
+2017-05-12 16:59:47 [scrapy.core.scraper] DEBUG: Scraped from <200 http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml>
+{'agency': '深圳市顺天达专利商标代理有限公司 44217',
+ 'agent': '郭伟刚',
+ 'inventorName': '戴明;陈思平;陈昕;林浩铭',
+ 'ipcNumber': 'A61B5/0402;A61B5/0408',
+ 'lawState': '实质审查的生效',
+ 'lawStateDate': '20170222',
+ 'name': '一种可穿戴监护装置',
+ 'patentType': '发明申请',
+ 'proposerName': '深圳大学',
+ 'publishDate': '2016.12.14',
+ 'publishNumber': 'CN106214147A',
+ 'requestDate': '2016.09.22',
+ 'requestNumber': 'CN201610842816.8',
+ 'type': '【公开】'}
+2017-05-12 16:59:48 [scrapy.core.engine] DEBUG: Crawled (200) <POST http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml> (referer: http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/biaogejsAC!executeCommandSearchUnLogin.do)
+2017-05-12 16:59:48 [scrapy.core.scraper] DEBUG: Scraped from <200 http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml>
+{'agency': '深圳市科进知识产权代理事务所(普通合伙) 44316;深圳市科进知识产权代理事务所(普通合伙) 44316',
+ 'agent': '宋鹰武;沈祖锋',
+ 'inventorName': '汪天富;雷柏英;李欣遥;姚远;倪东;李胜利;陈思平',
+ 'ipcNumber': 'A61B8/08',
+ 'lawState': '授权',
+ 'lawStateDate': '20160309',
+ 'name': '胎盘成熟度分级系统',
+ 'patentType': '发明申请',
+ 'proposerName': '深圳大学',
+ 'publishDate': '2016.03.09',
+ 'publishNumber': 'CN103932738B',
+ 'requestDate': '2014.04.29',
+ 'requestNumber': 'CN201410177266.3',
+ 'type': '【授权公告】'}
+2017-05-12 16:59:49 [scrapy.core.engine] DEBUG: Crawled (200) <POST http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml> (referer: http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/biaogejsAC!executeCommandSearchUnLogin.do)
+2017-05-12 16:59:49 [scrapy.core.scraper] DEBUG: Scraped from <200 http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml>
+{'agency': '深圳市君胜知识产权代理事务所 44268',
+ 'agent': '王永文',
+ 'inventorName': '覃正笛;陈思平;金程',
+ 'ipcNumber': 'G01N29/22;G01N29/44',
+ 'lawState': '授权',
+ 'lawStateDate': '20120118',
+ 'name': '实现脉冲超声检测的方法、系统、装置、发射机和接收机',
+ 'patentType': '发明申请',
+ 'proposerName': '深圳大学',
+ 'publishDate': '2012.01.18',
+ 'publishNumber': 'CN101819185B',
+ 'requestDate': '2009.12.30',
+ 'requestNumber': 'CN200910238930.X',
+ 'type': '【授权公告】'}
+2017-05-12 16:59:49 [scrapy.core.engine] DEBUG: Crawled (200) <POST http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml> (referer: http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/biaogejsAC!executeCommandSearchUnLogin.do)
+2017-05-12 16:59:49 [scrapy.core.scraper] DEBUG: Scraped from <200 http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml>
+{'agency': '深圳市君胜知识产权代理事务所',
+ 'agent': '杨宏',
+ 'inventorName': '陈思平;王筱毅',
+ 'ipcNumber': 'A61B5/00;A61G12/00;A61B19/00',
+ 'lawState': '专利权人的姓名或者名称、地址的变更',
+ 'lawStateDate': '20151230',
+ 'name': '神经重症监护系统及实现人体多参数信号同步监护的方法',
+ 'patentType': '发明申请',
+ 'proposerName': '深圳市德力凯电子有限公司;深圳大学',
+ 'publishDate': '2009.04.08',
+ 'publishNumber': 'CN100475131C',
+ 'requestDate': '2006.06.21',
+ 'requestNumber': 'CN200610061231.9',
+ 'type': '【授权公告】'}
+2017-05-12 16:59:50 [scrapy.core.engine] DEBUG: Crawled (200) <POST http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml> (referer: http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/biaogejsAC!executeCommandSearchUnLogin.do)
+2017-05-12 16:59:50 [scrapy.core.scraper] DEBUG: Scraped from <200 http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml>
+{'agency': '深圳市君胜知识产权代理事务所',
+ 'agent': '杨宏',
+ 'inventorName': '陈思平;黄如训;高庆春;曾益民;汪凯;王筱毅',
+ 'ipcNumber': 'A61B5/0476;A61B5/03',
+ 'lawState': '专利权人的姓名或者名称、地址的变更',
+ 'lawStateDate': '20151230',
+ 'name': '一种脑血流调节功能监护系统',
+ 'patentType': '发明申请',
+ 'proposerName': '深圳市德力凯电子有限公司;深圳大学',
+ 'publishDate': '2008.07.09',
+ 'publishNumber': 'CN100399990C',
+ 'requestDate': '2006.06.21',
+ 'requestNumber': 'CN200610061233.8',
+ 'type': '【授权公告】'}
+2017-05-12 16:59:50 [scrapy.core.engine] DEBUG: Crawled (200) <POST http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml> (referer: http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/biaogejsAC!executeCommandSearchUnLogin.do)
+2017-05-12 16:59:51 [scrapy.core.scraper] DEBUG: Scraped from <200 http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml>
+{'agency': '深圳市君胜知识产权代理事务所',
+ 'agent': '杨宏',
+ 'inventorName': '陈思平;黄如训;高庆春;曾益民;汪凯;王筱毅',
+ 'ipcNumber': 'A61B5/0476;A61B5/03',
+ 'lawState': '专利权人的姓名或者名称、地址的变更',
+ 'lawStateDate': '20151230',
+ 'name': '脑血流调节功能监护系统及检测脑循环临界关闭压的方法',
+ 'patentType': '发明申请',
+ 'proposerName': '深圳市德力凯电子有限公司;深圳大学',
+ 'publishDate': '2006.12.27',
+ 'publishNumber': 'CN1883383A',
+ 'requestDate': '2006.06.21',
+ 'requestNumber': 'CN200610061233.8',
+ 'type': '【公开】'}
+2017-05-12 16:59:51 [scrapy.core.engine] DEBUG: Crawled (200) <POST http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml> (referer: http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/biaogejsAC!executeCommandSearchUnLogin.do)
+2017-05-12 16:59:51 [scrapy.core.scraper] DEBUG: Scraped from <200 http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml>
+{'agency': '深圳市君胜知识产权代理事务所',
+ 'agent': '杨宏',
+ 'inventorName': '陈思平;王筱毅',
+ 'ipcNumber': 'A61B5/00;A61G12/00;A61B19/00',
+ 'lawState': '专利权人的姓名或者名称、地址的变更',
+ 'lawStateDate': '20151230',
+ 'name': '神经重症监护系统及实现人体多参数信号同步监护的方法',
+ 'patentType': '发明申请',
+ 'proposerName': '深圳市德力凯电子有限公司;深圳大学',
+ 'publishDate': '2006.12.27',
+ 'publishNumber': 'CN1883380A',
+ 'requestDate': '2006.06.21',
+ 'requestNumber': 'CN200610061231.9',
+ 'type': '【公开】'}
+2017-05-12 16:59:51 [scrapy.core.engine] DEBUG: Crawled (200) <POST http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml> (referer: http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/biaogejsAC!executeCommandSearchUnLogin.do)
+2017-05-12 16:59:52 [scrapy.core.scraper] DEBUG: Scraped from <200 http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml>
+{'agency': '深圳市君胜知识产权代理事务所',
+ 'agent': '杨宏',
+ 'inventorName': '陈思平;汪凯;曾益民;王先群;王筱毅',
+ 'ipcNumber': 'A61B8/06',
+ 'lawState': '专利权人的姓名或者名称、地址的变更',
+ 'lawStateDate': '20151230',
+ 'name': '一种宽频经颅多普勒系统',
+ 'patentType': '发明申请',
+ 'proposerName': '深圳市德力凯电子有限公司;深圳大学',
+ 'publishDate': '2009.04.08',
+ 'publishNumber': 'CN100475153C',
+ 'requestDate': '2006.07.31',
+ 'requestNumber': 'CN200610061940.7',
+ 'type': '【授权公告】'}
+2017-05-12 16:59:52 [scrapy.core.engine] DEBUG: Crawled (200) <POST http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml> (referer: http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/biaogejsAC!executeCommandSearchUnLogin.do)
+2017-05-12 16:59:52 [scrapy.core.scraper] DEBUG: Scraped from <200 http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml>
+{'agency': '深圳市君胜知识产权代理事务所',
+ 'agent': '杨宏',
+ 'inventorName': '陈思平;汪凯;曾益民;王先群;王筱毅',
+ 'ipcNumber': 'A61B8/06',
+ 'lawState': '专利权人的姓名或者名称、地址的变更',
+ 'lawStateDate': '20151230',
+ 'name': '宽频经颅多普勒系统及变频检测脑血管血流速度的方法',
+ 'patentType': '发明申请',
+ 'proposerName': '深圳市德力凯电子有限公司;深圳大学',
+ 'publishDate': '2007.02.28',
+ 'publishNumber': 'CN1919146A',
+ 'requestDate': '2006.07.31',
+ 'requestNumber': 'CN200610061940.7',
+ 'type': '【公开】'}
+2017-05-12 16:59:53 [scrapy.core.engine] DEBUG: Crawled (200) <POST http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml> (referer: http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/biaogejsAC!executeCommandSearchUnLogin.do)
+2017-05-12 16:59:53 [scrapy.core.scraper] DEBUG: Scraped from <200 http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml>
+{'agency': '深圳市君胜知识产权代理事务所 44268',
+ 'agent': '王永文',
+ 'inventorName': '覃正笛;陈思平;金程',
+ 'ipcNumber': 'G01N29/22;G01N29/44',
+ 'lawState': '授权',
+ 'lawStateDate': '20120118',
+ 'name': '实现脉冲超声检测的方法、系统、装置、发射机和接收机',
+ 'patentType': '发明申请',
+ 'proposerName': '深圳大学',
+ 'publishDate': '2010.09.01',
+ 'publishNumber': 'CN101819185A',
+ 'requestDate': '2009.12.30',
+ 'requestNumber': 'CN200910238930.X',
+ 'type': '【公开】'}
+2017-05-12 16:59:53 [scrapy.core.engine] DEBUG: Crawled (200) <POST http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml> (referer: http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/biaogejsAC!executeCommandSearchUnLogin.do)
+2017-05-12 16:59:54 [scrapy.core.scraper] DEBUG: Scraped from <200 http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml>
+{'agency': '深圳市君胜知识产权代理事务所 44268',
+ 'agent': '刘文求',
+ 'inventorName': '覃正笛;陈思平;汪天富;曾斯宁',
+ 'ipcNumber': 'A61B8/00',
+ 'lawState': '授权',
+ 'lawStateDate': '20120704',
+ 'name': '超声成像方法及装置',
+ 'patentType': '发明申请',
+ 'proposerName': '深圳大学',
+ 'publishDate': '2012.07.04',
+ 'publishNumber': 'CN101869485B',
+ 'requestDate': '2010.06.23',
+ 'requestNumber': 'CN201010214476.7',
+ 'type': '【授权公告】'}
+2017-05-12 16:59:54 [scrapy.core.engine] DEBUG: Crawled (200) <POST http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml> (referer: http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/biaogejsAC!executeCommandSearchUnLogin.do)
+2017-05-12 16:59:54 [scrapy.core.scraper] DEBUG: Scraped from <200 http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml>
+{'agency': '深圳市君胜知识产权代理事务所 44268',
+ 'agent': '刘文求',
+ 'inventorName': '覃正笛;陈思平;汪天富;曾斯宁',
+ 'ipcNumber': 'G01N29/14;A61B8/00',
+ 'lawState': '授权',
+ 'lawStateDate': '20120704',
+ 'name': '超声成像方法及装置',
+ 'patentType': '发明申请',
+ 'proposerName': '深圳大学',
+ 'publishDate': '2010.10.27',
+ 'publishNumber': 'CN101869485A',
+ 'requestDate': '2010.06.23',
+ 'requestNumber': 'CN201010214476.7',
+ 'type': '【公开】'}
+2017-05-12 16:59:55 [scrapy.core.engine] DEBUG: Crawled (200) <POST http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml> (referer: http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/biaogejsAC!executeCommandSearchUnLogin.do)
+2017-05-12 16:59:55 [scrapy.core.scraper] DEBUG: Scraped from <200 http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml>
+{'agency': '深圳市君胜知识产权代理事务所 44268;深圳市君胜知识产权代理事务所 44268',
+ 'agent': '王永文;杨宏',
+ 'inventorName': '汪天富;王毅;陈思平;和小孔',
+ 'ipcNumber': 'G06T7/00;A61B8/08',
+ 'lawState': '授权',
+ 'lawStateDate': '20121003',
+ 'name': '一种占位性病变超声图像的处理方法',
+ 'patentType': '发明申请',
+ 'proposerName': '深圳大学',
+ 'publishDate': '2012.10.03',
+ 'publishNumber': 'CN102068281B',
+ 'requestDate': '2011.01.20',
+ 'requestNumber': 'CN201110022840.4',
+ 'type': '【授权公告】'}
+2017-05-12 16:59:56 [scrapy.core.engine] DEBUG: Crawled (200) <POST http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml> (referer: http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/biaogejsAC!executeCommandSearchUnLogin.do)
+2017-05-12 16:59:56 [scrapy.core.scraper] DEBUG: Scraped from <200 http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml>
+{'agency': '深圳市君胜知识产权代理事务所 44268;深圳市君胜知识产权代理事务所 44268',
+ 'agent': '王永文;杨宏',
+ 'inventorName': '汪天富;王毅;陈思平;和小孔',
+ 'ipcNumber': 'G06T7/00;A61B8/08',
+ 'lawState': '授权',
+ 'lawStateDate': '20121003',
+ 'name': '一种占位性病变超声图像的处理方法',
+ 'patentType': '发明申请',
+ 'proposerName': '深圳大学',
+ 'publishDate': '2011.05.25',
+ 'publishNumber': 'CN102068281A',
+ 'requestDate': '2011.01.20',
+ 'requestNumber': 'CN201110022840.4',
+ 'type': '【公开】'}
+2017-05-12 16:59:56 [scrapy.core.engine] DEBUG: Crawled (200) <POST http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml> (referer: http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/biaogejsAC!executeCommandSearchUnLogin.do)
+2017-05-12 16:59:56 [scrapy.core.scraper] DEBUG: Scraped from <200 http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml>
+{'agency': '深圳鼎合诚知识产权代理有限公司 44281',
+ 'agent': '任葵',
+ 'inventorName': '叶继伦;陈思平;汪天富;叶南亭;张建波',
+ 'ipcNumber': 'A61B5/0225',
+ 'lawState': '授权',
+ 'lawStateDate': '20140820',
+ 'name': '一种无创血压测量方法和装置',
+ 'patentType': '发明申请',
+ 'proposerName': '深圳大学',
+ 'publishDate': '2014.08.20',
+ 'publishNumber': 'CN102894964B',
+ 'requestDate': '2011.07.26',
+ 'requestNumber': 'CN201110210385.0',
+ 'type': '【授权公告】'}
+2017-05-12 16:59:57 [scrapy.core.engine] DEBUG: Crawled (200) <POST http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml> (referer: http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/biaogejsAC!executeCommandSearchUnLogin.do)
+2017-05-12 16:59:57 [scrapy.core.scraper] DEBUG: Scraped from <200 http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml>
+{'agency': '深圳鼎合诚知识产权代理有限公司 44281',
+ 'agent': '任葵',
+ 'inventorName': '叶继伦;陈思平;汪天富;叶南亭;张建波',
+ 'ipcNumber': 'A61B5/0225',
+ 'lawState': '授权',
+ 'lawStateDate': '20140820',
+ 'name': '一种无创血压测量方法和装置',
+ 'patentType': '发明申请',
+ 'proposerName': '深圳大学',
+ 'publishDate': '2013.01.30',
+ 'publishNumber': 'CN102894964A',
+ 'requestDate': '2011.07.26',
+ 'requestNumber': 'CN201110210385.0',
+ 'type': '【公开】'}
+2017-05-12 16:59:58 [scrapy.core.engine] DEBUG: Crawled (200) <POST http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml> (referer: http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/biaogejsAC!executeCommandSearchUnLogin.do)
+2017-05-12 16:59:58 [scrapy.core.scraper] DEBUG: Scraped from <200 http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml>
+{'agency': '深圳市千纳专利代理有限公司 44218',
+ 'agent': '胡坚',
+ 'inventorName': '彭珏;陈思平;汪天富;唐浒;崔阳;胡振华',
+ 'ipcNumber': 'A61B8/00',
+ 'lawState': '授权',
+ 'lawStateDate': '20150204',
+ 'name': '一种二维环型相控阵超声换能器结构',
+ 'patentType': '发明申请',
+ 'proposerName': '深圳大学',
+ 'publishDate': '2015.02.04',
+ 'publishNumber': 'CN102824190B',
+ 'requestDate': '2012.09.24',
+ 'requestNumber': 'CN201210355889.6',
+ 'type': '【授权公告】'}
+2017-05-12 16:59:58 [scrapy.core.engine] DEBUG: Crawled (200) <POST http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml> (referer: http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/biaogejsAC!executeCommandSearchUnLogin.do)
+2017-05-12 16:59:58 [scrapy.core.scraper] DEBUG: Scraped from <200 http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml>
+{'agency': '深圳市千纳专利代理有限公司 44218',
+ 'agent': '胡坚',
+ 'inventorName': '彭钰;陈思平;汪天富;唐浒;崔阳;胡振华',
+ 'ipcNumber': 'A61B8/00',
+ 'lawState': '授权',
+ 'lawStateDate': '20150204',
+ 'name': '一种二维环型相控阵超声换能器结构',
+ 'patentType': '发明申请',
+ 'proposerName': '深圳大学',
+ 'publishDate': '2012.12.19',
+ 'publishNumber': 'CN102824190A',
+ 'requestDate': '2012.09.24',
+ 'requestNumber': 'CN201210355889.6',
+ 'type': '【公开】'}
+2017-05-12 16:59:58 [scrapy.core.engine] DEBUG: Crawled (200) <POST http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml> (referer: http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/biaogejsAC!executeCommandSearchUnLogin.do)
+2017-05-12 16:59:59 [scrapy.core.scraper] DEBUG: Scraped from <200 http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml>
+{'agency': '深圳市君胜知识产权代理事务所 44268',
+ 'agent': '刘文求',
+ 'inventorName': '陆敏华;孙瑞超;汪天富;陈思平',
+ 'ipcNumber': 'A61B8/08',
+ 'lawState': '授权',
+ 'lawStateDate': '20140604',
+ 'name': '一种实时超声弹性成像位移估计方法和系统',
+ 'patentType': '发明申请',
+ 'proposerName': '深圳大学',
+ 'publishDate': '2014.06.04',
+ 'publishNumber': 'CN103040488B',
+ 'requestDate': '2012.12.21',
+ 'requestNumber': 'CN201210561235.9',
+ 'type': '【授权公告】'}
+2017-05-12 16:59:59 [scrapy.core.engine] DEBUG: Crawled (200) <POST http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml> (referer: http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/biaogejsAC!executeCommandSearchUnLogin.do)
+2017-05-12 16:59:59 [scrapy.core.scraper] DEBUG: Scraped from <200 http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml>
+{'agency': '深圳市君胜知识产权代理事务所 44268',
+ 'agent': '刘文求',
+ 'inventorName': '陆敏华;孙瑞超;汪天富;陈思平',
+ 'ipcNumber': 'A61B8/08',
+ 'lawState': '授权',
+ 'lawStateDate': '20140604',
+ 'name': '一种实时超声弹性成像位移估计方法和系统',
+ 'patentType': '发明申请',
+ 'proposerName': '深圳大学',
+ 'publishDate': '2013.04.17',
+ 'publishNumber': 'CN103040488A',
+ 'requestDate': '2012.12.21',
+ 'requestNumber': 'CN201210561235.9',
+ 'type': '【公开】'}
+2017-05-12 17:00:00 [scrapy.core.engine] DEBUG: Crawled (200) <POST http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml> (referer: http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/biaogejsAC!executeCommandSearchUnLogin.do)
+2017-05-12 17:00:00 [scrapy.core.scraper] DEBUG: Scraped from <200 http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml>
+{'agency': '深圳市君胜知识产权代理事务所 44268',
+ 'agent': '刘文求',
+ 'inventorName': '张新宇;陈昕;梁平;陈思平;汪天富',
+ 'ipcNumber': 'A61B8/10',
+ 'lawState': '发明专利申请公布后的驳回',
+ 'lawStateDate': '20160309',
+ 'name': '一种超声检测角膜粘弹性的方法和系统',
+ 'patentType': '发明申请',
+ 'proposerName': '深圳大学',
+ 'publishDate': '2013.04.03',
+ 'publishNumber': 'CN103006274A',
+ 'requestDate': '2012.12.21',
+ 'requestNumber': 'CN201210561200.5',
+ 'type': '【公开】'}
+2017-05-12 17:00:04 [scrapy.core.engine] DEBUG: Crawled (200) <POST http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml> (referer: http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/biaogejsAC!executeCommandSearchUnLogin.do)
+2017-05-12 17:00:04 [scrapy.core.engine] DEBUG: Crawled (200) <POST http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml> (referer: http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/biaogejsAC!executeCommandSearchUnLogin.do)
+2017-05-12 17:00:04 [scrapy.core.engine] DEBUG: Crawled (200) <POST http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml> (referer: http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/biaogejsAC!executeCommandSearchUnLogin.do)
+2017-05-12 17:00:04 [scrapy.core.engine] DEBUG: Crawled (200) <POST http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml> (referer: http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/biaogejsAC!executeCommandSearchUnLogin.do)
+2017-05-12 17:00:04 [scrapy.core.engine] DEBUG: Crawled (200) <POST http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml> (referer: http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/biaogejsAC!executeCommandSearchUnLogin.do)
+2017-05-12 17:00:04 [scrapy.core.engine] DEBUG: Crawled (200) <POST http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml> (referer: http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/biaogejsAC!executeCommandSearchUnLogin.do)
+2017-05-12 17:00:04 [scrapy.core.engine] DEBUG: Crawled (200) <POST http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml> (referer: http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/biaogejsAC!executeCommandSearchUnLogin.do)
+2017-05-12 17:00:04 [scrapy.core.scraper] DEBUG: Scraped from <200 http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml>
+{'agency': '深圳市科进知识产权代理事务所(普通合伙) 44316;深圳市科进知识产权代理事务所(普通合伙) 44316',
+ 'agent': '宋鹰武;沈祖锋',
+ 'inventorName': '倪东;杨鑫;李胜利;汪天富;陈思平',
+ 'ipcNumber': 'G06K9/62',
+ 'lawState': '发明专利权授予',
+ 'lawStateDate': '20170405',
+ 'name': '从超声图像中自动定位标准切面的方法',
+ 'patentType': '发明申请',
+ 'proposerName': '深圳大学',
+ 'publishDate': '2017.04.05',
+ 'publishNumber': 'CN103955698B',
+ 'requestDate': '2014.03.12',
+ 'requestNumber': 'CN201410089937.0',
+ 'type': '【授权公告】'}
+2017-05-12 17:00:04 [scrapy.core.scraper] DEBUG: Scraped from <200 http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml>
+{'agency': '深圳市科进知识产权代理事务所(普通合伙) 44316',
+ 'agent': '宋鹰武',
+ 'inventorName': '倪东;李胜利;杨勇;汪天富;陈思平',
+ 'ipcNumber': 'A61B6/00',
+ 'lawState': '授权',
+ 'lawStateDate': '20150422',
+ 'name': '一种胎儿超声图像的测量方法',
+ 'patentType': '发明申请',
+ 'proposerName': '深圳大学',
+ 'publishDate': '2013.08.14',
+ 'publishNumber': 'CN103239249A',
+ 'requestDate': '2013.04.19',
+ 'requestNumber': 'CN201310138239.0',
+ 'type': '【公开】'}
+2017-05-12 17:00:04 [scrapy.core.scraper] DEBUG: Scraped from <200 http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml>
+{'agency': '深圳市科进知识产权代理事务所(普通合伙) 44316',
+ 'agent': '宋鹰武',
+ 'inventorName': '倪东;李胜利;杨勇;汪天富;陈思平',
+ 'ipcNumber': 'A61B6/00',
+ 'lawState': '授权',
+ 'lawStateDate': '20150422',
+ 'name': '一种胎儿超声图像的测量方法',
+ 'patentType': '发明申请',
+ 'proposerName': '深圳大学',
+ 'publishDate': '2015.04.22',
+ 'publishNumber': 'CN103239249B',
+ 'requestDate': '2013.04.19',
+ 'requestNumber': 'CN201310138239.0',
+ 'type': '【授权公告】'}
+2017-05-12 17:00:04 [scrapy.core.scraper] DEBUG: Scraped from <200 http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml>
+{'agency': '深圳市科进知识产权代理事务所(普通合伙) 44316;深圳市科进知识产权代理事务所(普通合伙) 44316',
+ 'agent': '宋鹰武;沈祖锋',
+ 'inventorName': '汪天富;雷柏英;宋有义;曾忠铭;倪东;陈思平',
+ 'ipcNumber': 'G06K9/62;G06T7/00',
+ 'lawState': '实质审查的生效',
+ 'lawStateDate': '20140806',
+ 'name': '基于超像素和深度学习的细菌分割与分类方法及其应用',
+ 'patentType': '发明申请',
+ 'proposerName': '深圳大学',
+ 'publishDate': '2014.07.09',
+ 'publishNumber': 'CN103914841A',
+ 'requestDate': '2014.04.03',
+ 'requestNumber': 'CN201410133805.3',
+ 'type': '【公开】'}
+2017-05-12 17:00:04 [scrapy.core.scraper] DEBUG: Scraped from <200 http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml>
+{'agency': '深圳市科进知识产权代理事务所(普通合伙) 44316;深圳市科进知识产权代理事务所(普通合伙) 44316',
+ 'agent': '宋鹰武;沈祖锋',
+ 'inventorName': '雷柏英;汪天富;倪东;陈思平',
+ 'ipcNumber': 'G06T1/00',
+ 'lawState': '实质审查的生效',
+ 'lawStateDate': '20140820',
+ 'name': '图像添加水印的方法及系统',
+ 'patentType': '发明申请',
+ 'proposerName': '深圳大学',
+ 'publishDate': '2014.07.23',
+ 'publishNumber': 'CN103942745A',
+ 'requestDate': '2014.04.02',
+ 'requestNumber': 'CN201410131629.X',
+ 'type': '【公开】'}
+2017-05-12 17:00:04 [scrapy.core.scraper] DEBUG: Scraped from <200 http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml>
+{'agency': '深圳市科进知识产权代理事务所(普通合伙) 44316;深圳市科进知识产权代理事务所(普通合伙) 44316',
+ 'agent': '宋鹰武;沈祖锋',
+ 'inventorName': '倪东;杨鑫;李胜利;汪天富;陈思平',
+ 'ipcNumber': 'G06K9/62',
+ 'lawState': '发明专利权授予',
+ 'lawStateDate': '20170405',
+ 'name': '从超声图像中自动定位标准切面的方法',
+ 'patentType': '发明申请',
+ 'proposerName': '深圳大学',
+ 'publishDate': '2014.07.30',
+ 'publishNumber': 'CN103955698A',
+ 'requestDate': '2014.03.12',
+ 'requestNumber': 'CN201410089937.0',
+ 'type': '【公开】'}
+2017-05-12 17:00:04 [scrapy.core.scraper] DEBUG: Scraped from <200 http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml>
+{'agency': '深圳市千纳专利代理有限公司 44218',
+ 'agent': '康宇宁',
+ 'inventorName': '彭珏;陈思平;汪天富;张新宇;陈昕',
+ 'ipcNumber': 'A61B8/06',
+ 'lawState': '发明专利申请公布后的驳回',
+ 'lawStateDate': '20161123',
+ 'name': '一种经颅多普勒平面环形相控阵探头',
+ 'patentType': '发明申请',
+ 'proposerName': '深圳大学',
+ 'publishDate': '2014.02.05',
+ 'publishNumber': 'CN103549977A',
+ 'requestDate': '2013.11.05',
+ 'requestNumber': 'CN201310540875.6',
+ 'type': '【公开】'}
+2017-05-12 17:00:05 [scrapy.core.engine] DEBUG: Crawled (200) <POST http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml> (referer: http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/biaogejsAC!executeCommandSearchUnLogin.do)
+2017-05-12 17:00:05 [scrapy.core.scraper] DEBUG: Scraped from <200 http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml>
+{'agency': '深圳市千纳专利代理有限公司 44218;深圳市千纳专利代理有限公司 44218',
+ 'agent': '胡坚;蔡岩岩',
+ 'inventorName': '彭珏;陈思平;汪天富',
+ 'ipcNumber': 'A61B8/12',
+ 'lawState': '授权',
+ 'lawStateDate': '20151125',
+ 'name': '一种机械旋转式血管内超声探头',
+ 'patentType': '发明申请',
+ 'proposerName': '深圳大学',
+ 'publishDate': '2015.11.25',
+ 'publishNumber': 'CN103892871B',
+ 'requestDate': '2014.04.17',
+ 'requestNumber': 'CN201410153476.9',
+ 'type': '【授权公告】'}
+2017-05-12 17:00:05 [scrapy.core.engine] DEBUG: Crawled (200) <POST http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml> (referer: http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/biaogejsAC!executeCommandSearchUnLogin.do)
+2017-05-12 17:00:05 [scrapy.core.scraper] DEBUG: Scraped from <200 http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml>
+{'agency': '深圳市科进知识产权代理事务所(普通合伙) 44316;深圳市科进知识产权代理事务所(普通合伙) 44316',
+ 'agent': '宋鹰武;沈祖锋',
+ 'inventorName': '雷柏英;汪天富;倪东;卓柳;李胜利;陈思平',
+ 'ipcNumber': 'G06K9/54;G06K9/66',
+ 'lawState': '实质审查的生效',
+ 'lawStateDate': '20140813',
+ 'name': '超声图像胎儿颜面部标准切面自动识别方法及系统',
+ 'patentType': '发明申请',
+ 'proposerName': '深圳大学',
+ 'publishDate': '2014.07.16',
+ 'publishNumber': 'CN103927559A',
+ 'requestDate': '2014.04.17',
+ 'requestNumber': 'CN201410155814.2',
+ 'type': '【公开】'}
+2017-05-12 17:00:06 [scrapy.core.engine] DEBUG: Crawled (200) <POST http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml> (referer: http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/biaogejsAC!executeCommandSearchUnLogin.do)
+2017-05-12 17:00:06 [scrapy.core.scraper] DEBUG: Scraped from <200 http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml>
+{'agency': '深圳市千纳专利代理有限公司 44218;深圳市千纳专利代理有限公司 44218',
+ 'agent': '胡坚;蔡岩岩',
+ 'inventorName': '彭珏;陈思平;汪天富',
+ 'ipcNumber': 'A61B8/12',
+ 'lawState': '授权',
+ 'lawStateDate': '20151125',
+ 'name': '一种机械旋转式血管内超声探头',
+ 'patentType': '发明申请',
+ 'proposerName': '深圳大学',
+ 'publishDate': '2014.07.02',
+ 'publishNumber': 'CN103892871A',
+ 'requestDate': '2014.04.17',
+ 'requestNumber': 'CN201410153476.9',
+ 'type': '【公开】'}
+2017-05-12 17:00:07 [scrapy.core.engine] DEBUG: Crawled (200) <POST http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml> (referer: http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/biaogejsAC!executeCommandSearchUnLogin.do)
+2017-05-12 17:00:07 [scrapy.core.scraper] DEBUG: Scraped from <200 http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml>
+{'agency': '深圳市顺天达专利商标代理有限公司 44217',
+ 'agent': '李琴',
+ 'inventorName': '但果;易羽;陈子豪;陈思平',
+ 'ipcNumber': 'G01C3/00',
+ 'lawState': '授权',
+ 'lawStateDate': '20160608',
+ 'name': '一种主动测距方法及系统',
+ 'patentType': '发明申请',
+ 'proposerName': '深圳大学',
+ 'publishDate': '2016.06.08',
+ 'publishNumber': 'CN104154898B',
+ 'requestDate': '2014.04.24',
+ 'requestNumber': 'CN201410169550.6',
+ 'type': '【授权公告】'}
+2017-05-12 17:00:07 [scrapy.core.engine] DEBUG: Crawled (200) <POST http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml> (referer: http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/biaogejsAC!executeCommandSearchUnLogin.do)
+2017-05-12 17:00:07 [scrapy.core.scraper] DEBUG: Scraped from <200 http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml>
+{'agency': '深圳市顺天达专利商标代理有限公司 44217',
+ 'agent': '李琴',
+ 'inventorName': '但果;陈子豪;易羽;陈思平',
+ 'ipcNumber': 'A61B5/00',
+ 'lawState': '实质审查的生效',
+ 'lawStateDate': '20141217',
+ 'name': '一种静脉显像仪及其成像方法',
+ 'patentType': '发明申请',
+ 'proposerName': '深圳大学',
+ 'publishDate': '2014.11.19',
+ 'publishNumber': 'CN104146683A',
+ 'requestDate': '2014.04.24',
+ 'requestNumber': 'CN201410169207.1',
+ 'type': '【公开】'}
+2017-05-12 17:00:08 [scrapy.core.engine] DEBUG: Crawled (200) <POST http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml> (referer: http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/biaogejsAC!executeCommandSearchUnLogin.do)
+2017-05-12 17:00:08 [scrapy.core.scraper] DEBUG: Scraped from <200 http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml>
+{'agency': '深圳市顺天达专利商标代理有限公司 44217',
+ 'agent': '李琴',
+ 'inventorName': '但果;易羽;陈子豪;陈思平',
+ 'ipcNumber': 'G01C3/00',
+ 'lawState': '授权',
+ 'lawStateDate': '20160608',
+ 'name': '一种主动测距方法及系统',
+ 'patentType': '发明申请',
+ 'proposerName': '深圳大学',
+ 'publishDate': '2014.11.19',
+ 'publishNumber': 'CN104154898A',
+ 'requestDate': '2014.04.24',
+ 'requestNumber': 'CN201410169550.6',
+ 'type': '【公开】'}
+2017-05-12 17:00:09 [scrapy.core.engine] DEBUG: Crawled (200) <POST http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml> (referer: http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/biaogejsAC!executeCommandSearchUnLogin.do)
+2017-05-12 17:00:09 [scrapy.core.scraper] DEBUG: Scraped from <200 http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml>
+{'agency': '深圳市科进知识产权代理事务所(普通合伙) 44316;深圳市科进知识产权代理事务所(普通合伙) 44316',
+ 'agent': '宋鹰武;沈祖锋',
+ 'inventorName': '倪东;王毅;汪天富;陈思平',
+ 'ipcNumber': 'A61B8/00;A61B5/055;G06T7/00',
+ 'lawState': '授权',
+ 'lawStateDate': '20161130',
+ 'name': '一种超声与磁共振图像融合配准方法',
+ 'patentType': '发明申请',
+ 'proposerName': '深圳大学',
+ 'publishDate': '2016.11.30',
+ 'publishNumber': 'CN104055536B',
+ 'requestDate': '2014.04.25',
+ 'requestNumber': 'CN201410171606.1',
+ 'type': '【授权公告】'}
+2017-05-12 17:00:09 [scrapy.core.engine] DEBUG: Crawled (200) <POST http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml> (referer: http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/biaogejsAC!executeCommandSearchUnLogin.do)
+2017-05-12 17:00:09 [scrapy.core.scraper] DEBUG: Scraped from <200 http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml>
+{'agency': '深圳市科进知识产权代理事务所(普通合伙) 44316;深圳市科进知识产权代理事务所(普通合伙) 44316',
+ 'agent': '宋鹰武;沈祖锋',
+ 'inventorName': '倪东;王毅;汪天富;陈思平',
+ 'ipcNumber': 'A61B8/00;G06T7/00;A61B5/055',
+ 'lawState': '授权',
+ 'lawStateDate': '20161130',
+ 'name': '一种超声与磁共振图像融合配准方法',
+ 'patentType': '发明申请',
+ 'proposerName': '深圳大学',
+ 'publishDate': '2014.09.24',
+ 'publishNumber': 'CN104055536A',
+ 'requestDate': '2014.04.25',
+ 'requestNumber': 'CN201410171606.1',
+ 'type': '【公开】'}
+2017-05-12 17:00:10 [scrapy.core.engine] DEBUG: Crawled (200) <POST http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml> (referer: http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/biaogejsAC!executeCommandSearchUnLogin.do)
+2017-05-12 17:00:10 [scrapy.core.scraper] DEBUG: Scraped from <200 http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml>
+{'agency': '深圳市科进知识产权代理事务所(普通合伙) 44316;深圳市科进知识产权代理事务所(普通合伙) 44316',
+ 'agent': '宋鹰武;沈祖锋',
+ 'inventorName': '汪天富;雷柏英;李欣遥;姚远;倪东;李胜利;陈思平',
+ 'ipcNumber': 'A61B8/08',
+ 'lawState': '授权',
+ 'lawStateDate': '20160309',
+ 'name': '胎盘成熟度分级方法及系统',
+ 'patentType': '发明申请',
+ 'proposerName': '深圳大学',
+ 'publishDate': '2014.07.23',
+ 'publishNumber': 'CN103932738A',
+ 'requestDate': '2014.04.29',
+ 'requestNumber': 'CN201410177266.3',
+ 'type': '【公开】'}
+2017-05-12 17:00:11 [scrapy.core.engine] DEBUG: Crawled (200) <POST http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml> (referer: http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/biaogejsAC!executeCommandSearchUnLogin.do)
+2017-05-12 17:00:11 [scrapy.core.scraper] DEBUG: Scraped from <200 http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml>
+{'agency': '深圳市科进知识产权代理事务所(普通合伙) 44316;深圳市科进知识产权代理事务所(普通合伙) 44316',
+ 'agent': '宋鹰武;沈祖锋',
+ 'inventorName': '雷柏英;陈思平;汪天富;倪东',
+ 'ipcNumber': 'G06K9/62',
+ 'lawState': '实质审查的生效',
+ 'lawStateDate': '20140820',
+ 'name': '图像分类方法及系统',
+ 'patentType': '发明申请',
+ 'proposerName': '深圳大学',
+ 'publishDate': '2014.07.23',
+ 'publishNumber': 'CN103942570A',
+ 'requestDate': '2014.04.29',
+ 'requestNumber': 'CN201410177159.0',
+ 'type': '【公开】'}
+2017-05-12 17:00:11 [scrapy.core.engine] DEBUG: Crawled (200) <POST http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml> (referer: http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/biaogejsAC!executeCommandSearchUnLogin.do)
+2017-05-12 17:00:11 [scrapy.core.scraper] DEBUG: Scraped from <200 http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml>
+{'agency': '深圳市科进知识产权代理事务所(普通合伙) 44316;深圳市科进知识产权代理事务所(普通合伙) 44316',
+ 'agent': '宋鹰武;沈祖锋',
+ 'inventorName': '雷柏英;张灵;汪天富;宋有义;倪东;陈思平',
+ 'ipcNumber': 'G06K9/62;G06F19/24;G06K9/40',
+ 'lawState': '实质审查的生效',
+ 'lawStateDate': '20140910',
+ 'name': '宫颈癌细胞分割方法及系统',
+ 'patentType': '发明申请',
+ 'proposerName': '深圳大学',
+ 'publishDate': '2014.08.13',
+ 'publishNumber': 'CN103984958A',
+ 'requestDate': '2014.05.07',
+ 'requestNumber': 'CN201410190674.2',
+ 'type': '【公开】'}
+2017-05-12 17:00:12 [scrapy.core.engine] DEBUG: Crawled (200) <POST http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml> (referer: http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/biaogejsAC!executeCommandSearchUnLogin.do)
+2017-05-12 17:00:12 [scrapy.core.scraper] DEBUG: Scraped from <200 http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml>
+{'agency': '深圳市科进知识产权代理事务所(普通合伙) 44316;深圳市科进知识产权代理事务所(普通合伙) 44316',
+ 'agent': '宋鹰武;沈祖锋',
+ 'inventorName': '张新宇;尹尹;刘福龙;陈昕;郑翊;梁平;汪天富;陈思平',
+ 'ipcNumber': 'A61B8/10',
+ 'lawState': '授权',
+ 'lawStateDate': '20161207',
+ 'name': '一种测量眼内压和角膜粘弹性的系统和方法',
+ 'patentType': '发明申请',
+ 'proposerName': '深圳大学',
+ 'publishDate': '2016.12.07',
+ 'publishNumber': 'CN104367347B',
+ 'requestDate': '2014.05.16',
+ 'requestNumber': 'CN201410209785.3',
+ 'type': '【授权公告】'}
+2017-05-12 17:00:12 [scrapy.core.engine] DEBUG: Crawled (200) <POST http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml> (referer: http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/biaogejsAC!executeCommandSearchUnLogin.do)
+2017-05-12 17:00:13 [scrapy.core.scraper] DEBUG: Scraped from <200 http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml>
+{'agency': '深圳市科进知识产权代理事务所(普通合伙) 44316;深圳市科进知识产权代理事务所(普通合伙) 44316',
+ 'agent': '宋鹰武;沈祖锋',
+ 'inventorName': '张新宇;尹尹;刘福龙;陈昕;郑翊;梁平;汪天富;陈思平',
+ 'ipcNumber': 'A61B8/10',
+ 'lawState': '授权',
+ 'lawStateDate': '20161207',
+ 'name': '一种测量眼内压和角膜粘弹性的系统和方法',
+ 'patentType': '发明申请',
+ 'proposerName': '深圳大学',
+ 'publishDate': '2015.02.25',
+ 'publishNumber': 'CN104367347A',
+ 'requestDate': '2014.05.16',
+ 'requestNumber': 'CN201410209785.3',
+ 'type': '【公开】'}
+2017-05-12 17:00:13 [scrapy.core.engine] DEBUG: Crawled (200) <POST http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml> (referer: http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/biaogejsAC!executeCommandSearchUnLogin.do)
+2017-05-12 17:00:13 [scrapy.core.scraper] DEBUG: Scraped from <200 http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml>
+{'agency': '深圳市科进知识产权代理事务所(普通合伙) 44316;深圳市科进知识产权代理事务所(普通合伙) 44316',
+ 'agent': '宋鹰武;沈祖锋',
+ 'inventorName': '詹凯;李杰;覃正笛;汪天富;陈思平',
+ 'ipcNumber': 'A61B8/10',
+ 'lawState': '实质审查的生效',
+ 'lawStateDate': '20160720',
+ 'name': '一种基于眼科诊测的超声脉冲激励及回波采集系统',
+ 'patentType': '发明申请',
+ 'proposerName': '深圳大学',
+ 'publishDate': '2016.06.22',
+ 'publishNumber': 'CN105686852A',
+ 'requestDate': '2014.11.24',
+ 'requestNumber': 'CN201410680415.8',
+ 'type': '【公开】'}
+2017-05-12 17:00:14 [scrapy.core.engine] DEBUG: Crawled (200) <POST http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml> (referer: http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/biaogejsAC!executeCommandSearchUnLogin.do)
+2017-05-12 17:00:14 [scrapy.core.scraper] DEBUG: Scraped from <200 http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml>
+{'agency': '深圳鼎合诚知识产权代理有限公司 44281',
+ 'agent': '任葵',
+ 'inventorName': '叶继伦;刘春生;朱彩兵;陈思平;汪天富',
+ 'ipcNumber': 'G01N21/3504',
+ 'lawState': '实质审查的生效',
+ 'lawStateDate': '20150527',
+ 'name': '测量呼吸末二氧化碳的装置和方法',
+ 'patentType': '发明申请',
+ 'proposerName': '深圳大学',
+ 'publishDate': '2015.04.29',
+ 'publishNumber': 'CN104568807A',
+ 'requestDate': '2014.12.03',
+ 'requestNumber': 'CN201410727985.8',
+ 'type': '【公开】'}
+2017-05-12 17:00:14 [scrapy.core.engine] DEBUG: Crawled (200) <POST http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml> (referer: http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/biaogejsAC!executeCommandSearchUnLogin.do)
+2017-05-12 17:00:15 [scrapy.core.scraper] DEBUG: Scraped from <200 http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml>
+{'agency': '深圳鼎合诚知识产权代理有限公司 44281;深圳鼎合诚知识产权代理有限公司 44281',
+ 'agent': '任葵;彭家恩',
+ 'inventorName': '张旭;叶继伦;罗赛;陈思平',
+ 'ipcNumber': 'A61B5/1455',
+ 'lawState': '实质审查的生效',
+ 'lawStateDate': '20150527',
+ 'name': '监测静脉血氧饱和度的方法及装置',
+ 'patentType': '发明申请',
+ 'proposerName': '深圳大学',
+ 'publishDate': '2015.04.29',
+ 'publishNumber': 'CN104545942A',
+ 'requestDate': '2014.12.31',
+ 'requestNumber': 'CN201410856096.1',
+ 'type': '【公开】'}
+2017-05-12 17:00:15 [scrapy.core.engine] DEBUG: Crawled (200) <POST http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml> (referer: http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/biaogejsAC!executeCommandSearchUnLogin.do)
+2017-05-12 17:00:15 [scrapy.core.scraper] DEBUG: Scraped from <200 http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml>
+{'agency': '深圳市君胜知识产权代理事务所(普通合伙) 44268;深圳市君胜知识产权代理事务所(普通合伙) 44268',
+ 'agent': '王永文;刘文求',
+ 'inventorName': '但果;陈思平;董磊',
+ 'ipcNumber': 'A61N1/36',
+ 'lawState': '发明专利权授予',
+ 'lawStateDate': '20170125',
+ 'name': '一种治疗波形产生装置及中频电刺激治疗仪',
+ 'patentType': '发明申请',
+ 'proposerName': '深圳大学',
+ 'publishDate': '2017.01.25',
+ 'publishNumber': 'CN104623802B',
+ 'requestDate': '2015.02.02',
+ 'requestNumber': 'CN201510052687.8',
+ 'type': '【授权公告】'}
+2017-05-12 17:00:16 [scrapy.core.engine] DEBUG: Crawled (200) <POST http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml> (referer: http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/biaogejsAC!executeCommandSearchUnLogin.do)
+2017-05-12 17:00:16 [scrapy.core.scraper] DEBUG: Scraped from <200 http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml>
+{'agency': '深圳市君胜知识产权代理事务所 44268;深圳市君胜知识产权代理事务所 44268',
+ 'agent': '王永文;刘文求',
+ 'inventorName': '但果;陈思平;董磊',
+ 'ipcNumber': 'A61N1/36',
+ 'lawState': '发明专利权授予',
+ 'lawStateDate': '20170125',
+ 'name': '一种治疗波形产生装置及中频电刺激治疗仪',
+ 'patentType': '发明申请',
+ 'proposerName': '深圳大学',
+ 'publishDate': '2015.05.20',
+ 'publishNumber': 'CN104623802A',
+ 'requestDate': '2015.02.02',
+ 'requestNumber': 'CN201510052687.8',
+ 'type': '【公开】'}
+2017-05-12 17:00:16 [scrapy.core.engine] DEBUG: Crawled (200) <POST http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml> (referer: http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/biaogejsAC!executeCommandSearchUnLogin.do)
+2017-05-12 17:00:17 [scrapy.core.scraper] DEBUG: Scraped from <200 http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml>
+{'agency': '深圳市科进知识产权代理事务所(普通合伙) 44316;深圳市科进知识产权代理事务所(普通合伙) 44316',
+ 'agent': '宋鹰武;沈祖锋',
+ 'inventorName': '刘维湘;李杰;覃正笛;陈思平',
+ 'ipcNumber': 'A61B8/06',
+ 'lawState': '实质审查的生效',
+ 'lawStateDate': '20150701',
+ 'name': '经颅多普勒血流检测方法',
+ 'patentType': '发明申请',
+ 'proposerName': '深圳大学',
+ 'publishDate': '2015.06.03',
+ 'publishNumber': 'CN104665876A',
+ 'requestDate': '2015.02.10',
+ 'requestNumber': 'CN201510068249.0',
+ 'type': '【公开】'}
+2017-05-12 17:00:17 [scrapy.core.engine] DEBUG: Crawled (200) <POST http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml> (referer: http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/biaogejsAC!executeCommandSearchUnLogin.do)
+2017-05-12 17:00:17 [scrapy.core.scraper] DEBUG: Scraped from <200 http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml>
+{'agency': '深圳市科进知识产权代理事务所(普通合伙) 44316;深圳市科进知识产权代理事务所(普通合伙) 44316',
+ 'agent': '宋鹰武;沈祖锋',
+ 'inventorName': '覃正笛;覃道鼎;李杰;陈思平',
+ 'ipcNumber': 'G06F19/00;A61B8/02',
+ 'lawState': '实质审查的生效',
+ 'lawStateDate': '20150701',
+ 'name': '超声多普勒包络和心率检测方法',
+ 'patentType': '发明申请',
+ 'proposerName': '深圳大学',
+ 'publishDate': '2015.06.03',
+ 'publishNumber': 'CN104665875A',
+ 'requestDate': '2015.02.10',
+ 'requestNumber': 'CN201510068330.9',
+ 'type': '【公开】'}
+2017-05-12 17:00:18 [scrapy.core.engine] DEBUG: Crawled (200) <POST http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml> (referer: http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/biaogejsAC!executeCommandSearchUnLogin.do)
+2017-05-12 17:00:18 [scrapy.core.scraper] DEBUG: Scraped from <200 http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml>
+{'agency': '深圳市君胜知识产权代理事务所 44268;深圳市君胜知识产权代理事务所 44268',
+ 'agent': '王永文;刘文求',
+ 'inventorName': '但果;杨环宇;董磊;陈思平',
+ 'ipcNumber': 'A61B5/0488',
+ 'lawState': '实质审查的生效',
+ 'lawStateDate': '20150826',
+ 'name': '一种表面肌电采集装置及其肌电信号处理方法',
+ 'patentType': '发明申请',
+ 'proposerName': '深圳大学',
+ 'publishDate': '2015.07.29',
+ 'publishNumber': 'CN104799854A',
+ 'requestDate': '2015.04.29',
+ 'requestNumber': 'CN201510211190.6',
+ 'type': '【公开】'}
+2017-05-12 17:00:18 [scrapy.core.engine] DEBUG: Crawled (200) <POST http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml> (referer: http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/biaogejsAC!executeCommandSearchUnLogin.do)
+2017-05-12 17:00:18 [scrapy.core.scraper] DEBUG: Scraped from <200 http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml>
+{'agency': '深圳市科进知识产权代理事务所(普通合伙) 44316;深圳市科进知识产权代理事务所(普通合伙) 44316',
+ 'agent': '宋鹰武;沈祖锋',
+ 'inventorName': '詹凯;覃正笛;陈昕;彭珏;汪天富;陈思平',
+ 'ipcNumber': 'H01R31/06;H01R43/00;H01R13/66;H01R24/00',
+ 'lawState': '实质审查的生效',
+ 'lawStateDate': '20151021',
+ 'name': '一种用于更换匹配阻抗的转接装置及转接方法',
+ 'patentType': '发明申请',
+ 'proposerName': '深圳大学',
+ 'publishDate': '2015.09.23',
+ 'publishNumber': 'CN104934824A',
+ 'requestDate': '2015.05.05',
+ 'requestNumber': 'CN201510222540.9',
+ 'type': '【公开】'}
+2017-05-12 17:00:19 [scrapy.core.engine] DEBUG: Crawled (200) <POST http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml> (referer: http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/biaogejsAC!executeCommandSearchUnLogin.do)
+2017-05-12 17:00:19 [scrapy.core.scraper] DEBUG: Scraped from <200 http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml>
+{'agency': '深圳市科进知识产权代理事务所(普通合伙) 44316;深圳市科进知识产权代理事务所(普通合伙) 44316',
+ 'agent': '宋鹰武;沈祖锋',
+ 'inventorName': '詹凯;覃正笛;陈昕;彭珏;汪天富;陈思平',
+ 'ipcNumber': 'H02M3/00;H02M1/10',
+ 'lawState': '实质审查的生效',
+ 'lawStateDate': '20151111',
+ 'name': '可调节正负高压电压输出的中小功率电压升压器',
+ 'patentType': '发明申请',
+ 'proposerName': '深圳大学',
+ 'publishDate': '2015.10.07',
+ 'publishNumber': 'CN104967295A',
+ 'requestDate': '2015.06.12',
+ 'requestNumber': 'CN201510323178.4',
+ 'type': '【公开】'}
+2017-05-12 17:00:20 [scrapy.core.engine] DEBUG: Crawled (200) <POST http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml> (referer: http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/biaogejsAC!executeCommandSearchUnLogin.do)
+2017-05-12 17:00:20 [scrapy.core.scraper] DEBUG: Scraped from <200 http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml>
+{'agency': '深圳鼎合诚知识产权代理有限公司 44281;深圳鼎合诚知识产权代理有限公司 44281',
+ 'agent': '任葵;彭家恩',
+ 'inventorName': '叶继伦;王凡;张旭;孙纪光;陈思平',
+ 'ipcNumber': 'A61B5/0476',
+ 'lawState': '实质审查的生效',
+ 'lawStateDate': '20160127',
+ 'name': '一种脑电抑制水平评估方法及系统',
+ 'patentType': '发明申请',
+ 'proposerName': '深圳大学',
+ 'publishDate': '2015.12.30',
+ 'publishNumber': 'CN105193409A',
+ 'requestDate': '2015.08.07',
+ 'requestNumber': 'CN201510484280.2',
+ 'type': '【公开】'}
+2017-05-12 17:00:20 [scrapy.core.engine] DEBUG: Crawled (200) <POST http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml> (referer: http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/biaogejsAC!executeCommandSearchUnLogin.do)
+2017-05-12 17:00:20 [scrapy.core.scraper] DEBUG: Scraped from <200 http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml>
+{'agency': '深圳市千纳专利代理有限公司 44218',
+ 'agent': '黄良宝',
+ 'inventorName': '彭珏;陈思平;秦志飞;彭小健;唐浒',
+ 'ipcNumber': 'A61B5/00',
+ 'lawState': '实质审查的生效',
+ 'lawStateDate': '20160302',
+ 'name': '一种机械旋转式血管内OCT成像探头',
+ 'patentType': '发明申请',
+ 'proposerName': '深圳大学',
+ 'publishDate': '2016.02.03',
+ 'publishNumber': 'CN105286800A',
+ 'requestDate': '2015.11.25',
+ 'requestNumber': 'CN201510828852.4',
+ 'type': '【公开】'}
+2017-05-12 17:00:21 [scrapy.core.engine] DEBUG: Crawled (200) <POST http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml> (referer: http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/biaogejsAC!executeCommandSearchUnLogin.do)
+2017-05-12 17:00:21 [scrapy.core.scraper] DEBUG: Scraped from <200 http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml>
+{'agency': '深圳市君胜知识产权代理事务所 44268;深圳市君胜知识产权代理事务所 44268',
+ 'agent': '王永文;刘文求',
+ 'inventorName': '但果;陈子豪;易羽;董磊;陈思平',
+ 'ipcNumber': 'A61B5/00',
+ 'lawState': '实质审查的生效',
+ 'lawStateDate': '20160615',
+ 'name': '一种用于皮下静脉显像仪的自适应曝光控制方法及系统',
+ 'patentType': '发明申请',
+ 'proposerName': '深圳大学',
+ 'publishDate': '2016.05.18',
+ 'publishNumber': 'CN105581780A',
+ 'requestDate': '2015.12.16',
+ 'requestNumber': 'CN201510941619.7',
+ 'type': '【公开】'}
+2017-05-12 17:00:21 [scrapy.core.engine] DEBUG: Crawled (200) <POST http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml> (referer: http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/biaogejsAC!executeCommandSearchUnLogin.do)
+2017-05-12 17:00:21 [scrapy.core.scraper] DEBUG: Scraped from <200 http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml>
+{'agency': '深圳市君胜知识产权代理事务所 44268;深圳市君胜知识产权代理事务所 44268',
+ 'agent': '王永文;刘文求',
+ 'inventorName': '但果;陈子豪;易羽;陈思平',
+ 'ipcNumber': 'A61B5/00',
+ 'lawState': '实质审查的生效',
+ 'lawStateDate': '20160713',
+ 'name': '皮下静脉显影仪',
+ 'patentType': '发明申请',
+ 'proposerName': '深圳大学',
+ 'publishDate': '2016.06.15',
+ 'publishNumber': 'CN105662351A',
+ 'requestDate': '2016.03.24',
+ 'requestNumber': 'CN201610170920.7',
+ 'type': '【公开】'}
+2017-05-12 17:00:22 [scrapy.core.engine] DEBUG: Crawled (200) <POST http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml> (referer: http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/biaogejsAC!executeCommandSearchUnLogin.do)
+2017-05-12 17:00:22 [scrapy.core.scraper] DEBUG: Scraped from <200 http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml>
+{'agency': '深圳市君胜知识产权代理事务所 44268;深圳市君胜知识产权代理事务所 44268',
+ 'agent': '王永文;刘文求',
+ 'inventorName': '覃正笛;和晓念;陈昕;陈思平',
+ 'ipcNumber': 'G06T7/00;A61B8/08',
+ 'lawState': '实质审查的生效',
+ 'lawStateDate': '20160907',
+ 'name': '一种瞬时弹性成像编码检测方法及系统',
+ 'patentType': '发明申请',
+ 'proposerName': '深圳大学',
+ 'publishDate': '2016.08.10',
+ 'publishNumber': 'CN105844645A',
+ 'requestDate': '2016.03.31',
+ 'requestNumber': 'CN201610195907.7',
+ 'type': '【公开】'}
+2017-05-12 17:00:22 [scrapy.core.engine] DEBUG: Crawled (200) <POST http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml> (referer: http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/biaogejsAC!executeCommandSearchUnLogin.do)
+2017-05-12 17:00:22 [scrapy.core.scraper] DEBUG: Scraped from <200 http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml>
+{'agency': '深圳市君胜知识产权代理事务所 44268;深圳市君胜知识产权代理事务所 44268',
+ 'agent': '王永文;刘文求',
+ 'inventorName': '但果;何清;丁惠君;陈子豪;董磊;陈思平',
+ 'ipcNumber': 'G06F3/01',
+ 'lawState': '实质审查的生效',
+ 'lawStateDate': '20160817',
+ 'name': '一种基于肌动信号的指部独立动作识别方法及系统',
+ 'patentType': '发明申请',
+ 'proposerName': '深圳大学',
+ 'publishDate': '2016.07.20',
+ 'publishNumber': 'CN105786189A',
+ 'requestDate': '2016.04.28',
+ 'requestNumber': 'CN201610274974.8',
+ 'type': '【公开】'}
+2017-05-12 17:00:23 [scrapy.core.engine] DEBUG: Crawled (200) <POST http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml> (referer: http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/biaogejsAC!executeCommandSearchUnLogin.do)
+2017-05-12 17:00:23 [scrapy.core.scraper] DEBUG: Scraped from <200 http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml>
+{'agency': '深圳市君胜知识产权代理事务所 44268;深圳市君胜知识产权代理事务所 44268',
+ 'agent': '王永文;刘文求',
+ 'inventorName': '和晓念;陈昕;覃正笛;林浩铭;陈思平',
+ 'ipcNumber': 'A61B8/00;G01N29/00',
+ 'lawState': '实质审查的生效',
+ 'lawStateDate': '20160803',
+ 'name': '一种基于圆环外部振动的瞬时剪切波激励系统及方法',
+ 'patentType': '发明申请',
+ 'proposerName': '深圳大学',
+ 'publishDate': '2016.07.06',
+ 'publishNumber': 'CN105726063A',
+ 'requestDate': '2016.04.29',
+ 'requestNumber': 'CN201610275908.2',
+ 'type': '【公开】'}
+2017-05-12 17:00:23 [scrapy.core.engine] DEBUG: Crawled (200) <POST http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml> (referer: http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/biaogejsAC!executeCommandSearchUnLogin.do)
+2017-05-12 17:00:23 [scrapy.core.scraper] DEBUG: Scraped from <200 http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml>
+{'agency': '深圳市君胜知识产权代理事务所 44268;深圳市君胜知识产权代理事务所 44268',
+ 'agent': '王永文;刘文求',
+ 'inventorName': '陈昕;詹凯;张旭东;汪天富;陈思平',
+ 'ipcNumber': 'G01N27/72',
+ 'lawState': '实质审查的生效',
+ 'lawStateDate': '20160921',
+ 'name': '一种基于低频机械振动激励的磁声电成像系统',
+ 'patentType': '发明申请',
+ 'proposerName': '深圳大学',
+ 'publishDate': '2016.08.10',
+ 'publishNumber': 'CN105842332A',
+ 'requestDate': '2016.05.09',
+ 'requestNumber': 'CN201610301339.4',
+ 'type': '【公开】'}
+2017-05-12 17:00:24 [scrapy.core.engine] DEBUG: Crawled (200) <POST http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml> (referer: http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/biaogejsAC!executeCommandSearchUnLogin.do)
+2017-05-12 17:00:24 [scrapy.core.scraper] DEBUG: Scraped from <200 http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml>
+{'agency': '深圳市君胜知识产权代理事务所 44268;深圳市君胜知识产权代理事务所 44268',
+ 'agent': '王永文;刘文求',
+ 'inventorName': '刁现芬;朱菁;覃正笛;陈思平',
+ 'ipcNumber': 'A61B8/08',
+ 'lawState': '实质审查的生效',
+ 'lawStateDate': '20161123',
+ 'name': '一种超声粘弹性测量方法及系统',
+ 'patentType': '发明申请',
+ 'proposerName': '深圳大学',
+ 'publishDate': '2016.10.26',
+ 'publishNumber': 'CN106037816A',
+ 'requestDate': '2016.05.19',
+ 'requestNumber': 'CN201610334175.5',
+ 'type': '【公开】'}
+2017-05-12 17:00:25 [scrapy.core.engine] DEBUG: Crawled (200) <POST http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml> (referer: http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/biaogejsAC!executeCommandSearchUnLogin.do)
+2017-05-12 17:00:25 [scrapy.core.scraper] DEBUG: Scraped from <200 http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml>
+{'agency': '广东深宏盾律师事务所 44364',
+ 'agent': '赵琼花',
+ 'inventorName': '但果;陈子豪;易羽;陈思平',
+ 'ipcNumber': 'G06T1/00;A61B5/00',
+ 'lawState': '实质审查的生效',
+ 'lawStateDate': '20161109',
+ 'name': '一种用于皮下静脉显影仪的控制处理系统及成像方法',
+ 'patentType': '发明申请',
+ 'proposerName': '深圳大学',
+ 'publishDate': '2016.10.12',
+ 'publishNumber': 'CN106023057A',
+ 'requestDate': '2016.05.26',
+ 'requestNumber': 'CN201610356998.8',
+ 'type': '【公开】'}
+2017-05-12 17:00:25 [scrapy.core.engine] DEBUG: Crawled (200) <POST http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml> (referer: http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/biaogejsAC!executeCommandSearchUnLogin.do)
+2017-05-12 17:00:25 [scrapy.core.scraper] DEBUG: Scraped from <200 http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml>
+{'agency': '深圳市顺天达专利商标代理有限公司 44217',
+ 'agent': '郭伟刚',
+ 'inventorName': '戴明;陈思平;陈昕;林浩铭',
+ 'ipcNumber': 'A61B5/0402;A61B5/00',
+ 'lawState': '实质审查的生效',
+ 'lawStateDate': '20170222',
+ 'name': '一种多功能心电辅助监护装置',
+ 'patentType': '发明申请',
+ 'proposerName': '深圳大学',
+ 'publishDate': '2017.01.25',
+ 'publishNumber': 'CN106344003A',
+ 'requestDate': '2016.09.22',
+ 'requestNumber': 'CN201610842817.2',
+ 'type': '【公开】'}
+2017-05-12 17:00:26 [scrapy.core.engine] DEBUG: Crawled (200) <POST http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml> (referer: http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/biaogejsAC!executeCommandSearchUnLogin.do)
+2017-05-12 17:00:26 [scrapy.core.scraper] DEBUG: Scraped from <200 http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml>
+{'agency': '深圳市顺天达专利商标代理有限公司 44217',
+ 'agent': '郭伟刚',
+ 'inventorName': '戴明;陈思平;陈昕;林浩铭',
+ 'ipcNumber': 'G07F19/00',
+ 'lawState': '实质审查的生效',
+ 'lawStateDate': '20170405',
+ 'name': '一种无卡存取款机及无卡存取款系统',
+ 'patentType': '发明申请',
+ 'proposerName': '深圳大学',
+ 'publishDate': '2017.03.08',
+ 'publishNumber': 'CN106485851A',
+ 'requestDate': '2016.09.26',
+ 'requestNumber': 'CN201610851265.1',
+ 'type': '【公开】'}
+2017-05-12 17:00:26 [scrapy.core.engine] INFO: Closing spider (finished)
+2017-05-12 17:00:26 [scrapy.statscollectors] INFO: Dumping Scrapy stats:
+{'downloader/request_bytes': 84179,
+ 'downloader/request_count': 86,
  'downloader/request_method_count/GET': 2,
- 'downloader/request_method_count/POST': 1,
- 'downloader/response_bytes': 38412,
- 'downloader/response_count': 3,
- 'downloader/response_status_count/200': 2,
+ 'downloader/request_method_count/POST': 84,
+ 'downloader/response_bytes': 125719,
+ 'downloader/response_count': 86,
+ 'downloader/response_status_count/200': 85,
  'downloader/response_status_count/404': 1,
+ 'dupefilter/filtered': 4,
  'finish_reason': 'finished',
- 'finish_time': datetime.datetime(2017, 5, 11, 14, 13, 16, 616285),
- 'log_count/DEBUG': 4,
+ 'finish_time': datetime.datetime(2017, 5, 12, 9, 0, 26, 490464),
+ 'item_scraped_count': 81,
+ 'log_count/DEBUG': 169,
  'log_count/INFO': 7,
- 'request_depth_max': 1,
- 'response_received_count': 3,
- 'scheduler/dequeued': 2,
- 'scheduler/dequeued/memory': 2,
- 'scheduler/enqueued': 2,
- 'scheduler/enqueued/memory': 2,
- 'start_time': datetime.datetime(2017, 5, 11, 14, 13, 12, 37513)}
-2017-05-11 22:13:16 [scrapy.core.engine] INFO: Spider closed (finished)
-2017-05-11 22:13:29 [scrapy.utils.log] INFO: Scrapy 1.3.3 started (bot: PatentCrawler)
-2017-05-11 22:13:29 [scrapy.utils.log] INFO: Overridden settings: {'LOG_FILE': 'scrapy.log', 'ROBOTSTXT_OBEY': True, 'BOT_NAME': 'PatentCrawler', 'NEWSPIDER_MODULE': 'PatentCrawler.spiders', 'SPIDER_MODULES': ['PatentCrawler.spiders']}
-2017-05-11 22:13:29 [scrapy.middleware] INFO: Enabled extensions:
-['scrapy.extensions.telnet.TelnetConsole',
- 'scrapy.extensions.corestats.CoreStats',
- 'scrapy.extensions.logstats.LogStats']
-2017-05-11 22:13:30 [scrapy.middleware] INFO: Enabled downloader middlewares:
-['scrapy.downloadermiddlewares.robotstxt.RobotsTxtMiddleware',
- 'scrapy.downloadermiddlewares.httpauth.HttpAuthMiddleware',
- 'scrapy.downloadermiddlewares.downloadtimeout.DownloadTimeoutMiddleware',
- 'scrapy.downloadermiddlewares.defaultheaders.DefaultHeadersMiddleware',
- 'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware',
- 'scrapy.downloadermiddlewares.retry.RetryMiddleware',
- 'scrapy.downloadermiddlewares.redirect.MetaRefreshMiddleware',
- 'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware',
- 'scrapy.downloadermiddlewares.redirect.RedirectMiddleware',
- 'scrapy.downloadermiddlewares.cookies.CookiesMiddleware',
- 'scrapy.downloadermiddlewares.stats.DownloaderStats']
-2017-05-11 22:13:30 [scrapy.middleware] INFO: Enabled spider middlewares:
-['scrapy.spidermiddlewares.httperror.HttpErrorMiddleware',
- 'scrapy.spidermiddlewares.offsite.OffsiteMiddleware',
- 'scrapy.spidermiddlewares.referer.RefererMiddleware',
- 'scrapy.spidermiddlewares.urllength.UrlLengthMiddleware',
- 'scrapy.spidermiddlewares.depth.DepthMiddleware']
-2017-05-11 22:13:30 [scrapy.middleware] INFO: Enabled item pipelines:
-['PatentCrawler.pipelines.PatentcrawlerPipeline']
-2017-05-11 22:13:30 [scrapy.core.engine] INFO: Spider opened
-2017-05-11 22:13:30 [scrapy.extensions.logstats] INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
-2017-05-11 22:13:30 [scrapy.extensions.telnet] DEBUG: Telnet console listening on 127.0.0.1:6023
-2017-05-11 22:13:30 [scrapy.core.engine] DEBUG: Crawled (404) <GET http://www.pss-system.gov.cn/robots.txt> (referer: None)
-2017-05-11 22:13:31 [scrapy.core.engine] DEBUG: Crawled (200) <GET http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/tableSearch-showTableSearchIndex.shtml> (referer: None)
-2017-05-11 22:13:39 [scrapy.core.engine] DEBUG: Crawled (200) <POST http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/biaogejsAC!executeCommandSearchUnLogin.do> (referer: http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/tableSearch-showTableSearchIndex.shtml)
-2017-05-11 22:13:39 [scrapy.core.engine] INFO: Closing spider (finished)
-2017-05-11 22:13:39 [scrapy.statscollectors] INFO: Dumping Scrapy stats:
-{'downloader/request_bytes': 1768,
- 'downloader/request_count': 3,
- 'downloader/request_method_count/GET': 2,
- 'downloader/request_method_count/POST': 1,
- 'downloader/response_bytes': 37812,
- 'downloader/response_count': 3,
- 'downloader/response_status_count/200': 2,
- 'downloader/response_status_count/404': 1,
- 'finish_reason': 'finished',
- 'finish_time': datetime.datetime(2017, 5, 11, 14, 13, 39, 735610),
- 'log_count/DEBUG': 4,
- 'log_count/INFO': 7,
- 'request_depth_max': 1,
- 'response_received_count': 3,
- 'scheduler/dequeued': 2,
- 'scheduler/dequeued/memory': 2,
- 'scheduler/enqueued': 2,
- 'scheduler/enqueued/memory': 2,
- 'start_time': datetime.datetime(2017, 5, 11, 14, 13, 30, 301950)}
-2017-05-11 22:13:39 [scrapy.core.engine] INFO: Spider closed (finished)
-2017-05-11 22:14:10 [scrapy.utils.log] INFO: Scrapy 1.3.3 started (bot: PatentCrawler)
-2017-05-11 22:14:10 [scrapy.utils.log] INFO: Overridden settings: {'BOT_NAME': 'PatentCrawler', 'SPIDER_MODULES': ['PatentCrawler.spiders'], 'NEWSPIDER_MODULE': 'PatentCrawler.spiders', 'LOG_FILE': 'scrapy.log', 'ROBOTSTXT_OBEY': True}
-2017-05-11 22:14:10 [scrapy.middleware] INFO: Enabled extensions:
+ 'request_depth_max': 2,
+ 'response_received_count': 86,
+ 'scheduler/dequeued': 85,
+ 'scheduler/dequeued/memory': 85,
+ 'scheduler/enqueued': 85,
+ 'scheduler/enqueued/memory': 85,
+ 'start_time': datetime.datetime(2017, 5, 12, 8, 59, 33, 828117)}
+2017-05-12 17:00:26 [scrapy.core.engine] INFO: Spider closed (finished)
+2017-05-12 17:01:30 [scrapy.utils.log] INFO: Scrapy 1.3.3 started (bot: PatentCrawler)
+2017-05-12 17:01:30 [scrapy.utils.log] INFO: Overridden settings: {'LOG_FILE': 'scrapy.log', 'NEWSPIDER_MODULE': 'PatentCrawler.spiders', 'DOWNLOAD_DELAY': 0.5, 'ROBOTSTXT_OBEY': True, 'BOT_NAME': 'PatentCrawler', 'SPIDER_MODULES': ['PatentCrawler.spiders']}
+2017-05-12 17:01:30 [scrapy.middleware] INFO: Enabled extensions:
 ['scrapy.extensions.corestats.CoreStats',
  'scrapy.extensions.telnet.TelnetConsole',
  'scrapy.extensions.logstats.LogStats']
-2017-05-11 22:14:11 [scrapy.middleware] INFO: Enabled downloader middlewares:
+2017-05-12 17:01:30 [scrapy.middleware] INFO: Enabled downloader middlewares:
 ['scrapy.downloadermiddlewares.robotstxt.RobotsTxtMiddleware',
  'scrapy.downloadermiddlewares.httpauth.HttpAuthMiddleware',
  'scrapy.downloadermiddlewares.downloadtimeout.DownloadTimeoutMiddleware',
@@ -226,40 +1363,38 @@
  'scrapy.downloadermiddlewares.redirect.RedirectMiddleware',
  'scrapy.downloadermiddlewares.cookies.CookiesMiddleware',
  'scrapy.downloadermiddlewares.stats.DownloaderStats']
-2017-05-11 22:14:11 [scrapy.middleware] INFO: Enabled spider middlewares:
+2017-05-12 17:01:30 [scrapy.middleware] INFO: Enabled spider middlewares:
 ['scrapy.spidermiddlewares.httperror.HttpErrorMiddleware',
  'scrapy.spidermiddlewares.offsite.OffsiteMiddleware',
  'scrapy.spidermiddlewares.referer.RefererMiddleware',
  'scrapy.spidermiddlewares.urllength.UrlLengthMiddleware',
  'scrapy.spidermiddlewares.depth.DepthMiddleware']
-2017-05-11 22:14:11 [scrapy.middleware] INFO: Enabled item pipelines:
+2017-05-12 17:01:30 [scrapy.middleware] INFO: Enabled item pipelines:
 ['PatentCrawler.pipelines.PatentcrawlerPipeline']
-2017-05-11 22:14:11 [scrapy.core.engine] INFO: Spider opened
-2017-05-11 22:14:11 [scrapy.extensions.logstats] INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
-2017-05-11 22:14:11 [scrapy.extensions.telnet] DEBUG: Telnet console listening on 127.0.0.1:6023
-2017-05-11 22:14:11 [scrapy.core.engine] DEBUG: Crawled (404) <GET http://www.pss-system.gov.cn/robots.txt> (referer: None)
-2017-05-11 22:14:12 [scrapy.core.engine] DEBUG: Crawled (200) <GET http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/tableSearch-showTableSearchIndex.shtml> (referer: None)
-2017-05-11 22:14:14 [scrapy.core.engine] DEBUG: Crawled (200) <POST http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/biaogejsAC!executeCommandSearchUnLogin.do> (referer: http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/tableSearch-showTableSearchIndex.shtml)
-2017-05-11 22:14:14 [scrapy.core.engine] DEBUG: Crawled (200) <POST http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/biaogejsAC!executeCommandSearchUnLogin.do> (referer: http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/tableSearch-showTableSearchIndex.shtml)
-2017-05-11 22:14:16 [scrapy.core.engine] INFO: Closing spider (finished)
-2017-05-11 22:14:16 [scrapy.statscollectors] INFO: Dumping Scrapy stats:
-{'downloader/request_bytes': 3042,
- 'downloader/request_count': 4,
- 'downloader/request_method_count/GET': 2,
- 'downloader/request_method_count/POST': 2,
- 'downloader/response_bytes': 69499,
- 'downloader/response_count': 4,
- 'downloader/response_status_count/200': 3,
- 'downloader/response_status_count/404': 1,
- 'finish_reason': 'finished',
- 'finish_time': datetime.datetime(2017, 5, 11, 14, 14, 16, 419749),
- 'log_count/DEBUG': 5,
- 'log_count/INFO': 7,
- 'request_depth_max': 1,
- 'response_received_count': 4,
- 'scheduler/dequeued': 3,
- 'scheduler/dequeued/memory': 3,
- 'scheduler/enqueued': 3,
- 'scheduler/enqueued/memory': 3,
- 'start_time': datetime.datetime(2017, 5, 11, 14, 14, 11, 243770)}
-2017-05-11 22:14:16 [scrapy.core.engine] INFO: Spider closed (finished)
+2017-05-12 17:01:30 [scrapy.core.engine] INFO: Spider opened
+2017-05-12 17:01:30 [scrapy.extensions.logstats] INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+2017-05-12 17:01:30 [scrapy.extensions.telnet] DEBUG: Telnet console listening on 127.0.0.1:6023
+2017-05-12 17:01:31 [scrapy.core.engine] DEBUG: Crawled (404) <GET http://www.pss-system.gov.cn/robots.txt> (referer: None)
+2017-05-12 17:01:31 [scrapy.core.engine] DEBUG: Crawled (200) <GET http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/tableSearch-showTableSearchIndex.shtml> (referer: None)
+2017-05-12 17:01:32 [scrapy.core.engine] DEBUG: Crawled (200) <POST http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/biaogejsAC!executeCommandSearchUnLogin.do> (referer: http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/tableSearch-showTableSearchIndex.shtml)
+2017-05-12 17:01:33 [scrapy.core.engine] DEBUG: Crawled (200) <POST http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/biaogejsAC!executeCommandSearchUnLogin.do> (referer: http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/tableSearch-showTableSearchIndex.shtml)
+2017-05-12 17:01:33 [scrapy.dupefilters] DEBUG: Filtered duplicate request: <POST http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml> - no more duplicates will be shown (see DUPEFILTER_DEBUG to show all duplicates)
+2017-05-12 17:01:33 [scrapy.core.engine] DEBUG: Crawled (200) <POST http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/biaogejsAC!executeCommandSearchUnLogin.do> (referer: http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/tableSearch-showTableSearchIndex.shtml)
+2017-05-12 17:01:33 [scrapy.core.scraper] ERROR: Spider error processing <POST http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/biaogejsAC!executeCommandSearchUnLogin.do> (referer: http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/tableSearch-showTableSearchIndex.shtml)
+Traceback (most recent call last):
+  File "C:\Software\Python\lib\site-packages\scrapy\utils\defer.py", line 102, in iter_errback
+    yield next(it)
+  File "C:\Software\Python\lib\site-packages\scrapy\spidermiddlewares\offsite.py", line 29, in process_spider_output
+    for x in result:
+  File "C:\Software\Python\lib\site-packages\scrapy\spidermiddlewares\referer.py", line 22, in <genexpr>
+    return (_set_referer(r) for r in result or ())
+  File "C:\Software\Python\lib\site-packages\scrapy\spidermiddlewares\urllength.py", line 37, in <genexpr>
+    return (r for r in result or () if _filter(r))
+  File "C:\Software\Python\lib\site-packages\scrapy\spidermiddlewares\depth.py", line 58, in <genexpr>
+    return (r for r in result or () if _filter(r))
+  File "E:\Core\python\Project\PatentCrawler\PatentCrawler\spiders\Patent.py", line 63, in parsePatentList
+    patentSum = int(pageTop.get_text(strip=True)[8:-3])
+AttributeError: 'NoneType' object has no attribute 'get_text'
+2017-05-12 17:01:34 [scrapy.core.engine] DEBUG: Crawled (200) <POST http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/biaogejsAC!executeCommandSearchUnLogin.do> (referer: http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/tableSearch-showTableSearchIndex.shtml)
+2017-05-12 17:01:35 [scrapy.core.engine] DEBUG: Crawled (200) <POST http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/biaogejsAC!executeCommandSearchUnLogin.do> (referer: http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/tableSearch-showTableSearchIndex.shtml)
+2017-05-12 17:01:35 [scrapy.core.engine] DEBUG: Crawled (200) <POST http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/biaogejsAC!executeCommandSearchUnLogin.do> (referer: http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/tableSearch-showTableSearchIndex.shtml)
