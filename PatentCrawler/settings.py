@@ -53,7 +53,7 @@ DOWNLOAD_DELAY = 0.5
 # Enable or disable downloader middlewares
 # See http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html
 # DOWNLOADER_MIDDLEWARES = {
-#    'PatentCrawler.middlewares.MyCustomDownloaderMiddleware': 543,
+#    'PatentCrawler.middlewares.ProxyMiddleware': 543,
 # }
 
 # Enable or disable extensions
