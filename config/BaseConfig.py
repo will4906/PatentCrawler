@@ -12,3 +12,8 @@ class BaseConfig:
     CRAWLER_SPEED = "80"
     FILE_NAME = "output\专利.xls"
     LOG_FILE_NAME = "log\PatentCrawler{0}.log".format(TimeUtil.getFormatTime("%Y%m%d_%H%M%S"))
+
+    # 发明人名称检查
+    CHECK_INVENTOR = False
+    # 申请人名称检查
+    CHECK_PROPOSER = True

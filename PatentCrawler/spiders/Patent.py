@@ -81,7 +81,8 @@ class PatentSpider(scrapy.Spider):
             soup = BeautifulSoup(response.body_as_unicode(), "lxml")
             type = response.meta['inventionType']
             pageTop = soup.find(attrs={"class": "page_top"})
-            patentSum = int(pageTop.get_text(strip=True)[8:-3])
+            strSum = pageTop.get_text(strip=True)
+            patentSum = int(strSum[strSum[2:].find("页") + 3:strSum.find("条")])
             if (patentSum % int(BaseConfig.CRAWLER_SPEED)) == 0:
                 scale = 0
             else:
@@ -108,7 +109,8 @@ class PatentSpider(scrapy.Spider):
                 lawStateBn = footer.find(attrs={"role": "lawState"})
                 yield self.requestLawState(lawStateBn, pi)
         except Exception as e:
-            print("此人在此类型没有专利")
+            print("申请人-" + response.meta.get('proposer') + "发明人-" + response.meta.get('inventor') + "在" + QueryInfo.inventionTypeToString(type) + "没有专利")
+            print(e)
 
     # 解析翻页后的专利数据
     def parseNextPatentList(self, response):
@@ -165,7 +167,6 @@ class PatentSpider(scrapy.Spider):
             meta=pi
         )
 
-    # "VDB:((PD>='" + startDate + "' AND PAVIEW='" + proposer + "' AND INVIEW='" + inventor + "' AND DOC_TYPE='" + type + "' AND (CC='HK' OR CC='MO' OR CC='TW' OR CC='CN')))"
     # 生成接下来专利信息的请求
     def requestNextPage(self, searchExp, index, nSum, startDate, proposer, inventor, type):
         formData = {

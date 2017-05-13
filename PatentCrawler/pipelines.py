@@ -11,10 +11,12 @@ from util.excel.ExcelUtil import ExcelUtil
 class PatentcrawlerPipeline(object):
 
     LINE_INDEX = 1
+
     def process_item(self, item, spider):
         if self.checkForInventor(item):
-            print(item.items())
-            self.writeToExcel(item)
+            if self.checkForProposer(item):
+                print(item.items())
+                self.writeToExcel(item)
         return item
 
     def writeWithNotNone(self, sh, i, strData):
@@ -47,9 +49,21 @@ class PatentcrawlerPipeline(object):
             print("写excel报错")
 
     def checkForInventor(self, item):
+        if BaseConfig.CHECK_INVENTOR is False:
+            return True
         targetInventor = item.get('targetInventor')
         inventorList = item.get('inventorName').split(";")
         for i in inventorList:
             if targetInventor == i.strip():
+                return True
+        return False
+
+    def checkForProposer(self, item):
+        if BaseConfig.CHECK_PROPOSER is False:
+            return True
+        targetProposer = item.get('targetProposer')
+        proposerList = item.get('proposerName').split(";")
+        for p in proposerList:
+            if targetProposer == p.strip():
                 return True
         return False

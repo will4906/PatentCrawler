@@ -35,11 +35,21 @@ def init_excel_config():
     return
 
 
+# 第页 共 10 页 721 条数据
 if __name__ == '__main__':
-    print("程序开始")
-    initProgress()
     # startDate = input("请输入公布日开始日期,如{0}：".format(TimeUtil.getFormatTime("%Y-%m-%d")))
     # Config.writeLog("程序启动，输入的公布开始日期为{0}".format(startDate))
+    print("程序开始")
+    initProgress()
     init_excel_config()
     cmdline.execute(("scrapy crawl Patent -s LOG_FILE=" + BaseConfig.LOG_FILE_NAME).split())
+    # 共 1 页   5条数据
+    # 第页 共 10 页 721 条数据
+    # str = "第页 共 10 页 721 条数据"
+    # s = str[2:].find("页")
+    # e = str.find("条")
+    # print(s)
+    # print(e)
+    # print(int(str[str[2:].find("页") + 3:str.find("条")]))
+
 
