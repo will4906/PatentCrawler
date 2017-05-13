@@ -50,6 +50,8 @@ class ItemCollection:
         ItemCollection.addSingleCrawlerItemValue(item, temp, 'locarnoNumber')
         ItemCollection.addSingleCrawlerItemValue(item, temp, 'lawState')
         ItemCollection.addSingleCrawlerItemValue(item, temp, 'lawStateDate')
+        ItemCollection.addSingleCrawlerItemValue(item, temp, 'targetProposer')
+        ItemCollection.addSingleCrawlerItemValue(item, temp, 'targetInventor')
 
 
     @staticmethod

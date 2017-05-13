@@ -40,4 +40,9 @@ class PatentcrawlerItem(scrapy.Item):
     agency = scrapy.Field()
     # 外观设计洛迦诺分类号
     locarnoNumber = scrapy.Field()
+    '''一下内容为查重标志'''
+    # 目标申请人
+    targetProposer = scrapy.Field()
+    # 目标发明人
+    targetInventor = scrapy.Field()
 

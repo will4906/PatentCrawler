@@ -11,6 +11,7 @@ from PatentCrawler.items import PatentcrawlerItem
 from config.BaseConfig import BaseConfig
 from config.QueryInfo import QueryInfo
 from service.ItemCollection import ItemCollection
+from service.SearchService import SearchService
 from util.HeadersEngine import HeadersEngine
 
 
@@ -24,69 +25,55 @@ class PatentSpider(scrapy.Spider):
     proposer = queryInfo.getProposer()
     startDate = queryInfo.getStartDate()
 
-    # def parse(self, response):
-    #     for inventor in self.inventorList:
-    #         for type in self.inventionTypeList:
-    #             headers = {
-    #                 "Content-Type": "application/x-www-form-urlencoded",
-    #                 "User-Agent": HeadersEngine().getRandomUserAgent()
-    #             }
-    #             searchExp = "公开（公告）日>=" + self.startDate + " AND 申请（专利权）人=(" + self.proposer + ") AND 发明人=(" + inventor + ") AND 发明类型=(\"" + type + "\") AND 公开国=(HK OR MO OR TW OR CN)"
-    #             formData = {
-    #                 "searchCondition.searchExp": searchExp,
-    #                 "searchCondition.dbId": "VDB",
-    #                 "searchCondition.searchType": "Sino_foreign",
-    #                 "searchCondition.power": "false",
-    #                 "wee.bizlog.modulelevel": "0200201",
-    #                 "resultPagination.limit": BaseConfig.CRAWLER_SPEED
-    #             }
-    #             yield FormRequest(
-    #                 url="http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/biaogejsAC!executeCommandSearchUnLogin.do",
-    #                 callback=self.parsePatentList,
-    #                 method="POST",
-    #                 headers=headers,
-    #                 formdata=formData,
-    #                 meta={
-    #                     'searchExp': searchExp,
-    #                     'inventionType': type,
-    #                     'startDate' : self.startDate,
-    #                     'proposer' : self.proposer,
-    #                     'inventor' : inventor
-    #                 }
-    #             )
-
     def parse(self, response):
-        for type in self.inventionTypeList:
-            headers = {
-                "Content-Type": "application/x-www-form-urlencoded",
-                "User-Agent": HeadersEngine().getRandomUserAgent()
-            }
-            # 临时更改，为北京科技大学处理
-            # searchExp = "公开（公告）日>=" + self.startDate + " AND 申请（专利权）人=(" + self.proposer + ") AND 发明人=(" + inventor + ") AND 发明类型=(\"" + type + "\") AND 公开国=(HK OR MO OR TW OR CN)"
-            searchExp = "公开（公告）日>=" + self.startDate + " AND 申请（专利权）人=(" + self.proposer + ") AND 发明类型=(\"" + type + "\") AND 公开国=(HK OR MO OR TW OR CN)"
-            formData = {
-                "searchCondition.searchExp": searchExp,
-                "searchCondition.dbId": "VDB",
-                "searchCondition.searchType": "Sino_foreign",
-                "searchCondition.power": "false",
-                "wee.bizlog.modulelevel": "0200201",
-                "resultPagination.limit": BaseConfig.CRAWLER_SPEED
-            }
-            yield FormRequest(
-                url="http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/biaogejsAC!executeCommandSearchUnLogin.do",
-                callback=self.parsePatentList,
-                method="POST",
-                headers=headers,
-                formdata=formData,
-                meta={
-                    'searchExp': searchExp,
-                    'inventionType': type,
-                    'startDate': self.startDate,
-                    'proposer': self.proposer,
-                    'inventor' : "" #临时更改，为北京科技大学处理
-                }
-            )
+        headers = {
+            "Accept":"application/json, text/javascript, */*; q=0.01",
+            "Accept-Encoding":"gzip, deflate",
+            "Accept-Language":"zh-CN,zh;q=0.8",
+            "Connection":"keep-alive",
+            "Content-Length":"0",
+            "Content-Type": "application/x-www-form-urlencoded",
+            "Origin": "http://www.pss-system.gov.cn",
+            "Referer":"http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/tableSearch-showTableSearchIndex.shtml",
+            "X-Requested-With":"XMLHttpRequest"
+        }
+        yield Request(
+            url="http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/preExecuteSearch!preExecuteSearch.do",
+            callback=self.parseAfterSetting,
+            method="POST",
+            headers=headers
+        )
 
+    def parseAfterSetting(self, response):
+        print(response.body_as_unicode())
+        for inventor in self.inventorList:
+            for type in self.inventionTypeList:
+                headers = {
+                    "Content-Type": "application/x-www-form-urlencoded"
+                }
+                searchExp = SearchService.getCnSearchExp(self.startDate, self.proposer, inventor, type)
+                formData = {
+                    "searchCondition.searchExp": searchExp,
+                    "searchCondition.dbId": "VDB",
+                    "searchCondition.searchType": "Sino_foreign",
+                    "searchCondition.power": "false",
+                    "wee.bizlog.modulelevel": "0200201",
+                    "resultPagination.limit": BaseConfig.CRAWLER_SPEED
+                }
+                yield FormRequest(
+                    url="http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/biaogejsAC!executeCommandSearchUnLogin.do",
+                    callback=self.parsePatentList,
+                    method="POST",
+                    headers=headers,
+                    formdata=formData,
+                    meta={
+                        'searchExp': searchExp,
+                        'inventionType': type,
+                        'startDate' : self.startDate,
+                        'proposer' : self.proposer,
+                        'inventor' : inventor
+                    }
+                )
 
     # 解析专利组
     def parsePatentList(self, response):
@@ -106,6 +93,8 @@ class PatentSpider(scrapy.Spider):
             itemList = soup.find_all(attrs={"class": "item"})
             pi = PatentcrawlerItem()
             for item in itemList:
+                pi['targetProposer'] = response.meta['proposer']
+                pi['targetInventor'] = response.meta['inventor']
                 itemSoup = BeautifulSoup(item.prettify(), "lxml")
                 header = itemSoup.find(attrs={"class": "item-header"})
                 pi['name'] = header.find("h1").get_text(strip=True)
@@ -133,6 +122,8 @@ class PatentSpider(scrapy.Spider):
             pi['name'] = header.find("h1").get_text(strip=True)
             pi['type'] = header.find(attrs={"class": "btn-group left clear"}).get_text(strip=True)
             pi['patentType'] = QueryInfo.inventionTypeToString(type)
+            pi['targetProposer'] = response.meta['proposer']
+            pi['targetInventor'] = response.meta['inventor']
             content = itemSoup.find(attrs={"class": "item-content-body left"})
             contentList = content.find_all("p")
             for c in contentList:
@@ -163,8 +154,7 @@ class PatentSpider(scrapy.Spider):
             'pagination.start': '0'
         }
         headers = {
-            "Content-Type": "application/x-www-form-urlencoded",
-            "User-Agent": HeadersEngine().getRandomUserAgent()
+            "Content-Type": "application/x-www-form-urlencoded"
         }
         return FormRequest(
             url="http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/ui_searchLawState-showPage.shtml",
@@ -186,11 +176,10 @@ class PatentSpider(scrapy.Spider):
             "searchCondition.dbId": "",
             "searchCondition.power": "false",
             "searchCondition.searchExp": searchExp,
-            "searchCondition.executableSearchExp": "VDB:((PD>='" + startDate + "' AND PAVIEW='" + proposer + "' AND DOC_TYPE='" + type + "' AND (CC='HK' OR CC='MO' OR CC='TW' OR CC='CN')))"
+            "searchCondition.executableSearchExp": SearchService.getEnSearchExp(startDate, proposer, inventor, type)
         }
         headers = {
-            "Content-Type": "application/x-www-form-urlencoded",
-            "User-Agent": HeadersEngine().getRandomUserAgent()
+            "Content-Type": "application/x-www-form-urlencoded"
         }
         return FormRequest(
                     url="http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/showSearchResult-startWa.shtml",
@@ -199,6 +188,9 @@ class PatentSpider(scrapy.Spider):
                     headers=headers,
                     formdata=formData,
                     meta={
-                        'inventionType': type
+                        'inventionType': type,
+                        'proposer' : proposer,
+                        'inventor' : inventor
                     }
                 )
+

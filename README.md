@@ -1,13 +1,33 @@
 # PatentCrawler
 
 专利爬虫
-### 特别注意
-工程使用了PhantomJs浏览器，用户需自行下载并放到res目录下
-### 简单介绍
+使用说明见[WIKI](https://github.com/will4906/PatentCrawler/wiki)
 
-csdn博客：[http://blog.csdn.net/will4906/article/details/68955619](http://blog.csdn.net/will4906/article/details/68955619)
+### ReleaseNote
+* V2.0
+    * 使用scrapy框架爬取
+    * 大幅度缩减代码
+    * 加快了爬取速度
+    * fixBug: 解决了首次爬取总是失败的问题
+* V1.O
+    * 使用selenium模拟爬取
+    * javascript解析
+    * 简单介绍：csdn博客：[http://blog.csdn.net/will4906/article/details/68955619](http://blog.csdn.net/will4906/article/details/68955619)
 
-### 设计
+### License
+PatentCrawler is released under the Apache 2.0 license.
+```
+Copyright 2016 willshuhua.me.
 
-1. ![专利爬虫类图](./image/专利爬虫.png)
-2. 运用中介者模式设计对进程的控制，一旦进程有断开的地方，可以马上响应对连接的重新处理
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+```
