@@ -60,8 +60,10 @@ class PatentSpider(scrapy.Spider):
                     "wee.bizlog.modulelevel": "0200201",
                     "resultPagination.limit": BaseConfig.CRAWLER_SPEED
                 }
+                # 网站Url发生了变化
+                # http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/executeTableSearch0712AC!executeCommandSearchUnLogin.do
                 yield FormRequest(
-                    url="http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/biaogejsAC!executeCommandSearchUnLogin.do",
+                    url="http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/executeTableSearch0712AC!executeCommandSearchUnLogin.do",
                     callback=self.parsePatentList,
                     method="POST",
                     headers=headers,

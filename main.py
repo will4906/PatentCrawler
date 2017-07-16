@@ -40,9 +40,11 @@ if __name__ == '__main__':
     # startDate = input("请输入公布日开始日期,如{0}：".format(TimeUtil.getFormatTime("%Y-%m-%d")))
     # Config.writeLog("程序启动，输入的公布开始日期为{0}".format(startDate))
     print("程序开始")
+    print("* 使用说明：https://github.com/will4906/PatentCrawler/wiki\n* 代码更新：https://github.com/will4906/PatentCrawler\n* bug反馈、交流建议：\n邮箱：553105821@qq.com\ngithub：https://github.com/will4906/PatentCrawler/issues")
     initProgress()
     init_excel_config()
     cmdline.execute(("scrapy crawl Patent -s LOG_FILE=" + BaseConfig.LOG_FILE_NAME).split())
+    print("cmdline")
     # 共 1 页   5条数据
     # 第页 共 10 页 721 条数据
     # str = "第页 共 10 页 721 条数据"
