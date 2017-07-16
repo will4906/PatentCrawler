@@ -9,6 +9,7 @@
     * 大幅度缩减代码
     * 加快了爬取速度
     * FixBug: 解决了首次爬取总是失败的问题
+    * 详细原理：[http://blog.csdn.net/will4906/article/details/72625164](http://blog.csdn.net/will4906/article/details/72625164)
 * V1.0
     * 使用selenium模拟爬取
     * javascript解析
