@@ -3,6 +3,13 @@
 专利爬虫
 使用说明见[WIKI](https://github.com/will4906/PatentCrawler/wiki)
 
+### Environment
+
+* scrapy
+* xlutils, xlwt, xlrd
+* bs4, lxml
+* requests
+
 ### ReleaseNote
 * V2.0
     * 使用scrapy框架爬取
