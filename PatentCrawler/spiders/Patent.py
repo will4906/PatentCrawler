@@ -10,9 +10,9 @@ from scrapy import Request
 from PatentCrawler.items import PatentcrawlerItem
 from config.BaseConfig import BaseConfig
 from config.QueryInfo import QueryInfo
+from service.CookieService import CookieService
 from service.ItemCollection import ItemCollection
 from service.SearchService import SearchService
-from util.HeadersEngine import HeadersEngine
 
 
 class PatentSpider(scrapy.Spider):
@@ -24,6 +24,10 @@ class PatentSpider(scrapy.Spider):
     inventionTypeList = queryInfo.getInventionTypeList()
     proposer = queryInfo.getProposer()
     startDate = queryInfo.getStartDate()
+
+    def start_requests(self):
+        return [Request('http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/tableSearch-showTableSearchIndex.shtml',
+                callback=self.parse)]
 
     def parse(self, response):
         headers = {
@@ -56,7 +60,10 @@ class PatentSpider(scrapy.Spider):
                     "searchCondition.searchExp": searchExp,
                     "searchCondition.dbId": "VDB",
                     "searchCondition.searchType": "Sino_foreign",
-                    "searchCondition.power": "false",
+                    "searchCondition.extendInfo['MODE']": "MODE_TABLE",
+                    "searchCondition.extendInfo['STRATEGY']": "STRATEGY_CALCULATE",
+                    "searchCondition.originalLanguage": "",
+                    "searchCondition.targetLanguage": "",
                     "wee.bizlog.modulelevel": "0200201",
                     "resultPagination.limit": BaseConfig.CRAWLER_SPEED
                 }
@@ -77,8 +84,12 @@ class PatentSpider(scrapy.Spider):
                     }
                 )
 
+    # def parsePatentList(self, response):
+    #     soup = BeautifulSoup(response.body_as_unicode(), "lxml")
+    #     print(soup)
     # 解析专利组
     def parsePatentList(self, response):
+        print("hello world")
         try:
             soup = BeautifulSoup(response.body_as_unicode(), "lxml")
             type = response.meta['inventionType']

@@ -18,7 +18,7 @@ NEWSPIDER_MODULE = 'PatentCrawler.spiders'
 # USER_AGENT = 'PatentCrawler (+http://www.yourdomain.com)'
 
 # Obey robots.txt rules
-ROBOTSTXT_OBEY = True
+ROBOTSTXT_OBEY = False
 RETRY_ENABLED = True
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 # CONCURRENT_REQUESTS = 32
@@ -33,24 +33,13 @@ DOWNLOAD_DELAY = 1
 
 # Disable cookies (enabled by default)
 COOKIES_ENABLED = True
-
+COOKIES_DEBUG = True
+REDIRECT_ENABLED = False
+# HTTPERROR_ALLOWED_CODES = ['302']
 # Disable Telnet Console (enabled by default)
 # TELNETCONSOLE_ENABLED = False
 
 # Override the default request headers:
-# Accept:text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
-# Accept-Encoding:gzip, deflate, sdch
-# Accept-Language:zh-CN,zh;q=0.8
-# Cache-Control:max-age=0
-# Connection:keep-alive
-# Cookie:avoid_declare=declare_pass; Anonymity_SearchHistory_SessionId=NOn84CBrhrfdbB3D_7ZJJVb-owocxnqr--67dE5s1mNFX5dWDL3U!495048779!-859440272!1494596198507; _gscu_761734625=927673382f5agk70; Anonymity_SearchHistory=
-# Host:www.pss-system.gov.cn
-# Upgrade-Insecure-Requests:1
-# User-Agent:Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36
-# Origin:http://www.pss-system.gov.cn
-# Referer:http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/tableSearch-showTableSearchIndex.shtml
-# User-Agent:Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36
-# X-Requested-With:XMLHttpRequest
 # DEFAULT_REQUEST_HEADERS = {
 #   'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
 #   'Accept-Language': 'zh-CN,zh;q=0.8',
@@ -70,6 +59,8 @@ COOKIES_ENABLED = True
 # See http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html
 DOWNLOADER_MIDDLEWARES = {
     # 'PatentCrawler.middlewares.ProxyMiddleware': 543,
+    'PatentCrawler.middlewares.MyRedirectMiddleware': 543,
+    # 'PatentCrawler.middlewares.CookiesMiddleware': 544,
     'PatentCrawler.middlewares.RandomUserAgentMiddleware': 542
 }
 

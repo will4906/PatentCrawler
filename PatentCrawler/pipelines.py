@@ -44,7 +44,7 @@ class PatentcrawlerPipeline(object):
             self.writeWithNotNone(sh, 12, item.get('agency'))
             self.writeWithNotNone(sh, 13, item.get('locarnoNumber'))
             editor.commit()
-            self.LINE_INDEX += 1
+            PatentcrawlerPipeline.LINE_INDEX += 1
         except Exception as e:
             print("写excel报错")
 
