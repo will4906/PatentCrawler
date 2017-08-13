@@ -59,3 +59,12 @@ class LoginService:
         else:
             print('登录失败')
             return False
+
+    def getALotValcode(self):
+        for i in range(0,20):
+            valcode = requests.get(self.codeurl, cookies=self.cookies)
+            f = open('valcode' + str(i) + '.png', 'wb')
+            # 将response的二进制内容写入到文件中
+            f.write(valcode.content)
+            # 关闭文件流对象
+            f.close()
