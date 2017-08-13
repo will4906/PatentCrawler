@@ -89,7 +89,6 @@ class PatentSpider(scrapy.Spider):
     #     print(soup)
     # 解析专利组
     def parsePatentList(self, response):
-        print("hello world")
         try:
             soup = BeautifulSoup(response.body_as_unicode(), "lxml")
             type = response.meta['inventionType']
@@ -123,7 +122,6 @@ class PatentSpider(scrapy.Spider):
                 yield self.requestLawState(lawStateBn, pi)
         except Exception as e:
             print("申请人-" + response.meta.get('proposer') + "发明人-" + response.meta.get('inventor') + "在" + QueryInfo.inventionTypeToString(type) + "没有专利")
-            print(e)
 
     # 解析翻页后的专利数据
     def parseNextPatentList(self, response):

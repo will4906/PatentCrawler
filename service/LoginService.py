@@ -53,6 +53,9 @@ class LoginService:
         resp = requests.post(self.checkUrl, headers=self.checkHeader, cookies=self.cookies,
                              data=self.loginData)
         soup = BeautifulSoup(resp.content, 'lxml')
-        print(soup.prettify())
         if str(soup.prettify()).find(LoginInfo.USERNAME + '，欢迎访问') != -1:
             print("登录成功")
+            return True
+        else:
+            print('登录失败')
+            return False

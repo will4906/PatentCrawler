@@ -32,8 +32,13 @@ class CookiesMiddleware:
 class MyRedirectMiddleware:
     def process_response(self, request, response, spider):
         if CookieService.getCookies() == {}:
-            CookieService.getCookiesFromList(response.headers.getlist('Set-Cookie'))
+            CookieService.readCookiesFromList(response.headers.getlist('Set-Cookie'))
             CookieService.saveCookies()
             LoginService(CookieService.getCookies()).startLogin()
+        CookieService.changeJessionid(response.headers.getlist('Set-Cookie'))
         request.cookies = CookieService.getCookies()
+        if response.status == 302:
+            if str(response.url).find('UnLogin') != -1:
+                LoginService(CookieService.getCookies()).startLogin()
+        print(response)
         return response

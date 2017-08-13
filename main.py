@@ -18,6 +18,8 @@ from util.excel.ExcelUtil import ExcelUtil
 def initProgress():
     if CookieService.readCookies() is False:
         print('未读取到保存的cookie')
+    else:
+        print('读取到保存的cookie，然而并没有什么用网站设置了不让记住账号，每次都得重新登录')
     try:
         os.mkdir("output")
     except Exception as e:

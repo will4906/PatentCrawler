@@ -34,19 +34,19 @@ class CookieService:
             return False
 
     @staticmethod
-    def getCookiesFromList(coolist):
+    def readCookiesFromList(coolist):
         for co in coolist:
-            print('co' + str(co, encoding = "utf8"))
             if str(co, encoding = "utf8").find('WEE_SID') != -1:
                 CookieService.cookies['WEE_SID'] = str(co, encoding = "utf8")[8:]
-                print(str(co, encoding = "utf8")[8:])
-                print(CookieService.cookies)
             elif str(co, encoding = "utf8").find('IS_LOGIN') != -1:
                 CookieService.cookies['IS_LOGIN'] = str(co, encoding = "utf8")[9:]
-                print(str(co, encoding = "utf8")[9:])
-                print(CookieService.cookies)
             elif str(co, encoding = "utf8").find('JSESSIONID') != -1:
                 CookieService.cookies['JSESSIONID'] = str(co, encoding = "utf8")[11:]
-                print(str(co, encoding = "utf8")[11:])
-                print(CookieService.cookies)
-        print(CookieService.cookies)
+
+    @staticmethod
+    def changeJessionid(coolist):
+        for co in coolist:
+            if str(co, encoding="utf8").find('JSESSIONID') != -1:
+                CookieService.cookies['JSESSIONID'] = str(co, encoding="utf8")[11:]
+                CookieService.saveCookies()
+                break
