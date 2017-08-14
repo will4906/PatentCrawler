@@ -3,20 +3,20 @@
 专利爬虫
 使用说明见[WIKI](https://github.com/will4906/PatentCrawler/wiki)
 
-### Warning
-由于网站升级，请使用者自行到[专利网站](http://www.pss-system.gov.cn/sipopublicsearch/portal/uiregister-showRegisterPage.shtml)注册账号并替换config/LoginInfo中账号密码的位置。
-并且登录时需要手动输入一次验证码。
-
 ### Environment
 
 * scrapy
+* tesseract-ocr
+* Pillow, pytesseract
 * xlutils, xlwt, xlrd
 * bs4, lxml
 * requests
 
 ### ReleaseNote
+
 * V3.0
     * 解决了由于网站升级需要注册登录账号才能查询的问题。
+    * 实现了自动验证码识别
 * V2.0
     * 使用scrapy框架爬取
     * 大幅度缩减代码
@@ -28,7 +28,12 @@
     * javascript解析
     * 简单介绍：csdn博客：[http://blog.csdn.net/will4906/article/details/68955619](http://blog.csdn.net/will4906/article/details/68955619)
 
+### TODO
+
+随着软件的日益复杂，准备升级成web形式供大家使用，敬请期待。
+
 ### License
+
 PatentCrawler is released under the Apache 2.0 license.
 ```
 Copyright 2017 willshuhua.me.
@@ -46,6 +51,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ```
 ### 感谢支持
+
 <table width="100%">
 <tr><td align="center" colspan="2">赞赏</td></tr>
     <tr>

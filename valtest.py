@@ -8,6 +8,7 @@ from PIL import Image
 from pytesseract import image_to_string
 
 from service.LoginService import LoginService
+from service.ValcodeService import ValcodeService
 
 
 def initTable(threshold=140):
@@ -21,10 +22,16 @@ def initTable(threshold=140):
  return table
 
 if __name__ == '__main__':
-    LoginService({}).getALotValcode()
-    for i in range(0,20):
-        im = Image.open('valcode' + str(i) + '.png')
-        im = im.convert('L')
-        binaryImage = im.point(initTable(), '1')
-        # binaryImage.show()
-        print(image_to_string(binaryImage, config='-psm 7'))
+    print(ValcodeService().getStringFromImage('validateCode-showPic.jpg'))
+    # LoginService({}).getALotValcode()
+    # for i in range(0,20):
+    #     im = Image.open('valcode' + str(i) + '.png')
+    #     im = im.convert('L')
+    #     binaryImage = im.point(initTable(), '1')
+    #     # binaryImage.show()
+    #     print(image_to_string(binaryImage, config='-psm 7'))
+    # im = Image.open('validateCode-showPic.jpg')
+    # im = im.convert('L')
+    # binaryImage = im.point(initTable(), '1')
+    # binaryImage.show()
+    # print(image_to_string(binaryImage, config='-psm 7'))

@@ -10,6 +10,7 @@ import requests
 from bs4 import BeautifulSoup
 
 from config.LoginInfo import LoginInfo
+from service.ValcodeService import ValcodeService
 
 
 class LoginService:
@@ -48,7 +49,7 @@ class LoginService:
         f.write(valcode.content)
         # 关闭文件流对象
         f.close()
-        code = input('请输入验证码：')
+        code = ValcodeService().getStringFromImage('valcode.png')
         self.loginData["j_validation_code"] = str(code)
         resp = requests.post(self.checkUrl, headers=self.checkHeader, cookies=self.cookies,
                              data=self.loginData)
