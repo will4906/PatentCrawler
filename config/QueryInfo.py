@@ -6,6 +6,21 @@ Created on 2017/3/24
 """
 
 
+class SearchNameDefine:
+    REQUEST_NUMBER = '申请号'
+    REQUEST_DATE = '申请日'
+    PUBLISH_NUMBER = '公开（公告）号'
+    PUBLISH_DATE = '公开（公告）日'
+    PROPOSER_NAME = '申请（专利权）人'
+    INVENTOR_NAME = '发明人'
+    PRIORITY_NUMBER = '优先权号'
+    PRIORITY_DATE = '优先权日'
+    ABSTRACT = '摘要'
+    CLAIM = '权利要求'
+    INSTRUCTIONS = '说明书'
+    KEY_WORD = '关键词'
+
+
 class QueryInfo:
     def __init__(self):
         self.__inventionTypeList = ["I", "U", "D"]
