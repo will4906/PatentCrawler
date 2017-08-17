@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
 """
-Created on 2017/3/24
+Created on 2017/3/19
 
 @author: will4906
 """
-class QueryInfo:
+
+
+class QueryConfig:
     def __init__(self):
         self.__inventionTypeList = ["I", "U", "D"]
         self.__inventorList = ["陈思平", "陈昕", "汪天富", "谭力海", "彭珏", "但果", "叶继伦", "覃正笛",

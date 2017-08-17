@@ -5,12 +5,8 @@
 
 ### Environment
 
-* scrapy
-* tesseract-ocr
-* Pillow, pytesseract
-* xlutils, xlwt, xlrd
-* bs4, lxml
-* requests
+* pip install -r requirements.txt
+* 另外再安装tesseract-ocr
 
 ### ReleaseNote
 
@@ -30,7 +26,8 @@
 
 ### TODO
 
-随着软件的日益复杂，准备升级成web形式供大家使用，敬请期待。
+* 继续完善表达式生成
+* 随着软件的日益复杂，准备升级成web形式供大家使用，敬请期待。
 
 ### License
 

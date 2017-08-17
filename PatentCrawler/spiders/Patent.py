@@ -84,9 +84,6 @@ class PatentSpider(scrapy.Spider):
                     }
                 )
 
-    # def parsePatentList(self, response):
-    #     soup = BeautifulSoup(response.body_as_unicode(), "lxml")
-    #     print(soup)
     # 解析专利组
     def parsePatentList(self, response):
         try:
