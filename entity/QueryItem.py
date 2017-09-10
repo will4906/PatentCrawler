@@ -4,28 +4,143 @@ Created on 2017/3/19
 
 @author: will4906
 """
-import time
-
-import copy
-
-from entity.QueryTarget import QueryTarget
 
 
-class SearchNameDefine:
-    INVENTION_TYPE = '发明类型'
-    REQUEST_NUMBER = '申请号'
-    REQUEST_DATE = '申请日'
-    PUBLISH_NUMBER = '公开（公告）号'
-    PUBLISH_DATE = '公开（公告）日'
-    PROPOSER_NAME = '申请（专利权）人'
-    INVENTOR_NAME = '发明人'
-    PRIORITY_NUMBER = '优先权号'
-    PRIORITY_DATE = '优先权日'
-    ABSTRACT = '摘要'
-    CLAIM = '权利要求'
-    INSTRUCTIONS = '说明书'
-    KEY_WORD = '关键词'
-    PUBLISH_COUNTRY = '公开国'
+def handle_item_group(item_group):
+    AND = ' AND '
+    OR = ' OR '
+    NOT = ' NOT '
+    exp_str = ""
+    keyand = item_group.__getattribute__('And')
+    keyor = item_group.__getattribute__('Or')
+    keynot = item_group.__getattribute__('Not')
+    if keyand is not None:
+        parms = keyand.__getattribute__('parm')
+        for parm in parms:
+            exp_str += AND + parm
+        exp_str = exp_str.replace(AND, '', 1)
+    if keyor is not None:
+        parms = keyor.__getattribute__('parm')
+        for parm in parms:
+            exp_str += OR + parm
+        if keyand is None:
+            exp_str = exp_str.replace(OR, '', 1)
+    if keynot is not None:
+        parms = keynot.__getattribute__('parm')
+        for parm in parms:
+            exp_str += NOT + parm
+        if keyand is None and keyor is None:
+            exp_str = exp_str.replace(NOT, '', 1)
+    return exp_str
+
+
+def handle_request_number(request_number):
+    print(request_number)
+
+
+def handle_date_element(title, date_element):
+    if isinstance(date_element, DateSelect):
+        return title + date_element.__getattribute__('search_exp')
+    else:
+        raise Exception('We just support DateSelect for date element!')
+
+
+def default_handle(title, default):
+    if isinstance(default, ItemGroup):
+        return title + '=(' + handle_item_group(default) + ')'
+    elif isinstance(default, str):
+        return title + '=(' + default + ')'
+    else:
+        raise Exception('We just support string or ItemGroup!')
+
+title_case = {
+    'request_number': default_handle,
+    'request_date': handle_date_element,
+    'publish_number': default_handle,
+    'publish_date': handle_date_element,
+    'invention_name': default_handle,
+    'ipc_class_number': default_handle,
+    'proposer_people': default_handle,
+    'inventor_people': default_handle,
+    'priority_number': default_handle,
+    'priority_date': handle_date_element,
+    'abstract': default_handle,
+    'claim': default_handle,
+    'instructions': default_handle,
+    'key_word': default_handle,
+    'locarno_class_number': default_handle,
+    'description_of_the_design': default_handle,
+    'agent': default_handle,
+    'agency': default_handle,
+    'proposer_post_code': default_handle,
+    'proposer_address': default_handle,
+    'proposer_location': default_handle,
+    'FT_class_number': default_handle,
+    'UC_class_number': default_handle,
+    'ECLA_class_number': default_handle,
+    'FI_class_number': default_handle,
+    'English_invention_name': default_handle,
+    'French_invention_name': default_handle,
+    'German_invention_name': default_handle,
+    'other_invention_name': default_handle,
+    'English_abstract': default_handle,
+    'PCT_enters_national_phase_date': default_handle,
+    'PCT_international_application_number': default_handle,
+    'French_abstract': default_handle,
+    'German_abstract': default_handle,
+    'other_abstract': default_handle,
+    'PCT_international_application_date': default_handle,
+    'PCT_international_publish_number': default_handle,
+    'PCT_international_publish_date': default_handle,
+    'CPC_class_number': default_handle,
+    'C-SETS': default_handle,
+    'publish_country': default_handle,
+    'invention_type': default_handle
+}
+title_define = {
+    'request_number': '申请号',
+    'request_date': '申请日',
+    'publish_number': '公开（公告）号',
+    'publish_date': '公开（公告）日',
+    'invention_name': '发明名称',
+    'ipc_class_number': 'IPC分类号',
+    'proposer_people': '申请（专利权）人',
+    'inventor_people': '发明人',
+    'priority_number': '优先权号',
+    'priority_date': '优先权号',
+    'abstract': '摘要',
+    'claim': '权利要求',
+    'instructions': '说明书',
+    'key_word': '关键词',
+    'locarno_class_number': '外观设计洛迦诺分类号',
+    'description_of_the_design': '外观设计简要说明',
+    'agent': '代理人',
+    'agency': '代理机构',
+    'proposer_post_code': '申请人邮编',
+    'proposer_address': '申请人地址',
+    'proposer_location': '申请人所在国（省）',
+    'FT_class_number': 'FT分类号',
+    'UC_class_number': 'UC分类号',
+    'ECLA_class_number': 'ECLA分类号',
+    'FI_class_number': 'FI分类号',
+    'English_invention_name': '发明名称（英）',
+    'French_invention_name': '发明名称（法）',
+    'German_invention_name': '发明名称（德）',
+    'other_invention_name': '发明名称（其他）',
+    'English_abstract': '摘要（英）',
+    'PCT_enters_national_phase_date': 'PCT进入国家阶段日期',
+    'PCT_international_application_number': 'PCT国际申请号',
+    'French_abstract': '摘要（法）',
+    'German_abstract': '摘要（德）',
+    'other_abstract': '摘要（其他）',
+    'PCT_international_application_date': 'PCT国际申请日期',
+    'PCT_international_publish_number': 'PCT国际申请公开号',
+    'PCT_international_publish_date': 'PCT国际申请公开日期',
+    'CPC_class_number': 'CPC分类号',
+    'C-SETS': 'C-SETS',
+    'publish_country': '公开国',
+    'invention_type': '发明类型'
+}
 
 
 # 日期选择器
@@ -38,6 +153,12 @@ class DateSelect:
         # 结束日期，当符号位为":"时，此变量有效，只从date开始到enddate结束
         self.enddate = enddate
 
+        self.search_exp = ''
+        if self.select != ':':
+            self.search_exp = self.select + self.date
+        else:
+            self.search_exp = self.date + self.select + self.enddate
+
     def __repr__(self):
         return 'DateSelect{select=' + str(self.select) + ',date=' + str(self.date) + ',enddate=' + str(self.enddate)
 
@@ -45,193 +166,38 @@ class DateSelect:
         return 'DateSelect{select=' + str(self.select) + ',date=' + str(self.date) + ',enddate=' + str(self.enddate)
 
 
+class ItemGroup:
+    def __init__(self, And=None, Or=None, Not=None):
+        self.And = And
+        self.Or = Or
+        self.Not = Not
+
+
+class And:
+    def __init__(self, *parm):
+        self.parm = parm
+
+    def add_parm(self, *ps):
+        self.parm = self.parm + ps
+
+
+class Or:
+    def __init__(self, *parm):
+        self.parm = parm
+
+
+class Not:
+    def __init__(self, *parm):
+        self.parm = parm
+
+
 class QueryItem:
-    def __init__(self, requestNumber=None, requestDate=None, publishNumber=None, publishDate=None, proposerName=None,
-                 inventorName=None, priorityNumber=None, priorityDate=None, abstract=None, claim=None,
-                 instructions=None, keyword=None, inventionType=None, publishCountry=None):
-        # 申请号
-        self.requestNumber = requestNumber
-        # 申请日
-        self.requestDate = requestDate
-        # 公开（公告）号
-        self.publishNumber = publishNumber
-        # 公开（公告）日
-        self.publishDate = publishDate
-        # 申请（专利权）人
-        self.proposerName = proposerName
-        # 发明人
-        self.inventorName = inventorName
-        # 优先权号
-        self.priorityNumber = priorityNumber
-        # 优先权日
-        self.priorityDate = priorityDate
-        # 摘要
-        self.abstract = abstract
-        # 权利要求
-        self.claim = claim
-        # 说明书
-        self.instructions = instructions
-        # 关键词
-        self.keyword = keyword
-        # 发明类型
-        self.inventionType = inventionType
-        # 公开国
-        self.publishCountry = publishCountry
-
-        self.targetList = []
-
-        self.searchExpList = []
-
-        self.define = {
-            SearchNameDefine.REQUEST_NUMBER: 'requestNumber',
-            SearchNameDefine.REQUEST_DATE: 'requestDate',
-            SearchNameDefine.PUBLISH_NUMBER: 'publishNumber',
-            SearchNameDefine.PUBLISH_DATE: 'publishDate',
-            SearchNameDefine.PROPOSER_NAME: 'proposerName',
-            SearchNameDefine.INVENTOR_NAME: 'inventorName',
-            SearchNameDefine.PRIORITY_NUMBER: 'priorityNumber',
-            SearchNameDefine.PRIORITY_DATE: 'priorityDate',
-            SearchNameDefine.ABSTRACT: 'abstract',
-            SearchNameDefine.CLAIM: 'claim',
-            SearchNameDefine.INSTRUCTIONS: 'instructions',
-            SearchNameDefine.KEY_WORD: 'keyword',
-            SearchNameDefine.INVENTION_TYPE: 'inventionType',
-            # SearchNameDefine.PUBLISH_COUNTRY: 'publishCountry'
-        }
-
-    '''
-        以下代码均为生成表达式代码，用户均不需关心
-    '''
-    # 妈的，下面这段有点恶心
-    def generateSearchExp(self):
-        AND = " AND "
-        typeDict = {}
-        for (define, propertyName) in self.define.items():
-            resultList = self.__generateElementExp(self.__getattribute__(propertyName), define)
-            if resultList is None:
-                continue
-            else:
-                typeDict[propertyName] = resultList
-        lastSearchList = []
-        for (propertyName, resultList) in typeDict.items():
-            lastlen = len(lastSearchList)
-            resultListLen = len(resultList)
-            temp = []
-            temp.extend(lastSearchList)
-            for r in range(1, resultListLen):
-                for last in lastSearchList:
-                    temp.append(last)
-            lastSearchList = []
-            for result in resultList:
-                if lastlen == 0:
-                    lastSearchList.append(result)
-                for index, item in enumerate(temp):
-                    lastSearchList.append(item + result)
-                    if index == lastlen - 1:
-                        break
-        for last in lastSearchList:
-            self.searchExpList.append(last[:last.rindex(AND)])
-
-    # 生成一个元素的表达式或表达式组
-    def __generateElementExp(self, target, targetDefine):
-        if target is None:
-            return
-        if isinstance(target, list):
-            tarExpList = []
-            for tar in target:
-                if targetDefine == SearchNameDefine.REQUEST_NUMBER or targetDefine == SearchNameDefine.PUBLISH_NUMBER:
-                    tarExpList.append(self.__generageNumberExp(tar, targetDefine))
-                elif targetDefine == SearchNameDefine.REQUEST_DATE or targetDefine == SearchNameDefine.PUBLISH_DATE or targetDefine == SearchNameDefine.PRIORITY_DATE:
-                    tarExpList.append(self.__generateDateExp(tar, targetDefine))
-                else:
-                    tarExpList.append(self.__generageNormalExp(tar, targetDefine))
-            return tarExpList
-        else:
-            if targetDefine == SearchNameDefine.REQUEST_NUMBER or targetDefine == SearchNameDefine.PUBLISH_NUMBER:
-                tarExp = self.__generageNumberExp(target, targetDefine)
-            elif targetDefine == SearchNameDefine.REQUEST_DATE or targetDefine == SearchNameDefine.PUBLISH_DATE or targetDefine == SearchNameDefine.PRIORITY_DATE:
-                tarExp = self.__generateDateExp(target, targetDefine)
-            else:
-                tarExp = self.__generageNormalExp(target, targetDefine)
-            return [tarExp]
-
-    # 生成日期型的表达式
-    def __generateDateExp(self, target, targetDefine):
-        AND = " AND "
-        if isinstance(target, DateSelect):
-            if target.select != ':':
-                searchExp = targetDefine + target.select + target.date + AND
-            else:
-                searchExp = targetDefine + target.date + target.select + target.enddate + AND
-            return searchExp
-        else:
-            return None
-
-    # 生成普通型表达式
-    def __generageNormalExp(self, target, targetDefine):
-        AND = " AND "
-        searchExp = targetDefine + "=(" + target + ")" + AND
-        return searchExp
-
-    # 申请号和公告号表达式
-    def __generageNumberExp(self, target, targetDefine):
-        AND = " AND "
-        if target[0:2] == 'ZL':
-            target = 'CN' + target[2:]
-        if targetDefine == SearchNameDefine.REQUEST_NUMBER:
-            target = target.split('.')[0]
-        if target[0:2].isalpha() is False:
-            target = '+' + target
-        if target[len(target) - 1:] != '+':
-            searchExp = targetDefine + "=(" + target + "+)" + AND
-        else:
-            searchExp = targetDefine + "=(" + target + ")" + AND
-        return searchExp
-
-    # 生成目标
-    def createTarget(self):
-        typeDict = {}
-        for (define, propertyName) in self.define.items():
-            resultList = self.__getattribute__(propertyName)
-            if resultList is None:
-                continue
-            else:
-                if isinstance(resultList, list) is False:
-                    resultList = [resultList]
-                typeDict[propertyName] = resultList
-        targetCache = []
-        for (propertyName, resultList) in typeDict.items():
-            tempCache = []
-            for result in resultList:
-                tarLen = len(targetCache)
-                if tarLen == 0:
-                    qt = QueryTarget()
-                    qt.__setattr__(propertyName, result)
-                    targetCache.append(copy.deepcopy(qt))
-                else:
-                    for tarC in targetCache:
-                        tarC.__setattr__(propertyName, result)
-                        tempCache.append(copy.deepcopy(tarC))
-            if len(tempCache) > 0:
-                targetCache = copy.deepcopy(tempCache)
-        self.targetList = targetCache
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    def __init__(self, **kwargs):
+        self.parm = kwargs
+        self.queryAnd = And()
+        for title, value in title_define.items():
+            key = kwargs.get(title)
+            if key is not None:
+                self.queryAnd.add_parm(title_case.get(title)(value, key))
+        self.itemGroup = ItemGroup(And=self.queryAnd)
+        self.search_exp = handle_item_group(self.itemGroup)
