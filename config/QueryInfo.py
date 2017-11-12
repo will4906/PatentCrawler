@@ -10,6 +10,9 @@ from entity.query_item import SipoItem, DateSelect, And, ItemGroup, Or, Not
 class SipoTarget:
     def __init__(self):
         self.queryList = [
+            SipoItem(inventor='陈思平', proposer=ItemGroup(And=And('深圳大学', '北京科技大学')),
+                     publish_date=DateSelect('>=', '2001-01-01'),
+                     invention_type='实用新型', publish_country='HK'),
             SipoItem(inventor='陈思平', proposer='深圳大学', publish_date=DateSelect('>=', '2001-01-01'),
                      invention_type='实用新型', publish_country='HK'),
             SipoItem(inventor='陈思平', proposer='深圳大学', publish_date=DateSelect('>=', '2001-01-01'),
