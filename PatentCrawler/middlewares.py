@@ -4,7 +4,7 @@
 #
 # See documentation in:
 # http://doc.scrapy.org/en/latest/topics/spider-middleware.html
-
+from scrapy.downloadermiddlewares.retry import RetryMiddleware
 from scrapy.downloadermiddlewares.useragent import UserAgentMiddleware
 
 from service.CookieService import CookieService
@@ -23,22 +23,21 @@ class ProxyMiddleware:
         request.meta['proxy'] = "http://58.209.151.126:808"
 
 
-class CookiesMiddleware:
+class NormalMiddleware:
+
     def process_request(self, request, spider):
-        # print(request.cookies)
-        pass
+        request.cookies = CookieService.cookies
 
 
-class MyRedirectMiddleware:
+class UnloginRetryMiddleware(RetryMiddleware):
+
     def process_response(self, request, response, spider):
-        if CookieService.getCookies() == {}:
-            CookieService.readCookiesFromList(response.headers.getlist('Set-Cookie'))
-            CookieService.saveCookies()
-            LoginService(CookieService.getCookies()).startLogin()
-        CookieService.changeJessionid(response.headers.getlist('Set-Cookie'))
-        request.cookies = CookieService.getCookies()
+        if response.status == 200:
+            ok = CookieService.checkWholeCookieFromSetCookies(response.headers.getlist('Set-Cookie'))
+            if ok is True:
+                CookieService.readCookiesFromList(response.headers.getlist('Set-Cookie'))
         if response.status == 302:
-            if str(response.url).find('UnLogin') != -1:
-                LoginService(CookieService.getCookies()).startLogin()
-        print(response)
+            LoginService(CookieService.cookies).startLogin()
+            request.cookies = CookieService.cookies
+            self._retry(request, 'unlogin', spider)
         return response

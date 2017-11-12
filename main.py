@@ -12,7 +12,9 @@ from scrapy import cmdline
 
 from config.BaseConfig import BaseConfig
 from config.LoginInfo import LoginInfo
+from entity.models import Patents
 from service.CookieService import CookieService
+from service.LoginService import LoginService
 from util.excel.ExcelUtil import ExcelUtil
 
 
@@ -53,11 +55,16 @@ def init_excel_config():
     return
 
 
+def initDataBase():
+    Patents.create_table()
+
 if __name__ == '__main__':
     print("程序开始")
     print(
         "* 使用说明：https://github.com/will4906/PatentCrawler/wiki\n* 代码更新：https://github.com/will4906/PatentCrawler\n* bug反馈、交流建议：\n邮箱：553105821@qq.com\ngithub：https://github.com/will4906/PatentCrawler/issues")
     initProgress()
+    initDataBase()
+    # LoginService().startLogin()
     checkForConfig()
     init_excel_config()
     cmdline.execute(("scrapy crawl Patent -s LOG_FILE=" + BaseConfig.LOG_FILE_NAME).split())

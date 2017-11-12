@@ -20,6 +20,7 @@ NEWSPIDER_MODULE = 'PatentCrawler.spiders'
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = False
 RETRY_ENABLED = True
+RETRY_TIMES=3
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 # CONCURRENT_REQUESTS = 32
 
@@ -34,6 +35,7 @@ DOWNLOAD_DELAY = 1
 # Disable cookies (enabled by default)
 COOKIES_ENABLED = True
 COOKIES_DEBUG = True
+DUPEFILTER_DEBUG=True
 REDIRECT_ENABLED = False
 # HTTPERROR_ALLOWED_CODES = ['302']
 # Disable Telnet Console (enabled by default)
@@ -59,8 +61,8 @@ REDIRECT_ENABLED = False
 # See http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html
 DOWNLOADER_MIDDLEWARES = {
     # 'PatentCrawler.middlewares.ProxyMiddleware': 543,
-    'PatentCrawler.middlewares.MyRedirectMiddleware': 543,
-    # 'PatentCrawler.middlewares.CookiesMiddleware': 544,
+    'PatentCrawler.middlewares.NormalMiddleware': 541,
+    'PatentCrawler.middlewares.UnloginRetryMiddleware': 544,
     'PatentCrawler.middlewares.RandomUserAgentMiddleware': 542
 }
 

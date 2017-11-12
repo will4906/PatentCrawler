@@ -8,12 +8,19 @@ class CookieService:
     cookies = {}
 
     @staticmethod
-    def setCookies(co):
-        CookieService.cookies = co
-
-    @staticmethod
-    def getCookies():
-        return CookieService.cookies
+    def checkWholeCookieFromSetCookies(cookieslist):
+        sum = 0
+        for co in cookieslist:
+            if str(co, encoding = "utf8").find('WEE_SID') != -1:
+                sum += 1
+            elif str(co, encoding = "utf8").find('IS_LOGIN') != -1:
+                sum += 1
+            elif str(co, encoding = "utf8").find('JSESSIONID') != -1:
+                sum += 1
+        if sum == 3:
+            return True
+        else:
+            return False
 
     @staticmethod
     def saveCookies():

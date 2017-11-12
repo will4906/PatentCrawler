@@ -45,9 +45,7 @@ class LoginService:
     def startLogin(self):
         valcode = requests.get(self.codeurl, cookies=self.cookies)
         f = open('valcode.png', 'wb')
-        # 将response的二进制内容写入到文件中
         f.write(valcode.content)
-        # 关闭文件流对象
         f.close()
         code = ValcodeService().getStringFromImage('valcode.png')
         self.loginData["j_validation_code"] = str(code)
@@ -61,6 +59,7 @@ class LoginService:
             print('登录失败')
             return False
 
+    # 测试使用
     def getALotValcode(self):
         for i in range(0,20):
             valcode = requests.get(self.codeurl, cookies=self.cookies)

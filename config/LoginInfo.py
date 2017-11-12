@@ -14,7 +14,7 @@ Created on 2017/3/24
 class LoginInfo:
 
     # 账号
-    USERNAME = ''
+    USERNAME = 'iamcrawler2017'
     # 密码
-    PASSWORD = ''
+    PASSWORD = '1234567890hsh'
 
