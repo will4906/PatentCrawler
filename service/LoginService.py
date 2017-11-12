@@ -30,7 +30,7 @@ class LoginService:
     checkUrl = 'http://www.pss-system.gov.cn/sipopublicsearch/wee/platform/wee_security_check'
     codeurl = 'http://www.pss-system.gov.cn/sipopublicsearch/portal/login-showPic.shtml'
 
-    def __init__(self, cookies):
+    def __init__(self, cookies, proxies=None):
         self.base64username = str(base64.b64encode(bytes(LoginInfo.USERNAME, encoding='utf-8')), 'utf-8')
         self.base64password = str(base64.b64encode(bytes(LoginInfo.PASSWORD, encoding='utf-8')), 'utf-8')
         self.valcode = ''
@@ -41,16 +41,17 @@ class LoginService:
         "j_password": self.base64password
         }
         self.cookies = cookies
+        self.proxies = proxies
 
     def startLogin(self):
-        valcode = requests.get(self.codeurl, cookies=self.cookies)
+        valcode = requests.get(self.codeurl, cookies=self.cookies, proxies=self.proxies)
         f = open('valcode.png', 'wb')
         f.write(valcode.content)
         f.close()
         code = ValcodeService().getStringFromImage('valcode.png')
         self.loginData["j_validation_code"] = str(code)
         resp = requests.post(self.checkUrl, headers=self.checkHeader, cookies=self.cookies,
-                             data=self.loginData)
+                             data=self.loginData, proxies=self.proxies)
         soup = BeautifulSoup(resp.content, 'lxml')
         if str(soup.prettify()).find(LoginInfo.USERNAME + '，欢迎访问') != -1:
             print("登录成功")
@@ -62,7 +63,7 @@ class LoginService:
     # 测试使用
     def getALotValcode(self):
         for i in range(0,20):
-            valcode = requests.get(self.codeurl, cookies=self.cookies)
+            valcode = requests.get(self.codeurl, cookies=self.cookies, proxies=self.proxies)
             f = open('valcode' + str(i) + '.png', 'wb')
             # 将response的二进制内容写入到文件中
             f.write(valcode.content)

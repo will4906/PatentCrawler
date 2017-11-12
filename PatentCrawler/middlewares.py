@@ -20,24 +20,28 @@ class RandomUserAgentMiddleware(UserAgentMiddleware):
 class ProxyMiddleware:
     def process_request(self, request, spider):
         # Set the location of the proxy
-        request.meta['proxy'] = "http://58.209.151.126:808"
+        request.meta['proxy'] = "183.152.173.247:808"
 
 
 class NormalMiddleware:
 
     def process_request(self, request, spider):
         request.cookies = CookieService.cookies
+        print(request)
+        print(request.cookies)
 
 
 class UnloginRetryMiddleware(RetryMiddleware):
 
     def process_response(self, request, response, spider):
+        print(response)
         if response.status == 200:
             ok = CookieService.checkWholeCookieFromSetCookies(response.headers.getlist('Set-Cookie'))
             if ok is True:
                 CookieService.readCookiesFromList(response.headers.getlist('Set-Cookie'))
         if response.status == 302:
-            LoginService(CookieService.cookies).startLogin()
+            while LoginService(CookieService.cookies).startLogin() is not True:
+                pass
             request.cookies = CookieService.cookies
-            self._retry(request, 'unlogin', spider)
+            return self._retry(request, 'unlogin', spider)
         return response

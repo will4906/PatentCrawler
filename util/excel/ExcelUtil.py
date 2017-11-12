@@ -11,6 +11,15 @@ from xlutils.copy import copy
 
 from util.excel.ExcelEditor import ExcelEditor
 
+import xlsxwriter
+
+
+class XlsxUtil:
+    def __init__(self, filename):
+        self.workbook = xlsxwriter.Workbook(filename)
+
+    def getWorksheet(self):
+        return self.workbook.add_worksheet()
 
 class ExcelUtil:
 

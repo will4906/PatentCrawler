@@ -10,7 +10,7 @@ from scrapy import Request
 
 from PatentCrawler.items import PatentCrawlerItem, SipoCrawlerItem
 from config.BaseConfig import BaseConfig
-from config.QueryInfo import QueryInfo, SipoTarget
+from config.QueryInfo import SipoTarget
 from config import url_config
 from service.CookieService import CookieService
 from service.itemcollection import ItemCollection
@@ -20,12 +20,6 @@ from service.SearchService import SearchService
 class PatentSpider(scrapy.Spider):
     name = "Patent"
     allowed_domains = ["pss-system.gov.cn"]
-    queryInfo = QueryInfo()
-    inventorList = queryInfo.getInventorList()
-    inventionTypeList = queryInfo.getInventionTypeList()
-    proposer = queryInfo.getProposer()
-    startDate = queryInfo.getStartDate()
-
     sipoList = SipoTarget().queryList
 
     def start_requests(self):
@@ -184,3 +178,6 @@ class PatentSpider(scrapy.Spider):
         sipocrawler['legal_status_effective_date'] = lawStateList[-1].get('prsDate')
         yield sipocrawler
 
+    def closed(self, reason):
+        # if reason == 'finished':
+        print(reason)

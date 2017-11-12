@@ -15,7 +15,7 @@ from config.LoginInfo import LoginInfo
 from entity.models import Patents
 from service.CookieService import CookieService
 from service.LoginService import LoginService
-from util.excel.ExcelUtil import ExcelUtil
+from util.excel.ExcelUtil import ExcelUtil, XlsxUtil
 
 
 def initProgress():
@@ -45,13 +45,14 @@ def checkForConfig():
 
 
 def init_excel_config():
-    title_list = ["专利类型", "专利名称", "法律状态", "法律状态最后修改日期", "公布号", "申请公布日/授权公告日", "申请号", "申请日", "申请人/专利权人", "发明人", "IPC分类号",
-                  "代理人", "代理机构", "外观设计洛迦诺分类号"]
-    editor = ExcelUtil(BaseConfig.FILE_NAME).edit()
-    sh = editor.getSheet(0)
-    for index, each in enumerate(title_list):
-        sh.write(0, index, each)
-    editor.commit()
+    worksheet = XlsxUtil(BaseConfig.FILE_NAME).getWorksheet()
+    # title_list = ["专利类型", "专利名称", "法律状态", "法律状态最后修改日期", "公布号", "申请公布日/授权公告日", "申请号", "申请日", "申请人/专利权人", "发明人", "IPC分类号",
+    #               "代理人", "代理机构", "外观设计洛迦诺分类号"]
+    # editor = ExcelUtil(BaseConfig.FILE_NAME).edit()
+    # sh = editor.getSheet(0)
+    # for index, each in enumerate(title_list):
+    #     sh.write(0, index, each)
+    # editor.commit()
     return
 
 
