@@ -5,8 +5,6 @@ Created on 2017/3/19
 @author: will4906
 """
 
-from config.BaseConfig import BaseConfig
-
 # 首页，获取可以用来登录的ip地址
 index = {
     'url': 'http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/tableSearch-showTableSearchIndex.shtml',

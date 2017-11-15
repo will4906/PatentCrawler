@@ -263,7 +263,7 @@ class DateSelect:
         if self.select != ':':
             self.search_exp = self.select + self.date
         else:
-            self.search_exp = self.date + self.select + self.enddate
+            self.search_exp = '=' + self.date + self.select + self.enddate
 
     def __repr__(self):
         return 'DateSelect{select=' + str(self.select) + ',date=' + str(self.date) + ',enddate=' + str(self.enddate) + '}'
@@ -339,6 +339,7 @@ class SipoItem:
     一个用来解析专利网站专利检索表达式的实例
     """
     def __init__(self, **kwargs):
+        self.startIndex = 0
         self.__queryAnd = And()
         self.target_parm = {}                               # 经过整理后的目标参数
         self.__prepare_item(kwargs)

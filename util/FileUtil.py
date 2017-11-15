@@ -17,3 +17,4 @@ class FileUtil:
     def writeLine(self, strLine):
         self.__file.write(strLine + "\n")
         self.__file.flush()
+

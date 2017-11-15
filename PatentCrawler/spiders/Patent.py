@@ -2,6 +2,8 @@
 import json
 
 import math
+
+import os
 import requests
 import scrapy
 from bs4 import BeautifulSoup
@@ -9,18 +11,19 @@ from scrapy import FormRequest
 from scrapy import Request
 
 from PatentCrawler.items import PatentCrawlerItem, SipoCrawlerItem
-from config.BaseConfig import BaseConfig
-from config.QueryInfo import SipoTarget
 from config import url_config
+from config.base_settings import DATABASE_NAME
+from config.query_config import QUERY_LIST
 from service.CookieService import CookieService
 from service.itemcollection import ItemCollection
 from service.SearchService import SearchService
+from visual.map_charts import ChinaMap
 
 
 class PatentSpider(scrapy.Spider):
     name = "Patent"
     allowed_domains = ["pss-system.gov.cn"]
-    sipoList = SipoTarget().queryList
+    sipoList = QUERY_LIST
 
     def start_requests(self):
         indexurl = url_config.index.get('url')
@@ -67,7 +70,7 @@ class PatentSpider(scrapy.Spider):
         else:
             strSum = pageTop.get_text(strip=True)
             patentSum = int(strSum[strSum[2:].find("页") + 3:strSum.find("条")])
-            pagesum = int(math.ceil(patentSum / int(BaseConfig.CRAWLER_SPEED)))
+            pagesum = int(math.ceil(patentSum / 12))
             print('共', pagesum, '页')
             searchEnDiv = soup.find(id='result_executableSearchExp')
             if searchEnDiv is None:
@@ -84,6 +87,8 @@ class PatentSpider(scrapy.Spider):
                 formdata.__setitem__('nrdAn', str(patentid).split('.')[0])
                 formdata.__setitem__('cid', str(patentid))
                 formdata.__setitem__('sid', str(patentid))
+
+                # if sipo.startIndex
                 yield FormRequest(
                     url=url_config.detailSearch.get('url'),
                     formdata=formdata,
@@ -93,7 +98,7 @@ class PatentSpider(scrapy.Spider):
 
                 for index in range(1, pagesum):
                     formdata = url_config.pageTurning.get('formdata')
-                    formdata.__setitem__('resultPagination.start', str(int(BaseConfig.CRAWLER_SPEED) * index))
+                    formdata.__setitem__('resultPagination.start', str(12 * index))
                     formdata.__setitem__('resultPagination.totalCount', str(patentSum))
                     formdata.__setitem__('searchCondition.searchExp', sipo.search_exp_cn)
                     formdata.__setitem__('searchCondition.executableSearchExp', searchEnDiv.get_text())
@@ -107,22 +112,7 @@ class PatentSpider(scrapy.Spider):
                             'sipo': sipo
                         }
                     )
-                    # pi['targetProposer'] = sipo.target_parm.get('proposer')
-                    # pi['targetInventor'] = sipo.target_parm.get('inventor')
-                    # itemSoup = BeautifulSoup(item.prettify(), "lxml")
-                    # header = itemSoup.find(attrs={"class": "item-header"})
-                    # print(itemSoup.find(attrs={'name': 'idHidden'}).get('value'))
 
-                    # pi['name'] = header.find("h1").get_text(strip=True)
-                    # pi['type'] = header.find(attrs={"class": "btn-group left clear"}).get_text(strip=True)
-                    # pi['patentType'] = sipo.target_parm.get('invention_type').get('cn')
-                    # content = itemSoup.find(attrs={"class": "item-content-body left"})
-                    # contentList = content.find_all("p")
-                    # for c in contentList:
-                    #     ItemCollection.resolveData(pi, c.get_text(strip=True))
-                    # footer = itemSoup.find(attrs={"class": "item-footer"})
-                    # lawStateBn = footer.find(attrs={"role": "lawState"})
-                    # yield self.requestLawState(lawStateBn, pi)
 
     # 解析非第一页专利组
     def parseNotFirstPage(self, response):
@@ -174,10 +164,14 @@ class PatentSpider(scrapy.Spider):
         related = json.loads(response.body_as_unicode())
         sipocrawler = response.meta['sipocrawler']
         lawStateList = related.get('lawStateList')
-        sipocrawler['legal_status'] = lawStateList[-1].get('lawStateCNMeaning')
-        sipocrawler['legal_status_effective_date'] = lawStateList[-1].get('prsDate')
+        try:
+            sipocrawler['legal_status'] = lawStateList[-1].get('lawStateCNMeaning')
+            sipocrawler['legal_status_effective_date'] = lawStateList[-1].get('prsDate')
+        except Exception as e:
+            print(lawStateList)
         yield sipocrawler
 
     def closed(self, reason):
-        # if reason == 'finished':
+        if os.path.exists(DATABASE_NAME):
+            ChinaMap().create()
         print(reason)

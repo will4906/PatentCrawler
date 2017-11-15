@@ -4,6 +4,8 @@
 #
 # See documentation in:
 # http://doc.scrapy.org/en/latest/topics/spider-middleware.html
+import requests
+from requests.utils import dict_from_cookiejar
 from scrapy.downloadermiddlewares.retry import RetryMiddleware
 from scrapy.downloadermiddlewares.useragent import UserAgentMiddleware
 
@@ -27,19 +29,19 @@ class NormalMiddleware:
 
     def process_request(self, request, spider):
         request.cookies = CookieService.cookies
-        print(request)
-        print(request.cookies)
 
 
 class UnloginRetryMiddleware(RetryMiddleware):
 
     def process_response(self, request, response, spider):
-        print(response)
         if response.status == 200:
             ok = CookieService.checkWholeCookieFromSetCookies(response.headers.getlist('Set-Cookie'))
             if ok is True:
                 CookieService.readCookiesFromList(response.headers.getlist('Set-Cookie'))
         if response.status == 302:
+            resp = requests.get('http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/tableSearch-showTableSearchIndex.shtml')
+            CookieService.cookies = dict_from_cookiejar(resp.cookies)
+            print(CookieService.cookies)
             while LoginService(CookieService.cookies).startLogin() is not True:
                 pass
             request.cookies = CookieService.cookies

@@ -4,18 +4,20 @@ Created on 2017/3/19
 
 @author: will4906
 """
-from peewee import SqliteDatabase, BaseModel, PrimaryKeyField, CharField, DateField, TextField, Model
+import os
+from peewee import SqliteDatabase, PrimaryKeyField, CharField, DateField, TextField, Model
+from config.base_settings import  DATABASE_NAME
 
-from config.BaseConfig import BaseConfig
-from util.TimeUtil import TimeUtil
 
-sqlite_db = SqliteDatabase(BaseConfig.OUT_PUT_DIR + 'patent' + TimeUtil.getFormatTime("%Y%m%d_%H%M%S") + '.db')
+sqlite_db = SqliteDatabase(DATABASE_NAME)
+
 
 class BaseModel(Model):
     """A base model that will use our Sqlite database."""
 
     class Meta:
         database = sqlite_db
+
 
 class Patents(BaseModel):
 
@@ -38,11 +40,11 @@ class Patents(BaseModel):
     # 发明人
     inventor = CharField()
     # 法律状态
-    legal_status = CharField()
+    legal_status = CharField(null=True)
     #  法律状态生效日期
-    legal_status_effective_date = DateField()
+    legal_status_effective_date = DateField(null=True)
     # 摘要
-    abstract = TextField()
+    abstract = TextField(null=True)
     # IPC分类号
     ipc_class_number = CharField(null=True)
     # 优先权号

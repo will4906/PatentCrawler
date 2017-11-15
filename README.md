@@ -9,6 +9,10 @@
 * pip install -r requirements.txt
 * 另外再安装tesseract-ocr
 
+### Data Visualization
+
+![地图](images/demo1.png)
+
 ### License
 
 PatentCrawler is released under the Apache 2.0 license.
