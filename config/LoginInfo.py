@@ -14,7 +14,7 @@ Created on 2017/3/24
 class LoginInfo:
 
     # 账号
-    USERNAME = 'will4906'
+    USERNAME = ''
     # 密码
-    PASSWORD = '1234567890hsh'
+    PASSWORD = ''
 
