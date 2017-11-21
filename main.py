@@ -55,14 +55,16 @@ def init_excel_config():
 def initDataBase():
     Patents.create_table()
 
+
 if __name__ == '__main__':
+    print('***************************************************************************\n' \
+          '* 使用说明：https://github.com/will4906/PatentCrawler/wiki           *\n' \
+          '* 代码更新：https://github.com/will4906/PatentCrawler                   *\n' \
+          '* bug反馈、交流建议:                                                                            *\n' \
+          '* \t邮箱：553105821@qq.com                                                              *\n' \
+          '* \tgithub：https://github.com/will4906/PatentCrawler/issues         *\n' \
+          '***************************************************************************\n')
     print("程序开始")
-    print(
-        "* 使用说明：https://github.com/will4906/PatentCrawler/wiki\n"
-        "* 代码更新：https://github.com/will4906/PatentCrawler\n"
-        "* bug反馈、交流建议：\n"
-        "\t邮箱：553105821@qq.com\n"
-        "\tgithub：https://github.com/will4906/PatentCrawler/issues")
     initPath()
     initDataBase()
     checkForConfig()

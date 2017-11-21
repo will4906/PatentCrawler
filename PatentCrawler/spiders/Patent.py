@@ -142,7 +142,7 @@ class PatentSpider(scrapy.Spider):
         sipo = response.meta['sipo']
         sipocrawler = response.meta['sipocrawler']
         detail = json.loads(response.body_as_unicode())
-        sipocrawler['abstract'] = detail.get('abstractInfoDTO').get('abIndexList')[0].get('value')
+        sipocrawler['abstract'] = BeautifulSoup(detail.get('abstractInfoDTO').get('abIndexList')[0].get('value'), 'lxml').text.replace('\n', '').strip()
         sipocrawler['invention_name'] = detail.get('abstractInfoDTO').get('tioIndex').get('value')
         for abitem in detail.get('abstractInfoDTO').get('abstractItemList'):
             ItemCollection.resolveData(sipocrawler, abitem.get('indexCnName'), abitem.get('value'))
