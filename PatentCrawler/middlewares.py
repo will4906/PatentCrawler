@@ -22,7 +22,7 @@ class RandomUserAgentMiddleware(UserAgentMiddleware):
 class ProxyMiddleware:
     def process_request(self, request, spider):
         # Set the location of the proxy
-        request.meta['proxy'] = "183.152.173.247:808"
+        request.meta['proxy'] = ""
 
 
 class NormalMiddleware:

@@ -96,23 +96,22 @@ class PatentSpider(scrapy.Spider):
                     meta={'sipo': sipo, 'sipocrawler': sipocrawler, 'lawinfo': {'nrdAn': nrdAn, 'nrdPn': nrdPn}}
                 )
 
-                for index in range(1, pagesum):
-                    formdata = url_config.pageTurning.get('formdata')
-                    formdata.__setitem__('resultPagination.start', str(12 * index))
-                    formdata.__setitem__('resultPagination.totalCount', str(patentSum))
-                    formdata.__setitem__('searchCondition.searchExp', sipo.search_exp_cn)
-                    formdata.__setitem__('searchCondition.executableSearchExp', searchEnDiv.get_text())
-                    yield FormRequest(
-                        url=url_config.pageTurning.get('url'),
-                        callback=self.parseNotFirstPage,
-                        method="POST",
-                        headers=url_config.pageTurning.get('headers'),
-                        formdata=formdata,
-                        meta={
-                            'sipo': sipo
-                        }
-                    )
-
+            for index in range(1, pagesum):
+                formdata = url_config.pageTurning.get('formdata')
+                formdata.__setitem__('resultPagination.start', str(12 * index))
+                formdata.__setitem__('resultPagination.totalCount', str(patentSum))
+                formdata.__setitem__('searchCondition.searchExp', sipo.search_exp_cn)
+                formdata.__setitem__('searchCondition.executableSearchExp', searchEnDiv.get_text())
+                yield FormRequest(
+                    url=url_config.pageTurning.get('url'),
+                    callback=self.parseNotFirstPage,
+                    method="POST",
+                    headers=url_config.pageTurning.get('headers'),
+                    formdata=formdata,
+                    meta={
+                        'sipo': sipo
+                    }
+                )
 
     # 解析非第一页专利组
     def parseNotFirstPage(self, response):
@@ -142,7 +141,8 @@ class PatentSpider(scrapy.Spider):
         sipo = response.meta['sipo']
         sipocrawler = response.meta['sipocrawler']
         detail = json.loads(response.body_as_unicode())
-        sipocrawler['abstract'] = BeautifulSoup(detail.get('abstractInfoDTO').get('abIndexList')[0].get('value'), 'lxml').text.replace('\n', '').strip()
+        sipocrawler['abstract'] = BeautifulSoup(detail.get('abstractInfoDTO').get('abIndexList')[0].get('value'),
+                                                'lxml').text.replace('\n', '').strip()
         sipocrawler['invention_name'] = detail.get('abstractInfoDTO').get('tioIndex').get('value')
         for abitem in detail.get('abstractInfoDTO').get('abstractItemList'):
             ItemCollection.resolveData(sipocrawler, abitem.get('indexCnName'), abitem.get('value'))
@@ -153,7 +153,7 @@ class PatentSpider(scrapy.Spider):
         yield FormRequest(
             url=url_config.relatedInfo.get('url'),
             method='POST',
-            dont_filter=True,                           # 此处可能会发生重复采集，但是还是想要采集，所以关闭过滤
+            dont_filter=True,  # 此处可能会发生重复采集，但是还是想要采集，所以关闭过滤
             formdata=formdata,
             callback=self.parseRelatedInfo,
             meta={'sipo': sipo, 'sipocrawler': sipocrawler}
