@@ -7,7 +7,8 @@
 ### Environment
 
 * pip install -r requirements.txt
-* 另外再安装tesseract-ocr
+* 验证码采用k近邻算法进行识别，请安装`pip install sklearn`
+* 具体方法见https://github.com/will4906/CaptchaRecognition
 
 ### Data Visualization
 

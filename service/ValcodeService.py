@@ -4,27 +4,40 @@ Created on 2017/3/19
 
 @author: will4906
 """
-from PIL import Image
-from pytesseract import image_to_string
+import numpy as np
+import os
+import pickle
 
+from PIL import Image
+
+
+def split_letters(path):
+    pix = np.array(Image.open(path).convert('L'))
+    # threshold image
+    pix = (pix > 135) * 255
+
+    split_parts = [
+        [7, 16],
+        [20, 29],
+        [33, 42],
+        [46, 55]
+    ]
+    letters = []
+    for part in split_parts:
+        letter = pix[7:, part[0]: part[1]]
+        letters.append(letter.reshape(9*13))
+    return letters
 
 class ValcodeService:
-    def __initTable(self, threshold=140):
-        table = []
-        for i in range(256):
-            if i < threshold:
-                table.append(0)
-            else:
-                table.append(1)
-
-        return table
 
     # filepath要加后缀，可以是相对路径
     def getStringFromImage(self, filepath):
-        im = Image.open(filepath)
-        im = im.convert('L')
-        binaryImage = im.point(self.__initTable(), '1')
-        # binaryImage.show()
-        valcode = image_to_string(binaryImage, config='-psm 7').strip()
-        print(valcode)
-        return valcode
+        letters = split_letters(filepath)
+        with open('res/captcha/sipoknn.pkl', 'rb') as f:
+            sipoknn = pickle.load(f)
+            captcha = sipoknn.predict(letters)
+            result = ''
+            for cap in captcha:
+                result += str(cap)
+            print(result)
+        return result
