@@ -7,9 +7,9 @@ from requests import ReadTimeout
 import controller as ctrl
 
 from config.account_settings import USERNAME, PASSWORD
-from config.base_settings import CAPTCHA_MODEL_NAME, TIMEOUT
+from config.base_settings import CAPTCHA_MODEL_NAME, TIMEOUT, USE_PROXY
 from controller.url_config import url_captcha, url_index, url_login
-from service.proxy import update_proxy, check_proxy
+from service.proxy import update_proxy, check_proxy, notify_ip_address
 from service.request import get, post
 from service.sipoknn import get_captcha_result
 
@@ -69,7 +69,18 @@ def login():
     :return: True: 登录成功; False: 登录失败
     """
     ctrl.BEING_LOG = True
-    update_proxy()
+    if USE_PROXY:
+        try:
+            if ctrl.PROXIES is not None:
+                notify_ip_address()
+                logger.info('当前已有登录状态')
+                ctrl.BEING_LOG = False
+                return True
+            else:
+                update_proxy()
+        except:
+            update_proxy()
+
     update_cookies()
     username = change_to_base64(USERNAME)
     password = change_to_base64(PASSWORD)
@@ -87,8 +98,8 @@ def login():
             logger.info('登录成功')
             return True
         else:
-            ctrl.BEING_LOG = False
             logger.error('登录失败')
+    ctrl.BEING_LOG = False
     return False
 
 

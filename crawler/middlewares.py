@@ -4,6 +4,7 @@
 #
 # See documentation in:
 # http://doc.scrapy.org/en/latest/topics/spider-middleware.html
+import time
 from logbook import Logger
 from requests.utils import dict_from_cookiejar
 from scrapy.downloadermiddlewares.retry import RetryMiddleware
@@ -24,12 +25,20 @@ class PatentMiddleware(RetryMiddleware):
 
     def process_response(self, request, response, spider):
         body = response.body_as_unicode()
-        if body.find(
-                'window.location.href = contextPath +"/portal/uilogin-forwardLogin.shtml";') != -1 or response.status == 404:
+        if body.find('window.location.href = contextPath +"/portal/uilogin-forwardLogin.shtml";') != -1 or body.find(
+                '访问受限') != -1 or response.status == 404:
             logger.info('未登录，登陆中，请稍后···')
-            if login():
-                return self._retry(request, 'unlogin', spider)
+            if ctrl.BEING_LOG is False:
+                login()
+            while ctrl.BEING_LOG:
+                time.sleep(1)
+            return self._retry(request, 'unlogin', spider)
         return response
 
     def process_exception(self, request, exception, spider):
+        if ctrl.BEING_LOG is False:
+            login()
+        while ctrl.BEING_LOG:
+            time.sleep(1)
         logger.error(exception)
+        self._retry(request, 'unlogin', spider)

@@ -68,3 +68,5 @@ class SipoCrawlerItem(scrapy.Item):
     legal_status = scrapy.Field()
     #  法律状态生效日期
     legal_status_effective_date = scrapy.Field()
+
+    PCT_enters_national_phase_date = scrapy.Field()

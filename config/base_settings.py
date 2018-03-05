@@ -41,5 +41,7 @@ CAPTCHA_MODEL_NAME = os.path.join(BASE_PATH, 'res', 'captcha', 'sipoknn.job')
 """
 基础设置
 """
-USE_PROXY = False
+# 是否使用代理
+USE_PROXY = True
+# 请求超时，单位秒
 TIMEOUT = 10

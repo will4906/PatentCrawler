@@ -13,7 +13,7 @@ Created on 2017/3/24
 
 
 # 账号
-USERNAME = 'iamcrawler2017'
+USERNAME = ''
 # 密码
-PASSWORD = '1234567890hsh'
+PASSWORD = ''
 

@@ -121,14 +121,23 @@ class PatentSpider(scrapy.Spider):
     def parse_patent_detail(self, response):
         sipo = response.meta['sipo']
         sipocrawler = response.meta['sipocrawler']
-        detail = json.loads(response.body_as_unicode())
+        detail = None
+        try:
+            detail = json.loads(response.body_as_unicode())
+        except:
+            print(response)
+            print(response.body_as_unicode())
+            raise Exception('error')
         sipocrawler['abstract'] = BeautifulSoup(detail.get('abstractInfoDTO').get('abIndexList')[0].get('value'),
                                                 'lxml').text.replace('\n', '').strip()
         sipocrawler['invention_name'] = detail.get('abstractInfoDTO').get('tioIndex').get('value')
         logger.info('开始采集(patent_id: %s, invention_name: %s)' % (
         sipocrawler.get('patent_id'), sipocrawler.get('invention_name')))
         for abitem in detail.get('abstractInfoDTO').get('abstractItemList'):
-            resolve_data(sipocrawler, abitem.get('indexCnName'), abitem.get('value'))
+            try:
+                resolve_data(sipocrawler, abitem.get('indexCnName'), abitem.get('value'))
+            except Exception as e:
+                logger.warn('无法支持 %s 字段' % abitem.get('indexCnName'))
         lawinfo = response.meta.get('lawinfo')
         formdata = url_related_info.get('form_data')
         formdata.__setitem__('literaInfo.nrdAn', lawinfo.get('nrdAn'))
