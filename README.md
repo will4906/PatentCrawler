@@ -4,6 +4,11 @@
 
 # 使用说明见[WIKI](https://github.com/will4906/PatentCrawler/wiki)
 
+### Config
+
+* 配置文件在config/config.ini
+* 至少需要填写username和password
+
 ### Environment
 
 * pip install -r requirements.txt

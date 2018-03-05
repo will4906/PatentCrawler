@@ -19,9 +19,8 @@ from requests.exceptions import ProxyError
 import controller as ctrl
 import requests
 
-from config.base_settings import USE_PROXY, TIMEOUT
+from config.base_settings import USE_PROXY, TIMEOUT, PROXY_URL
 from controller.url_config import url_pre_execute
-# from service.account import update_cookies, login
 
 logger = Logger(__name__)
 
@@ -53,7 +52,7 @@ def get_proxy():
 
     try:
         logger.info('获取代理···')
-        resp = requests.get('http://127.0.0.1:5010/get', timeout=TIMEOUT)
+        resp = requests.get(PROXY_URL, timeout=TIMEOUT)
         ip_address = resp.text
         proxies = {'http': ip_address, 'https': ip_address}
         logger.info(proxies)
@@ -69,17 +68,16 @@ def update_proxy():
     获取并校验代理ip地址
     :return:
     """
-    i = 0
-    while True:
-        try:
-            get_proxy()
-            notify_ip_address()
-            return True
-        except Exception:
-            i += 1
-            logger.error("代理获取失败，尝试重试，重试次数%s" % (i, ))
-
-    # raise Exception('代理重试5次，仍无法成功')
+    if USE_PROXY:
+        i = 0
+        while True:
+            try:
+                get_proxy()
+                notify_ip_address()
+                return True
+            except Exception:
+                i += 1
+                logger.error("代理获取失败，尝试重试，重试次数%s" % (i, ))
 
 
 def check_proxy(func):

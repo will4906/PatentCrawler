@@ -10,6 +10,8 @@ Created on 2017/3/19
 """
 import os
 
+import click
+
 from util.TimeUtil import TimeUtil
 
 """
@@ -27,10 +29,8 @@ DATABASE_NAME = os.path.join(OUTPUT_GROUP_PATH, 'Patent.db')
 EXCEL_NAME = os.path.join(OUTPUT_GROUP_PATH, '专利.xlsx')
 # 生成图表地址
 DIAGRAM_NAME = os.path.join(OUTPUT_GROUP_PATH, 'diagram.html')
-# log输出目录
-LOG_PATH = os.path.join(BASE_PATH, 'log')
 # log文件名
-LOG_FILENAME = os.path.join(LOG_PATH, "PatentCrawler{0}.log".format(TimeUtil.getFormatTime("%Y%m%d_%H%M%S")))
+LOG_FILENAME = os.path.join(OUTPUT_GROUP_PATH, "PatentCrawler.log")
 # 模板文件目录，不建议修改
 TEMPLATE_PATH = os.path.join(BASE_PATH, 'res', 'template')
 # 模板文件地址，有可能增加和改变，不建议修改
@@ -43,5 +43,25 @@ CAPTCHA_MODEL_NAME = os.path.join(BASE_PATH, 'res', 'captcha', 'sipoknn.job')
 """
 # 是否使用代理
 USE_PROXY = True
+# 代理请求url，若USE_PROXY为False则忽略此项
+PROXY_URL = 'http://127.0.0.1:5010/get'
 # 请求超时，单位秒
 TIMEOUT = 10
+
+
+def check_proxy(cfg):
+    global USE_PROXY
+    try:
+        use_proxy = cfg.getboolean('proxy', 'use_proxy')
+        USE_PROXY = use_proxy
+    except:
+        click.echo('代理配置异常，使用默认值')
+
+    if USE_PROXY:
+        try:
+            proxy_url = cfg['proxy']['proxy_url']
+            if proxy_url != '':
+                global PROXY_URL
+                PROXY_URL = proxy_url
+        except:
+            click.echo('代理url配置异常，使用默认值')

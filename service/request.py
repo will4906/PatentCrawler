@@ -15,31 +15,6 @@ from service.proxy import check_proxy
 logging.getLogger(__name__).setLevel(logging.DEBUG)
 
 
-# def request_login(func):
-#     """
-#     报错重新登录的装饰器，暂时无用
-#     :param func:
-#     :return:
-#     """
-#     def wrapper(*args, **kwargs):
-#         resp = func(*args, **kwargs)
-#         if resp.text.find('window.location.href = contextPath +"/portal/uilogin-forwardLogin.shtml";') != -1:
-#             login_status = False
-#             while login_status is False:
-#                 try:
-#                     update_proxy()
-#                     update_cookies()
-#                     login_status = login()
-#                     if login_status:
-#                         logging.info('登录成功')
-#                     else:
-#                         logging.info('登录失败')
-#                 except Exception as e:
-#                     logging.exception(e)
-#
-#     return wrapper
-
-
 @check_proxy
 def get(*args, **kwargs):
     return request(request_type='get', **kwargs)

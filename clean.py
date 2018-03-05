@@ -6,7 +6,7 @@ import os
 
 import shutil
 
-from config.base_settings import OUTPUT_PATH, LOG_PATH
+from config.base_settings import OUTPUT_PATH
 
 logging.getLogger(__name__).setLevel(logging.DEBUG)
 
@@ -21,19 +21,5 @@ def clean_outputs():
         shutil.rmtree(os.path.join(OUTPUT_PATH, output))
 
 
-def clean_logs():
-    """
-    清理log文件夹的内容
-    :return:
-    """
-    log_list = os.listdir(LOG_PATH)
-    for log in log_list:
-        try:
-            os.remove(os.path.join(LOG_PATH, log))
-        except Exception as e:
-            logging.exception(e)
-
-
 if __name__ == '__main__':
     clean_outputs()
-    clean_logs()

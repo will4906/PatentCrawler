@@ -10,7 +10,8 @@ from requests.utils import dict_from_cookiejar
 from scrapy.downloadermiddlewares.retry import RetryMiddleware
 
 import controller as ctrl
-from service.account import login, update_cookies
+from config.base_settings import USE_PROXY
+from service.account import login
 
 logger = Logger(__name__)
 
@@ -18,7 +19,7 @@ logger = Logger(__name__)
 class PatentMiddleware(RetryMiddleware):
 
     def process_request(self, request, spider):
-        if ctrl.PROXIES is not None:
+        if USE_PROXY and ctrl.PROXIES is not None:
             request.meta['proxy'] = "http://%s" % (ctrl.PROXIES.get('http'))
         if ctrl.COOKIES is not None:
             request.cookies = dict_from_cookiejar(ctrl.COOKIES)
@@ -28,17 +29,21 @@ class PatentMiddleware(RetryMiddleware):
         if body.find('window.location.href = contextPath +"/portal/uilogin-forwardLogin.shtml";') != -1 or body.find(
                 '访问受限') != -1 or response.status == 404:
             logger.info('未登录，登陆中，请稍后···')
+            login_ok = False
             if ctrl.BEING_LOG is False:
-                login()
+                login_ok = login()
             while ctrl.BEING_LOG:
                 time.sleep(1)
-            return self._retry(request, 'unlogin', spider)
+            if login_ok:
+                return self._retry(request, 'unlogin', spider)
         return response
 
     def process_exception(self, request, exception, spider):
+        logger.error(exception)
+        login_ok = False
         if ctrl.BEING_LOG is False:
-            login()
+            login_ok = login()
         while ctrl.BEING_LOG:
             time.sleep(1)
-        logger.error(exception)
-        self._retry(request, 'unlogin', spider)
+        if login_ok:
+            self._retry(request, 'unlogin', spider)

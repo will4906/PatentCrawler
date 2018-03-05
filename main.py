@@ -4,24 +4,28 @@ Created on 2017/3/19
 
 @author: will4906
 """
+import configparser
 import shutil
-# import time
 import os
 import sys
 
+import click
 from scrapy import cmdline
-#
-# from config.LoginInfo import LoginInfo
-# from entity.models import Patents
-# from service.CookieService import CookieService
-# from service.LoginService import LoginService
-# from util.excel.ExcelUtil import ExcelUtil, XlsxUtil
+
+from config import account_settings as account
+from config import base_settings as base
 from config.base_settings import *
 # from visual.map_charts import ChinaMap
 from entity.models import Patents
-from service import log
-from service.account import update_cookies, login
-from service.proxy import update_proxy
+from service.log import init_log
+
+
+def init_config():
+    cfg = configparser.ConfigParser()
+    cfg.read(os.path.join('config', 'config.ini'), 'utf-8')
+    account.check_username(cfg)
+    account.check_password(cfg)
+    base.check_proxy(cfg)
 
 
 def init_base_path():
@@ -29,8 +33,6 @@ def init_base_path():
         os.mkdir(OUTPUT_PATH)
     if os.path.exists(OUTPUT_GROUP_PATH) is False:
         os.mkdir(OUTPUT_GROUP_PATH)
-    if os.path.exists(LOG_PATH) is False:
-        os.mkdir(LOG_PATH)
     shutil.copy(TEMPLATE_NAME, DIAGRAM_NAME)
 
 
@@ -53,29 +55,26 @@ def init_base_path():
 #     return
 #
 #
-def initDataBase():
+def init_data_base():
     Patents.create_table()
 
 
-
 if __name__ == '__main__':
-    print(
+    click.echo(
         '''
-        ***************************************************************************
-        * 使用说明：https://github.com/will4906/PatentCrawler/wiki
-        * 代码更新：https://github.com/will4906/PatentCrawler
-        * bug反馈、交流建议:
-        * \t邮箱：553105821@qq.com
-        * \tgithub：https://github.com/will4906/PatentCrawler/issues
-        ***************************************************************************
+***************************************************************************
+* 使用说明：https://github.com/will4906/PatentCrawler/wiki
+* 代码更新：https://github.com/will4906/PatentCrawler
+* bug反馈、交流建议:
+* \t邮箱：553105821@qq.com
+* \tgithub：https://github.com/will4906/PatentCrawler/issues
+***************************************************************************
         '''
     )
-    print("程序开始")
+    init_log()
+    init_config()
     init_base_path()
-    initDataBase()
-    # checkForConfig()
+    init_data_base()
 
-    # update_proxy()
-    # update_cookies()
-    # login()
     cmdline.execute(("scrapy crawl Patent -s LOG_FILE=" + LOG_FILENAME).split())
+
