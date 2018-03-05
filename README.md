@@ -7,8 +7,8 @@
 ### Environment
 
 * pip install -r requirements.txt
-* 验证码采用k近邻算法进行识别，请安装`pip install sklearn`
-* 具体方法见https://github.com/will4906/CaptchaRecognition
+* 验证码采用k近邻算法进行识别，具体方法见[https://github.com/will4906/CaptchaRecognition](https://github.com/will4906/CaptchaRecognition)
+* 代理模块使用: [https://github.com/jhao104/proxy_pool](https://github.com/jhao104/proxy_pool)
 
 ### Data Visualization
 

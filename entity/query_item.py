@@ -58,7 +58,6 @@ def handle_number(title, request_number):
             return title + '=(+' + request_number + '+)'
 
 
-
 def handle_date_element(title, date_element):
     """
     处理日期元素的函数
@@ -266,10 +265,12 @@ class DateSelect:
             self.search_exp = '=' + self.date + self.select + self.enddate
 
     def __repr__(self):
-        return 'DateSelect{select=' + str(self.select) + ',date=' + str(self.date) + ',enddate=' + str(self.enddate) + '}'
+        return 'DateSelect{select=' + str(self.select) + ',date=' + str(self.date) + ',enddate=' + str(
+            self.enddate) + '}'
 
     def __str__(self):
-        return 'DateSelect{select=' + str(self.select) + ',date=' + str(self.date) + ',enddate=' + str(self.enddate) + '}'
+        return 'DateSelect{select=' + str(self.select) + ',date=' + str(self.date) + ',enddate=' + str(
+            self.enddate) + '}'
 
 
 class ItemGroup:
@@ -288,9 +289,9 @@ class ItemGroup:
         whole = ''
         if self.And is not None:
             whole += str(self.And)
-        if self.Or is not  None:
+        if self.Or is not None:
             whole += str(self.Or)
-        if self.Not is not  None:
+        if self.Not is not None:
             whole += str(self.Not)
         return whole
 
@@ -338,10 +339,11 @@ class SipoItem:
     """
     一个用来解析专利网站专利检索表达式的实例
     """
+
     def __init__(self, **kwargs):
         self.startIndex = 0
         self.__queryAnd = And()
-        self.target_parm = {}                               # 经过整理后的目标参数
+        self.target_parm = {}  # 经过整理后的目标参数
         self.__prepare_item(kwargs)
 
         for title, value in title_define.items():
@@ -350,7 +352,7 @@ class SipoItem:
                 self.__queryAnd.add_parm(title_case.get(title)(value, key))
         self.__itemGroup = ItemGroup(And=self.__queryAnd)
 
-        self.search_exp_cn = handle_item_group(self.__itemGroup)             # 生成的检索表达式
+        self.search_exp_cn = handle_item_group(self.__itemGroup)  # 生成的检索表达式
         self.target_parm = self.__check_target_parm(kwargs)
 
     def __prepare_item(self, items):
@@ -389,7 +391,7 @@ class SipoItem:
                         elif value == '"U"' or value == '实用新型':
                             value = {'en': '"U"', 'cn': '实用新型'}
                         elif value == '"D"' or value == '外观设计':
-                            value = {'en':'"D"', 'cn': '外观设计'}
+                            value = {'en': '"D"', 'cn': '外观设计'}
                         else:
                             raise Exception('Please check the inventor_type')
                 target[key] = value
@@ -397,12 +399,3 @@ class SipoItem:
 
     def __repr__(self):
         return self.search_exp_cn
-
-
-
-
-
-
-
-
-
