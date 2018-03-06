@@ -13,6 +13,7 @@ from config.query_config import QUERY_LIST
 from controller.url_config import *
 from crawler.items import SipoCrawlerItem
 from service.item_collection import resolve_data
+from visual.map_charts import ChinaMap
 
 logger = Logger(__name__)
 
@@ -121,13 +122,7 @@ class PatentSpider(scrapy.Spider):
     def parse_patent_detail(self, response):
         sipo = response.meta['sipo']
         sipocrawler = response.meta['sipocrawler']
-        detail = None
-        try:
-            detail = json.loads(response.body_as_unicode())
-        except:
-            print(response)
-            print(response.body_as_unicode())
-            raise Exception('error')
+        detail = json.loads(response.body_as_unicode())
         sipocrawler['abstract'] = BeautifulSoup(detail.get('abstractInfoDTO').get('abIndexList')[0].get('value'),
                                                 'lxml').text.replace('\n', '').strip()
         sipocrawler['invention_name'] = detail.get('abstractInfoDTO').get('tioIndex').get('value')
@@ -163,6 +158,6 @@ class PatentSpider(scrapy.Spider):
         yield sipocrawler
 
     def closed(self, reason):
-        # if os.path.exists(DATABASE_NAME):
-        #     ChinaMap().create()
-        print(reason)
+        if os.path.exists(DATABASE_NAME) and 'data' in OUTPUT_ITEMS and 'chart' in OUTPUT_ITEMS:
+            ChinaMap().create()
+        logger.info(reason)

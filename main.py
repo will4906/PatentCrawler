@@ -26,6 +26,9 @@ def init_config():
     account.check_username(cfg)
     account.check_password(cfg)
     base.check_proxy(cfg)
+    base.check_request(cfg)
+    base.check_output(cfg)
+    # print(base.TIMEOUT)
 
 
 def init_base_path():
@@ -36,25 +39,6 @@ def init_base_path():
     shutil.copy(TEMPLATE_NAME, DIAGRAM_NAME)
 
 
-# def checkForConfig():
-#     if LoginInfo.USERNAME == '':
-#         LoginInfo.USERNAME = input('未填写账号，请填写：')
-#     if LoginInfo.PASSWORD == '':
-#         LoginInfo.PASSWORD = input('未填写密码，请填写：')
-#
-#
-# def init_excel_config():
-#     worksheet = XlsxUtil(EXCEL_NAME).getWorksheet()
-#     # title_list = ["专利类型", "专利名称", "法律状态", "法律状态最后修改日期", "公布号", "申请公布日/授权公告日", "申请号", "申请日", "申请人/专利权人", "发明人", "IPC分类号",
-#     #               "代理人", "代理机构", "外观设计洛迦诺分类号"]
-#     # editor = ExcelUtil(BaseConfig.FILE_NAME).edit()
-#     # sh = editor.getSheet(0)
-#     # for index, each in enumerate(title_list):
-#     #     sh.write(0, index, each)
-#     # editor.commit()
-#     return
-#
-#
 def init_data_base():
     Patents.create_table()
 
@@ -75,6 +59,9 @@ if __name__ == '__main__':
     init_config()
     init_base_path()
     init_data_base()
-
-    cmdline.execute(("scrapy crawl Patent -s LOG_FILE=" + LOG_FILENAME).split())
+    # print(base.OUTPUT_ITEMS)
+    if 'log' in base.OUTPUT_ITEMS:
+        cmdline.execute(("scrapy crawl Patent -s LOG_FILE=" + LOG_FILENAME).split())
+    else:
+        cmdline.execute(("scrapy crawl Patent").split())
 

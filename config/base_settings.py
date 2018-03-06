@@ -47,9 +47,16 @@ USE_PROXY = True
 PROXY_URL = 'http://127.0.0.1:5010/get'
 # 请求超时，单位秒
 TIMEOUT = 10
+# 输出项目
+OUTPUT_ITEMS = ['data', 'log', 'chart']
 
 
 def check_proxy(cfg):
+    """
+    检查代理相关信息
+    :param cfg:
+    :return:
+    """
     global USE_PROXY
     try:
         use_proxy = cfg.getboolean('proxy', 'use_proxy')
@@ -63,5 +70,49 @@ def check_proxy(cfg):
             if proxy_url != '':
                 global PROXY_URL
                 PROXY_URL = proxy_url
+            else:
+                raise Exception('proxy error')
         except:
             click.echo('代理url配置异常，使用默认值')
+
+
+def check_request(cfg):
+    """
+    检查请求相关信息
+    :param cfg:
+    :return:
+    """
+    global TIMEOUT
+    try:
+        timeout = cfg.getint('request', 'timeout')
+        if timeout > 0:
+            TIMEOUT = timeout
+        else:
+            raise Exception('timeout error')
+    except:
+        click.echo('timeout配置异常，使用默认值')
+
+
+def check_output(cfg):
+    """
+    检查输出相关信息
+    :return:
+    """
+    global OUTPUT_ITEMS
+    try:
+        output_items = str(cfg.get('output', 'items'))
+        output_items = output_items.replace(' ', '')
+        output_item_list = output_items[1:-1].split(',')
+        result = ''
+        for item in output_item_list:
+            result += "'" + item + "',"
+        result = output_items[0] + result + output_items[-1]
+        print(result)
+        output_items = eval(result)
+        if isinstance(output_items, list):
+            OUTPUT_ITEMS = output_items
+        else:
+            raise Exception('items error')
+    except Exception as e:
+        print(e)
+        click.echo('输出内容配置异常，使用默认值')

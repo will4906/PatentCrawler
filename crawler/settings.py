@@ -8,6 +8,7 @@
 #     http://doc.scrapy.org/en/latest/topics/settings.html
 #     http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html
 #     http://scrapy.readthedocs.org/en/latest/topics/spider-middleware.html
+from config.base_settings import TIMEOUT
 
 BOT_NAME = 'crawler'
 
@@ -62,7 +63,7 @@ DOWNLOADER_MIDDLEWARES = {
     'crawler.middlewares.PatentMiddleware': 544,
     # 'crawler.middlewares.RandomUserAgentMiddleware': 542
 }
-DOWNLOAD_TIMEOUT = 20
+DOWNLOAD_TIMEOUT = TIMEOUT
 # Enable or disable extensions
 # See http://scrapy.readthedocs.org/en/latest/topics/extensions.html
 # EXTENSIONS = {

@@ -8,7 +8,7 @@ Created on 2018/2/25
 
 程序的代理决定使用https://github.com/jhao104/proxy_pool的代理池作为代理方式，
 
-开发者可以修改下方get_ip_proxy函数进行自定义
+开发者可以修改下方get_proxy函数进行自定义
 """
 import json
 
