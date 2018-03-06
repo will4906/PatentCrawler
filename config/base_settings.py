@@ -107,12 +107,10 @@ def check_output(cfg):
         for item in output_item_list:
             result += "'" + item + "',"
         result = output_items[0] + result + output_items[-1]
-        print(result)
         output_items = eval(result)
         if isinstance(output_items, list):
             OUTPUT_ITEMS = output_items
         else:
             raise Exception('items error')
     except Exception as e:
-        print(e)
         click.echo('输出内容配置异常，使用默认值')
