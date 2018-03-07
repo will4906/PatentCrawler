@@ -14,7 +14,7 @@ import json
 
 from logbook import Logger
 from requests import ConnectTimeout, ReadTimeout
-from requests.exceptions import ProxyError
+from requests.exceptions import RequestException
 
 import controller as ctrl
 import requests
@@ -91,7 +91,7 @@ def check_proxy(func):
             try:
                 resp = func(*args, **kwargs)
                 return resp
-            except (ReadTimeout, ConnectTimeout, ConnectionError, ProxyError):
+            except RequestException:
                 update_proxy()
         raise Exception('函数重试5次，仍无法成功')
     return wrapper

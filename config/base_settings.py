@@ -27,14 +27,10 @@ OUTPUT_GROUP_PATH = os.path.join(OUTPUT_PATH, TimeUtil.getFormatTime('%Y%m%d_%H%
 DATABASE_NAME = os.path.join(OUTPUT_GROUP_PATH, 'Patent.db')
 # 生成excel地址
 EXCEL_NAME = os.path.join(OUTPUT_GROUP_PATH, '专利.xlsx')
-# 生成图表地址
-DIAGRAM_NAME = os.path.join(OUTPUT_GROUP_PATH, 'diagram.html')
+# 生成图表目录
+CHARTS_NAME = os.path.join(OUTPUT_GROUP_PATH, 'charts.html')
 # log文件名
 LOG_FILENAME = os.path.join(OUTPUT_GROUP_PATH, "PatentCrawler.log")
-# 模板文件目录，不建议修改
-TEMPLATE_PATH = os.path.join(BASE_PATH, 'res', 'template')
-# 模板文件地址，有可能增加和改变，不建议修改
-TEMPLATE_NAME = os.path.join(TEMPLATE_PATH, 'template.html')
 # 验证码模型地址
 CAPTCHA_MODEL_NAME = os.path.join(BASE_PATH, 'res', 'captcha', 'sipoknn.job')
 

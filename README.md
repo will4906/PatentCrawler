@@ -17,7 +17,9 @@
 
 ### Data Visualization
 
-![地图](images/demo1.png)
+![地图](images/demo2.png)
+
+![柱状图](images/demo1.png)
 
 ### License
 

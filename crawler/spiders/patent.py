@@ -13,7 +13,7 @@ from config.query_config import QUERY_LIST
 from controller.url_config import *
 from crawler.items import SipoCrawlerItem
 from service.item_collection import resolve_data
-from visual.map_charts import ChinaMap
+from visual import create_charts
 
 logger = Logger(__name__)
 
@@ -159,5 +159,5 @@ class PatentSpider(scrapy.Spider):
 
     def closed(self, reason):
         if os.path.exists(DATABASE_NAME) and 'data' in OUTPUT_ITEMS and 'chart' in OUTPUT_ITEMS:
-            ChinaMap().create()
+            create_charts()
         logger.info(reason)
