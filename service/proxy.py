@@ -13,13 +13,13 @@ Created on 2018/2/25
 import json
 
 from logbook import Logger
-from requests.exceptions import RequestException
+from requests.exceptions import RequestException, ReadTimeout
 
 import controller as ctrl
 import requests
 
 from config import base_settings as bs
-from controller.url_config import url_pre_execute
+from controller.url_config import url_pre_execute, url_index
 
 logger = Logger(__name__)
 
@@ -77,6 +77,23 @@ def update_proxy():
             except Exception:
                 i += 1
                 logger.error("代理获取失败，尝试重试，重试次数%s" % (i, ))
+
+
+def update_cookies(cookies=None):
+    """
+    更新或获取cookies
+    :param cookies:
+    :return:
+    """
+    if cookies is None:
+        ctrl.COOKIES = requests.get(url=url_index.get('url'), proxies=ctrl.PROXIES, timeout=bs.TIMEOUT).cookies
+    else:
+        ctrl.COOKIES = cookies
+
+    logger.info(ctrl.COOKIES)
+    if len(ctrl.COOKIES) == 0:
+        logger.error('cookie有问题')
+        raise ReadTimeout('cookie有问题')
 
 
 def check_proxy(func):
