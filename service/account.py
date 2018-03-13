@@ -9,8 +9,7 @@ import controller as ctrl
 
 from config.base_settings import CAPTCHA_MODEL_NAME, TIMEOUT, USE_PROXY
 from controller.url_config import url_captcha, url_login
-from service.proxy import update_proxy, check_proxy, notify_ip_address, update_cookies
-from service.request import get, post
+from service.proxy import update_proxy, notify_ip_address, update_cookies
 from service.sipoknn import get_captcha_result
 
 logger = Logger(__name__)
