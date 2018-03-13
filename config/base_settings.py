@@ -8,6 +8,7 @@ Created on 2017/3/19
 
 以下地址、文件名可根据用户使用自行修改，工程所有地址将会采用。
 """
+import configparser
 import os
 
 import click
@@ -43,6 +44,8 @@ USE_PROXY = True
 PROXY_URL = 'http://127.0.0.1:5010/get'
 # 请求超时，单位秒
 TIMEOUT = 10
+# 请求延时，单位秒
+DOWNLOAD_DELAY = 1
 # 输出项目
 OUTPUT_ITEMS = ['data', 'log', 'chart']
 
@@ -72,13 +75,14 @@ def check_proxy(cfg):
             click.echo('代理url配置异常，使用默认值')
 
 
-def check_request(cfg):
+def check_request(cfg: configparser.ConfigParser):
     """
     检查请求相关信息
     :param cfg:
     :return:
     """
     global TIMEOUT
+    global DOWNLOAD_DELAY
     try:
         timeout = cfg.getint('request', 'timeout')
         if timeout > 0:
@@ -87,6 +91,15 @@ def check_request(cfg):
             raise Exception('timeout error')
     except:
         click.echo('timeout配置异常，使用默认值')
+
+    try:
+        delay = cfg.getfloat('request', 'delay')
+        if delay > 0:
+            DOWNLOAD_DELAY = delay
+        else:
+            raise Exception('delay error')
+    except:
+        click.echo("延时配置异常，使用默认值")
 
 
 def check_output(cfg):

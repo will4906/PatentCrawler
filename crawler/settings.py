@@ -8,7 +8,7 @@
 #     http://doc.scrapy.org/en/latest/topics/settings.html
 #     http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html
 #     http://scrapy.readthedocs.org/en/latest/topics/spider-middleware.html
-from config.base_settings import TIMEOUT
+from config import base_settings as bs
 
 BOT_NAME = 'crawler'
 
@@ -30,7 +30,7 @@ ROBOTSTXT_OBEY = False
 # Configure a delay for requests for the same website (default: 0)
 # See http://scrapy.readthedocs.org/en/latest/topics/settings.html#download-delay
 # See also autothrottle settings and docs
-DOWNLOAD_DELAY = 1
+DOWNLOAD_DELAY = bs.DOWNLOAD_DELAY
 # The download delay setting will honor only one of:
 # CONCURRENT_REQUESTS_PER_DOMAIN = 16
 # CONCURRENT_REQUESTS_PER_IP = 16
@@ -63,7 +63,7 @@ DOWNLOADER_MIDDLEWARES = {
     'crawler.middlewares.PatentMiddleware': 544,
     # 'crawler.middlewares.RandomUserAgentMiddleware': 542
 }
-DOWNLOAD_TIMEOUT = TIMEOUT
+DOWNLOAD_TIMEOUT = bs.TIMEOUT
 # Enable or disable extensions
 # See http://scrapy.readthedocs.org/en/latest/topics/extensions.html
 # EXTENSIONS = {

@@ -1,12 +1,13 @@
 import base64
+import configparser
 
+import click
 import requests
 from logbook import *
 from requests import ReadTimeout
 
 import controller as ctrl
 
-from config.account_settings import USERNAME, PASSWORD
 from config.base_settings import CAPTCHA_MODEL_NAME, TIMEOUT, USE_PROXY
 from controller.url_config import url_captcha, url_index, url_login
 from service.proxy import update_proxy, check_proxy, notify_ip_address
@@ -14,6 +15,93 @@ from service.request import get, post
 from service.sipoknn import get_captcha_result
 
 logger = Logger(__name__)
+
+
+account_notify_times = 0
+description = (
+    '''
+    用户信息配置模块
+
+    由于专利网站的改版，现在要求必须要登录账号密码才能进行高级查询，
+    请使用者到专利网站自行注册账号，并修改一下USERNAME和PASSWORD的值
+    链接：http://www.pss-system.gov.cn/sipopublicsearch/portal/uiregister-showRegisterPage.shtml
+    '''
+)
+
+
+class Account:
+    """
+    账户信息定义
+    """
+    def __init__(self):
+        # 用户名，约定私有约束，使用请调用self.username
+        self._username = ''
+        # 密码，约定私有约束，使用请调用self.password
+        self._password = ''
+
+    @property
+    def username(self):
+        return self._username
+
+    @username.setter
+    def username(self, username: str):
+        if username is None:
+            raise Exception('username invalid')
+        username = username.replace(' ', '')
+        if username == '':
+            raise Exception('username invalid')
+        self._username = username
+
+    @property
+    def password(self):
+        return self._password
+
+    @password.setter
+    def password(self, password: str):
+        if password is None or password == '':
+            raise Exception('password invalid')
+        self._password = password
+
+    def check_username(self, cfg: configparser.ConfigParser):
+        """
+        用户名校验，设置
+        :param cfg:
+        :return:
+        """
+        try:
+            username = cfg.get('account', 'username')
+            self.username = username
+        except:
+            click.echo(description)
+            while True:
+                try:
+                    username = click.prompt('用户名出错，请填写')
+                    self.username = username
+                    break
+                except:
+                    pass
+
+    def check_password(self, cfg: configparser.ConfigParser):
+        """
+        密码校验，配置
+        :param cfg:
+        :return:
+        """
+        try:
+            password = cfg.get('account', 'password')
+            self.password = password
+        except:
+            while True:
+                try:
+                    password = click.prompt('密码出错，请填写')
+                    self.password = password
+                    break
+                except:
+                    pass
+
+
+# 账户信息的单例
+account = Account()
 
 
 @check_proxy
@@ -82,8 +170,8 @@ def login():
             update_proxy()
 
     update_cookies()
-    username = change_to_base64(USERNAME)
-    password = change_to_base64(PASSWORD)
+    username = change_to_base64(account.username)
+    password = change_to_base64(account.password)
     for i in range(3):
         captcha = get_captcha()
         logger.info('验证码识别结果：%s' % captcha)
@@ -92,7 +180,7 @@ def login():
         form_data.__setitem__('j_username', username)
         form_data.__setitem__('j_password', password)
         resp = post(url=url_login.get('url'), headers=url_login.get('headers'), data=form_data)
-        if resp.text.find(USERNAME + '，欢迎访问') != -1:
+        if resp.text.find(account.username + '，欢迎访问') != -1:
             update_cookies(resp.cookies)
             ctrl.BEING_LOG = False
             logger.info('登录成功')
@@ -121,7 +209,4 @@ def relogin_when_error(func):
 
 if __name__ == '__main__':
     pass
-    # logger.info('hello world')
-    # print(__name__)
-    # update_cookies()
-    # print(login())
+

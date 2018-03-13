@@ -13,13 +13,12 @@ Created on 2018/2/25
 import json
 
 from logbook import Logger
-from requests import ConnectTimeout, ReadTimeout
 from requests.exceptions import RequestException
 
 import controller as ctrl
 import requests
 
-from config.base_settings import USE_PROXY, TIMEOUT, PROXY_URL
+from config import base_settings as bs
 from controller.url_config import url_pre_execute
 
 logger = Logger(__name__)
@@ -31,7 +30,7 @@ def notify_ip_address():
     这个网站比较特别，每当有陌生ip地址时，都需要通过这个方法向网站发送一次请求先。
     :return:
     """
-    resp = requests.post(url_pre_execute.get('url'), proxies=ctrl.PROXIES, timeout=TIMEOUT)
+    resp = requests.post(url_pre_execute.get('url'), proxies=ctrl.PROXIES, timeout=bs.TIMEOUT)
     ip_address = json.loads(resp.text)
     if ctrl.PROXIES is not None:
         if ip_address.get('IP') == ctrl.PROXIES.get('http').split(':')[0]:
@@ -47,12 +46,12 @@ def get_proxy():
     获取代理ip，并更新控制器PROXIES
     :return: 可用的ip代理
     """
-    if USE_PROXY is False:
+    if bs.USE_PROXY is False:
         return None
 
     try:
         logger.info('获取代理···')
-        resp = requests.get(PROXY_URL, timeout=TIMEOUT)
+        resp = requests.get(bs.PROXY_URL, timeout=bs.TIMEOUT)
         ip_address = resp.text
         proxies = {'http': ip_address, 'https': ip_address}
         logger.info(proxies)
@@ -68,7 +67,7 @@ def update_proxy():
     获取并校验代理ip地址
     :return:
     """
-    if USE_PROXY:
+    if bs.USE_PROXY:
         i = 0
         while True:
             try:

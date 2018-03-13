@@ -48,8 +48,6 @@ class PatentSpider(scrapy.Spider):
         soup = BeautifulSoup(body, 'lxml')
         # 解析总专利数和专利页码数
         page_top = soup.find(attrs={"class": "page_top"})
-        page_sum = 0
-        patent_sum = 0
         if page_top == 0:
             logger.info('共0页')
         else:

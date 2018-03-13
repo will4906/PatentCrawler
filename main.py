@@ -11,10 +11,10 @@ import sys
 import click
 from scrapy import cmdline
 
-from config import account_settings as account
 from config import base_settings as base
 from config.base_settings import *
 from entity.models import Patents
+from service.account import account
 from service.log import init_log
 
 
