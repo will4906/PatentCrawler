@@ -162,7 +162,8 @@ def login():
             resp = requests.post(url=url_login.get('url'), headers=url_login.get('headers'), data=form_data,
                                  cookies=ctrl.COOKIES, proxies=ctrl.PROXIES, timeout=TIMEOUT)
             if resp.text.find(account.username + '，欢迎访问') != -1:
-                update_cookies(resp.cookies)
+                # 网站调整了逻辑，下面这句不用了
+                # update_cookies(resp.cookies)
                 ctrl.BEING_LOG = False
                 logger.info('登录成功')
                 return True

@@ -33,7 +33,9 @@ CHARTS_NAME = os.path.join(OUTPUT_GROUP_PATH, 'charts.html')
 # log文件名
 LOG_FILENAME = os.path.join(OUTPUT_GROUP_PATH, "PatentCrawler.log")
 # 验证码模型地址
-CAPTCHA_MODEL_NAME = os.path.join(BASE_PATH, 'res', 'captcha', 'sipoknn.job')
+CAPTCHA_MODEL_NAME = os.path.join(BASE_PATH, 'res', 'captcha', 'sipo_knn2.job')
+# 赞赏html路径
+AD_PATH = os.path.join(BASE_PATH, 'res', 'advertisement', 'ad.html')
 
 """
 基础设置

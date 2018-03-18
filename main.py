@@ -13,8 +13,10 @@ from scrapy import cmdline
 
 from config import base_settings as base
 from config.base_settings import *
+# from crawler.pipelines import CrawlerPipeline
 from entity.models import Patents
 from service.account import account
+from service.info import init_crawler
 from service.log import init_log
 
 
@@ -26,6 +28,7 @@ def init_config():
     base.check_proxy(cfg)
     base.check_request(cfg)
     base.check_output(cfg)
+    init_crawler(cfg)
 
 
 def init_base_path():
@@ -52,10 +55,11 @@ if __name__ == '__main__':
         '''
     )
     init_log()
-    init_config()
     init_base_path()
-    init_data_base()
+    init_config()
 
+    # init_data_base()
+    # CrawlerPipeline().process_item(None, None)
     if 'log' in base.OUTPUT_ITEMS:
         cmdline.execute(("scrapy crawl Patent -s LOG_FILE=" + LOG_FILENAME).split())
     else:
