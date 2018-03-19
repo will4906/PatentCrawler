@@ -87,6 +87,7 @@ def update_cookies(cookies=None):
     """
     if cookies is None:
         ctrl.COOKIES = requests.get(url=url_index.get('url'), proxies=ctrl.PROXIES, timeout=bs.TIMEOUT).cookies
+
     else:
         ctrl.COOKIES = cookies
 

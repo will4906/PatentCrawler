@@ -163,7 +163,13 @@ def login():
                                  cookies=ctrl.COOKIES, proxies=ctrl.PROXIES, timeout=TIMEOUT)
             if resp.text.find(account.username + '，欢迎访问') != -1:
                 # 网站调整了逻辑，下面这句不用了
-                # update_cookies(resp.cookies)
+                # ctrl.COOKIES.__delitem__('IS_LOGIN')
+                # ctrl.COOKIES.set('IS_LOGIN', 'true', domain='www.pss-system.gov.cn/sipopublicsearch/patentsearch')
+                jsession = ctrl.COOKIES.get('JSESSIONID')
+                ctrl.COOKIES = resp.cookies
+                ctrl.COOKIES.set('JSESSIONID', jsession, domain='www.pss-system.gov.cn')
+                # logger.info(jsession)
+                update_cookies(ctrl.COOKIES)
                 ctrl.BEING_LOG = False
                 logger.info('登录成功')
                 return True

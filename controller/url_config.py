@@ -36,6 +36,7 @@ url_pre_execute = {
 # 主查询地址
 # 这个地址经常改变
 url_search = {
+    # 'url': 'http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/executeTableSearch0712-executeCommandSearch.shtml',
     'url': 'http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/executeTableSearch0712-executeCommandSearch.shtml',
     'headers': {
         "Content-Type": "application/x-www-form-urlencoded",
