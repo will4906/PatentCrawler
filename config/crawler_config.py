@@ -135,7 +135,7 @@ class IpcClassificationNumber(BaseItem):
 class Applicant(BaseItem):
     crawler_id = url_detail.get('crawler_id')
     english = ['Applicant', 'applicant', 'assignee', 'Assignee', 'proposer']
-    chinese = ['申请人', '专利权人', '专利人']
+    chinese = ['申请人', '专利权人', '专利人', '申请（专利权）人']
 
     @classmethod
     def parse(cls, raw, item, process=None):
