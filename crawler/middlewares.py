@@ -29,6 +29,9 @@ class PatentMiddleware(RetryMiddleware):
         # logger.info(body.find('window.location.href = contextPath +"/portal/uilogin-forwardLogin.shtml";'))
         # logger.info(body.find('访问受限'))
         # logger.info(response.status)
+        if response.status == 404 or response.status == '404':
+            pass
+            # logger.info('偶尔404，')
         if body.find('window.location.href = contextPath +"/portal/uilogin-forwardLogin.shtml";') != -1 or body.find(
                 '访问受限') != -1 or response.status == 404:
             logger.info('未登录，登陆中，请稍后···')

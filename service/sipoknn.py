@@ -76,20 +76,15 @@ def get_captcha_result(model_path, filename):
     :param filename: 需要解析的验证码全路径
     :return: 解析结果
     """
-    result = ''
-    image = Image.open(filename)
-    pix = image_as_array(image.convert('L'))
-    pix = convert_to_pure_black_white(pix)
-    result_letters = []
-    letters = split_letters(pix)
-    for i, l in enumerate(letters):
-        l = remove_noise_line(l)
-        result_letters.append(l.reshape(20 * 15))
-    result_letters = np.asarray(result_letters)
+    image = np.asarray(Image.open(filename).convert('L'))
+    image = (image > 135) * 255
+    letters = [image[:, 6:18].reshape(20 * 12), image[:, 19:31].reshape(20 * 12), image[:, 33:45].reshape(20 * 12),
+               image[:, 45:57].reshape(20 * 12)]
     model = joblib.load(model_path)
-    for r in model.predict(result_letters):
-        result += str(r)
-    return result
+    result = ''
+    for c in model.predict(letters):
+        result += c
+    return eval(result)
 
 
 if __name__ == "__main__":
