@@ -64,11 +64,14 @@ def push_item(json_list, item: DataItem, title, name):
     :param name:
     :return:
     """
-    aitem_list = json_list.get('abstractInfoDTO').get('abstractItemList')
-    for a_item in aitem_list:
-        if a_item.get('indexCnName').find(name) != -1:
-            item.__setattr__(title, ResultItem(title=name, value=a_item.get('value')))
-            break
+    if json_list is not None:
+        aitem_list = json_list.get('abstractInfoDTO').get('abstractItemList')
+        for a_item in aitem_list:
+            if a_item.get('indexCnName').find(name) != -1:
+                item.__setattr__(title, ResultItem(title=name, value=a_item.get('value')))
+                break
+    if not hasattr(item, title):
+        item.__setattr__(title, ResultItem(title=name, value=""))
     return item
 
 
@@ -79,9 +82,7 @@ class RequestNumber(BaseItem):
 
     @classmethod
     def parse(cls, raw, item, process=None):
-        if process is not None:
-            item = push_item(process, item, 'request_number', '申请号')
-        return item
+        return push_item(process, item, 'request_number', '申请号')
 
 
 class RequestDate(BaseItem):
@@ -91,9 +92,7 @@ class RequestDate(BaseItem):
 
     @classmethod
     def parse(cls, raw, item, process=None):
-        if process is not None:
-            item = push_item(process, item, 'request_date', '申请日')
-        return item
+        return push_item(process, item, 'request_date', '申请日')
 
 
 class PublishNumber(BaseItem):
@@ -103,9 +102,7 @@ class PublishNumber(BaseItem):
 
     @classmethod
     def parse(cls, raw, item, process=None):
-        if process is not None:
-            item = push_item(process, item, 'publish_number', '公开（公告）号')
-        return item
+        return push_item(process, item, 'publish_number', '公开（公告）号')
 
 
 class PublishDate(BaseItem):
@@ -115,9 +112,7 @@ class PublishDate(BaseItem):
 
     @classmethod
     def parse(cls, raw, item, process=None):
-        if process is not None:
-            item = push_item(process, item, 'publish_date', '公开（公告）日')
-        return item
+        return push_item(process, item, 'publish_date', '公开（公告）日')
 
 
 class IpcClassificationNumber(BaseItem):
@@ -127,9 +122,7 @@ class IpcClassificationNumber(BaseItem):
 
     @classmethod
     def parse(cls, raw, item, process=None):
-        if process is not None:
-            item = push_item(process, item, 'ipc_class_number', 'IPC分类号')
-        return item
+        return push_item(process, item, 'ipc_class_number', 'IPC分类号')
 
 
 class Applicant(BaseItem):
@@ -139,9 +132,7 @@ class Applicant(BaseItem):
 
     @classmethod
     def parse(cls, raw, item, process=None):
-        if process is not None:
-            item = push_item(process, item, 'applicant', '申请（专利权）人')
-        return item
+        return push_item(process, item, 'applicant', '申请（专利权）人')
 
 
 class Inventor(BaseItem):
@@ -151,9 +142,7 @@ class Inventor(BaseItem):
 
     @classmethod
     def parse(cls, raw, item, process=None):
-        if process is not None:
-            item = push_item(process, item, 'inventor', '发明人')
-        return item
+        return push_item(process, item, 'inventor', '发明人')
 
 
 class PriorityNumber(BaseItem):
@@ -163,9 +152,7 @@ class PriorityNumber(BaseItem):
 
     @classmethod
     def parse(cls, raw, item, process=None):
-        if process is not None:
-            item = push_item(process, item, 'priority_number', '优先权号')
-        return item
+        return push_item(process, item, 'priority_number', '优先权号')
 
 
 class PriorityDate(BaseItem):
@@ -175,9 +162,7 @@ class PriorityDate(BaseItem):
 
     @classmethod
     def parse(cls, raw, item, process=None):
-        if process is not None:
-            item = push_item(process, item, 'priority_date', '优先权日')
-        return item
+        return push_item(process, item, 'priority_date', '优先权日')
 
 
 class AddressOfApplicant(BaseItem):
@@ -199,9 +184,7 @@ class ZipCodeOfTheApplicant(BaseItem):
 
     @classmethod
     def parse(cls, raw, item, process=None):
-        if process is not None:
-            item = push_item(process, item, 'proposer_zip_code', '申请人邮编')
-        return item
+        return push_item(process, item, 'proposer_zip_code', '申请人邮编')
 
 
 class CountryOfTheApplicant(BaseItem):
@@ -211,9 +194,7 @@ class CountryOfTheApplicant(BaseItem):
 
     @classmethod
     def parse(cls, raw, item, process=None):
-        if process is not None:
-            item = push_item(process, item, 'proposer_location', '申请人所在国（省）')
-        return item
+        return push_item(process, item, 'proposer_location', '申请人所在国（省）')
 
 
 class CpcClassificationNumber(BaseItem):
@@ -223,9 +204,7 @@ class CpcClassificationNumber(BaseItem):
 
     @classmethod
     def parse(cls, raw, item, process=None):
-        if process is not None:
-            item = push_item(process, item, 'cpc_class_number', 'CPC分类号')
-        return item
+        return push_item(process, item, 'cpc_class_number', 'CPC分类号')
 
 
 class Cognation(BaseItem):
@@ -239,7 +218,7 @@ class Cognation(BaseItem):
     def parse(cls, raw, item, process=None):
         if process is not None:
             cognation_list = process.get('cognationList')
-            print('cognation', cognation_list)
+            # print('cognation', cognation_list)
             if cognation_list is not None:
                 pn_list = []
                 for cog in cognation_list:

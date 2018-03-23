@@ -11,7 +11,8 @@ Created on 2017/3/24
 from entity.query_item import SipoItem, DateSelect, And, ItemGroup, Or, Not
 
 QUERY_LIST = [
-    SipoItem(proposer='深圳大学', inventor='董磊'),
+    # 武大20150101-20150110
+    SipoItem(proposer='武汉大学', request_date=DateSelect(":", '2015-01-01', '2015-01-10')),
     # SipoItem(abstract='人工智能'),
 ]
 

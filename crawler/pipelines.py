@@ -59,6 +59,7 @@ class CrawlerPipeline(object):
                 for c in content:
                     sql_line += "'%s', " % c
                 sql_line = sql_line[:-2] + ');'
+                logger.info(sql_line)
                 cursor.execute(sql_line)
                 conn.commit()
         conn.close()
