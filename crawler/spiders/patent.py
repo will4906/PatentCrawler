@@ -262,7 +262,11 @@ class PatentSpider(scrapy.Spider):
         :param response:
         :return:
         """
+        body = response.body_as_unicode()
+        full = json.loads(body)
         data_item = response.meta['data_item']
+        for crawler in info.crawler_dict.get(url_full_text.get('crawler_id')):
+            crawler.parse(body, data_item, full)
         yield self.turn_to_request(int(url_full_text.get('crawler_id')), data_item=data_item)
 
     def closed(self, reason):

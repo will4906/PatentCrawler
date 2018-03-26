@@ -254,3 +254,18 @@ class LawStateList(BaseItem):
                             ResultItem(table=cls.table_name, title=cls.title[1], value=law_date))
                     tmp_list.append(part)
                 item.law_state_list = tmp_list
+        return item
+
+
+class FullText(BaseItem):
+    crawler_id = url_full_text.get('crawler_id')
+    english = ['full_text', 'whole_text']
+    chinese = ['全文文本', '全文']
+
+    @classmethod
+    def parse(cls, raw, item, process=None):
+        if process is not None:
+            item.full_text = ResultItem(table=cls.table_name, title=cls.title,
+                                        value=BeautifulSoup(str(process.get('fullTextDTO').get('literaInfohtml')), 'lxml')
+                                        .get_text().replace("'", '"').replace(';', ','))
+        return item

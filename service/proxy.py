@@ -77,6 +77,9 @@ def update_proxy():
             except Exception:
                 i += 1
                 logger.error("代理获取失败，尝试重试，重试次数%s" % (i, ))
+    else:
+        logger.info('notify address')
+        notify_ip_address()
 
 
 def update_cookies(cookies=None):
