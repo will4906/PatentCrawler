@@ -41,7 +41,7 @@ AD_PATH = os.path.join(BASE_PATH, 'res', 'advertisement', 'ad.html')
 基础设置
 """
 # 是否使用代理
-USE_PROXY = True
+USE_PROXY = False
 # 代理请求url，若USE_PROXY为False则忽略此项
 PROXY_URL = 'http://127.0.0.1:5010/get'
 # 请求超时，单位秒

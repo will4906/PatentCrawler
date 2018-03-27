@@ -30,7 +30,7 @@ def notify_ip_address():
     这个网站比较特别，每当有陌生ip地址时，都需要通过这个方法向网站发送一次请求先。
     :return:
     """
-    resp = requests.post(url_pre_execute.get('url'), proxies=ctrl.PROXIES, timeout=bs.TIMEOUT)
+    resp = requests.post(url_pre_execute.get('url'), proxies=ctrl.PROXIES, timeout=bs.TIMEOUT, cookies=ctrl.COOKIES)
     ip_address = json.loads(resp.text)
     if ctrl.PROXIES is not None:
         if ip_address.get('IP') == ctrl.PROXIES.get('http').split(':')[0]:

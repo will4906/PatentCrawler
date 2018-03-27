@@ -9,6 +9,7 @@ from bs4 import BeautifulSoup
 from logbook import Logger
 from scrapy import Request, FormRequest
 
+import controller
 from config.base_settings import *
 from config.query_config import QUERY_LIST
 from controller.url_config import *
@@ -51,6 +52,7 @@ class PatentSpider(scrapy.Spider):
         return FormRequest(
             url=url_detail.get('url'),
             formdata=formdata,
+            headers=url_detail.get('headers'),
             callback=self.parse_patent_detail,
             meta={'sipo': kwargs.pop('sipo'), 'data_item': kwargs.pop('data_item'), 'patent_id': patent_id,
                   'law_info': {'nrdAn': kwargs.pop('nrdAn'), 'nrdPn': kwargs.pop('nrdPn')}}
@@ -227,6 +229,7 @@ class PatentSpider(scrapy.Spider):
         :param response:
         :return:
         """
+
         sipo = response.meta['sipo']
         data_item = response.meta['data_item']
         patent_id = response.meta['patent_id']

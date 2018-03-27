@@ -11,6 +11,8 @@ url模块
 """
 
 # 首页，获取可以用来登录的ip地址
+import requests
+
 url_index = {
     'url': 'http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/tableSearch-showTableSearchIndex.shtml',
     'headers': {}
@@ -83,6 +85,18 @@ url_detail = {
         'sid': '',
         'wee.bizlog.modulelevel': '0201101'
     },
+    'headers': {
+        'Accept': 'application/json, text/javascript, */*; q=0.01',
+        'Accept-Encoding': 'gzip, deflate',
+        'Accept-Language': 'zh-CN,zh;q=0.9,ja;q=0.8',
+        'Connection': 'keep-alive',
+        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+        'Host': 'www.pss-system.gov.cn',
+        'Origin': 'http://www.pss-system.gov.cn',
+        'Referer': 'http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/showViewList-jumpToView.shtml',
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.140 Safari/537.36',
+        'X-Requested-With': 'XMLHttpRequest',
+    },
     'crawler_id': '1'
 }
 
@@ -119,17 +133,17 @@ url_captcha = {
 url_login = {
     'url': 'http://www.pss-system.gov.cn/sipopublicsearch/wee/platform/wee_security_check',
     'headers': {
-        "Host": "www.pss-system.gov.cn",
-        "Proxy-Connection": "keep-alive",
-        "Cache-Control": "max-age=0",
-        "Origin": "http://www.pss-system.gov.cn",
-        "Upgrade-Insecure-Requests": "1",
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.90 Safari/537.36",
-        "Content-Type": "application/x-www-form-urlencoded",
-        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8",
-        "Referer": "http://www.pss-system.gov.cn/sipopublicsearch/portal/uiIndex.shtml",
-        "Accept-Encoding": "gzip, deflate",
-        "Accept-Language": "zh-CN,zh;q=0.8"
+        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+        'Accept-Encoding': 'gzip, deflate',
+        'Accept-Language': 'zh-CN,zh;q=0.9,ja;q=0.8',
+        'Cache-Control': 'max-age=0',
+        'Connection': 'keep-alive',
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'Host': 'www.pss-system.gov.cn',
+        'Origin': 'http://www.pss-system.gov.cn',
+        'Referer': 'http://www.pss-system.gov.cn/sipopublicsearch/portal/uilogin-forwardLogin.shtml',
+        'Upgrade-Insecure-Requests': '1',
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.140 Safari/537.36',
     },
     'form_data': {
         "j_loginsuccess_url": "",
@@ -140,9 +154,33 @@ url_login = {
 }
 
 if __name__ == '__main__':
+    resp = requests.get(url_index.get('url'), headers=url_search.get('headers'))
+    coo = resp.cookies
+    print(coo)
+    coo.__delitem__('JSESSIONID')
+    coo.set('JSESSIONID', '8U9nCtA0LoRYs75ado1-eMcbTsLZINYi2r3aILoqbKjmy9DbWY_v!891074563!-395222046',
+            domain='www.pss-system.gov.cn')
+    coo.__delitem__('IS_LOGIN')
+    coo.set('IS_LOGIN', 'true', domain='www.pss-system.gov.cn/sipopublicsearch/patentsearch')
+    coo.__delitem__("WEE_SID")
+    coo.set("WEE_SID", '8U9nCtA0LoRYs75ado1-eMcbTsLZINYi2r3aILoqbKjmy9DbWY_v!891074563!-395222046!1522147184692',
+            domain='www.pss-system.gov.cn/sipopublicsearch/patentsearch')
+    print(coo)
+    form_data = url_detail.get('form_data')
+    # '''
+    # 'nrdAn': '',
+    #     'cid': '',
+    #     'sid': '',
+    #     'wee.bizlog.modulelevel': '0201101'
+    # '''
+    form_data.__setitem__('nrdAn', 'CN201711283836')
+    form_data.__setitem__('cid', 'CN201711283836.720180302FM')
+    form_data.__setitem__('sid', 'CN201711283836.720180302FM')
+    resp = requests.post(url_detail.get('url'), headers=url_detail.get('headers'), cookies=coo, data=form_data)
+    print(resp.text)
     pass
     # search_exp_cn = QUERY_LIST[0].search_exp_cn
     # form_data = url_search.get('formdata')
     # form_data.__setitem__('searchCondition.searchExp', search_exp_cn)
-    # resp = requests.post(url_search.get('url'), headers=url_search.get('headers'), data=form_data)
+
     # print(resp.content.decode())
