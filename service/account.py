@@ -177,7 +177,7 @@ def login(username=None, password=None):
                 update_cookies(resp.cookies)
                 requests.post(
                     'http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/showViewList-jumpToView.shtml',
-                    cookies=ctrl.COOKIES)
+                    cookies=ctrl.COOKIES, proxies=ctrl.PROXIES)
                 ctrl.BEING_LOG = False
                 logger.info('登录成功')
                 return True
