@@ -153,8 +153,11 @@ def login(username=None, password=None):
     error_times = 0
     while True:
         try:
+            # logger.debug("before proxy")
             update_proxy()
+            # logger.debug("before cookie")
             update_cookies()
+            # logger.debug("after cookie")
             busername = change_to_base64(username)
             bpassword = change_to_base64(password)
             captcha = get_captcha()
@@ -186,8 +189,8 @@ def login(username=None, password=None):
                     break
                 logger.error('登录失败')
                 error_times += 1
-        except:
-            pass
+        except Exception as e:
+            logger.error(e)
 
     ctrl.BEING_LOG = False
     return False

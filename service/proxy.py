@@ -31,6 +31,7 @@ def notify_ip_address():
     :return:
     """
     resp = requests.post(url_pre_execute.get('url'), proxies=ctrl.PROXIES, timeout=bs.TIMEOUT, cookies=ctrl.COOKIES)
+    # logger.debug(resp.text)
     ip_address = json.loads(resp.text)
     if ctrl.PROXIES is not None:
         if ip_address.get('IP') == ctrl.PROXIES.get('http').split(':')[0]:

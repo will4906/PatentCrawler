@@ -21,7 +21,7 @@ url_index = {
 # 预处理地址，主要的目的是把ip发送给对面
 url_pre_execute = {
     # 'url': 'http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/preExecuteSearch!preExecuteSearch.do',
-    'url': 'http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/pageUesd-pageUsed.shtml',
+    'url': 'http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/pageIsUesd-pageUsed.shtml',
     'headers': {
         "Accept": "application/json, text/javascript, */*; q=0.01",
         "Accept-Encoding": "gzip, deflate",
@@ -38,7 +38,7 @@ url_pre_execute = {
 # 主查询地址
 # 这个地址经常改变
 url_search = {
-    'url': 'http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/executeTableSearch0712-executeCommandSearch.shtml',
+    'url': 'http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/executeTableSearch0402-executeCommandSearch.shtml',
     # 'url': 'http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/executeTableSearch0712-executeCommandSearch.shtml',
     'headers': {
         "Content-Type": "application/x-www-form-urlencoded",
@@ -78,7 +78,7 @@ url_page_turning = {
 }
 # 查询专利详情的地址
 url_detail = {
-    'url': 'http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/viewAbstractInfo-viewAbstractInfo.shtml',
+    'url': 'http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/viewAbstractInfo0404-viewAbstractInfo.shtml',
     'form_data': {
         'nrdAn': '',
         'cid': '',
@@ -102,7 +102,7 @@ url_detail = {
 
 # cognation
 url_related_info = {
-    'url': 'http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/showPatentInfo-showPatentInfo.shtml',
+    'url': 'http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/showPatentInfo0405-showPatentInfo.shtml',
     'headers': {},
     'form_data': {
         'literaInfo.nrdAn': '',
@@ -114,7 +114,7 @@ url_related_info = {
 
 # full text
 url_full_text = {
-    'url': 'http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/showFullText-viewFullText.shtml',
+    'url': 'http://www.pss-system.gov.cn/sipopublicsearch/patentsearch/showFullText0406-viewFullText.shtml',
     'headers': {},
     'form_data': {
         'nrdAn': '',
